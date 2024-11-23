@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/22 05:37:24 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/23 17:51:27 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	drawline_v(int *x_int, int *y_int, t_data *img)
 	x = x_int[0];
 	while (i <= (y_int[1] - y_int[0]))
 	{
-		my_mlx_pixel_put(img, x, y_int[0] + i, 0x00FF0000);
+		my_mlx_pixel_put(img, x, y_int[0] + i, 0xFF0000);
 		if (p >= 0)
 		{
 			x += dir;

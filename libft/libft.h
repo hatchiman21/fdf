@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 03:59:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/13 17:50:18 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/23 19:39:18 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ void		*ft_calloc(size_t count, size_t size);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 char		*ft_itoa(int n);
-void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
+int			ft_putchar_fd(char c, int fd);
+int			ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
-void		ft_putnbr_fd(int n, int fd);
+int			ft_putnbr_fd(long n, int fd);
 
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -87,11 +87,9 @@ void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-int			ft_putnbr(long m);
-int			ft_putstr(char *s);
-int			ft_putchar(char c);
-int			ft_putnbr_hex(unsigned long n, int j);
+int			ft_putnbr_hex_fd(unsigned long n, int fd, int j);
 int			ft_printf(const char *string, ...);
+int			ft_dprintf(int fd, const char *string, ...);
 
 int			ft_strchr_find(const char *s, int c);
 char		*ft_lstclear_item(t_line_list **lst, int fd);

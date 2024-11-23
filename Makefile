@@ -17,7 +17,6 @@ all: $(LIBFT) $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
-	$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $(NAME) $(CFLAGS)
@@ -27,12 +26,10 @@ $(NAME): $(OBJS)
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MINILIBX) clean
 	$(RM) $(OBJS)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(MINILIBX) clean
 	$(RM) $(NAME)
 
 re: fclean all

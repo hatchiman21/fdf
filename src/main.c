@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/22 06:06:26 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/23 21:20:32 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,15 +169,22 @@ double	get_dest(int x, int y, int z, int is_x)
 	double	a;
 	double	res;
 
-	if (z != 0)
-		a = (2.0 * PI) / 3.0;
-	else
-		a = PI / 4.0;
+	// a = (1.0 * PI) / 6.0;
+	// if (is_x)
+	// 	res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
+	// else
+	// 	res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
+	
+	// if (is_x)
+	// 	res = (x - z) / sqrt(2);
+	// else
+	// 	res = (x + 2 * y + z ) / sqrt(6);
+	
 	if (is_x)
-		res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
+		res = x - y;
 	else
-		res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
-	return (ABS(res));
+		res = ((x + y) / 2) - z;
+	return (res);
 }
 
 void	plot(char ***cor, t_data *img)
@@ -187,38 +194,50 @@ void	plot(char ***cor, t_data *img)
 	int		x;
 
 	y = 0;
-	// while (cor[y + 1])
-	// {
-	// 	x = 0;
-	// 	while (cor[y][x + 1])
-	// 	{
-	// 		// dest.x0 = get_dest(x * 25, y * 25, ft_atoi(cor[y][x]) * 25, 1);
-	// 		// dest.y0 = get_dest(x * 25, y * 25, ft_atoi(cor[y][x]) * 25, 0);
-	// 		dest.x1 = get_dest(x + 1, y, ft_atoi(cor[y][x]), 1);
-	// 		dest.y1 = get_dest(x + 1, y, ft_atoi(cor[y][x]), 0);
-	// 		drawline_h((int []){x * 25, dest.x1 * 25}, (int []){y * 25, dest.y1 * 25}, img);
-	// 		dest.x1 = get_dest(x, y + 1, ft_atoi(cor[y][x]), 1);
-	// 		dest.y1 = get_dest(x, y + 1, ft_atoi(cor[y][x]), 0);
-	// 		drawline_v((int []){x * 25, dest.x1 * 25}, (int []){y * 25, dest.y1 * 25}, img);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
-	int	tmpx;
-	int	tmpy;
-	while (y <= 300)
+	while (cor[y])
 	{
 		x = 0;
-		while (x <= 300)
+		while (cor[y][x])
 		{
-			// tmpx = get_dest(x + 10, y, 0, 1);
-			// tmpy = get_dest(x, y + 10, 0, 0);
-			drawline_h((int []){x, x + 10}, (int []){y, y}, img);
-			drawline_v((int []){x, x}, (int []){y, y + 10}, img);
-			x += 10;
+			if (!dest.x0 || !dest.y0)
+			{
+				dest.x0 = x;
+				dest.y0 = y;
+			}
+			else
+			{
+				dest.x1 = get_dest(x + 1, y, ft_atoi(cor[y][x]), 1);
+				dest.y1 = get_dest(x + 1, y, ft_atoi(cor[y][x]), 0);
+				ft_printf("dest.x1 = %d, dest.y1 = %d\n", dest.x1, dest.y1);
+				drawline_h((int []){dest.x0 * 25, dest.x1 * 25}, (int []){dest.y0 * 25, dest.y1 * 25}, img);
+				dest.x1 = get_dest(x, y + 1, ft_atoi(cor[y][x]), 1);
+				dest.y1 = get_dest(x, y + 1, ft_atoi(cor[y][x]), 0);
+				drawline_v((int []){x * 25, dest.x1 * 25}, (int []){y * 25, dest.y1 * 25}, img);
+				dest.x0 = dest.x1;
+				dest.y0 = dest.y1;
+			}
+			x++;
 		}
-		y += 10;
+		y++;
 	}
+	
+	// int	tmpx;
+	// int	tmpy;
+	// int	i = 0;
+	// while (y <= 300)
+	// {
+	// 	x = 0;
+	// 	while (x <= 300)
+	// 	{
+	// 		// tmpx = get_dest(x + 10, y, 0, 1);
+	// 		// tmpy = get_dest(x, y + 10, 0, 0);
+	// 		drawline_h((int []){x, x + 10}, (int []){y, y}, img);
+	// 		drawline_v((int []){x, x}, (int []){y, y + 10}, img);
+	// 		x += 10;
+	// 	}
+	// 	i = +2;
+	// 	y += 10;
+	// }
 	// y = 0;
 	// while (y < 100)
 	// drawline_h((int []){0, 100}, (int []){0, 0}, img);
@@ -272,3 +291,4 @@ int	main(int argc, char *argv[])
 	argc -= 1;
 	return (argc);
 }
+ 
