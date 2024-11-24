@@ -6,13 +6,13 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/24 19:45:37 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/24 20:50:27 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	free_cor(char ***string)
+char	***free_cor(char ***string)
 {
 	int	i;
 	int	j;
@@ -28,6 +28,20 @@ void	free_cor(char ***string)
 		free(string[i++]);
 	}
 	free (string);
+	return (NULL);
+}
+
+int	free_lines(t_line *lines)
+{
+	t_line	*tmp;
+
+	while (lines)
+	{
+		tmp = lines->next;
+		free(lines);
+		lines = tmp;
+	}
+	return (0);
 }
 
 void	free_split(char **string)
@@ -144,7 +158,7 @@ char	***grap_input(char *arg, int fd)
 	{
 		cor[i] = ft_split(line, ' ');
 		if (!cor[i])
-			return (free_cor(cor), NULL);
+			return (free_cor(cor));
 		i++;
 		free(line);
 		line = get_next_line(fd);
@@ -186,20 +200,20 @@ double	get_dest(int x, int y, int z, int is_x)
 // else
 // 	res = (x + 2 * y + z ) / sqrt(6);
 
-void	line_addback(t_line **lst, t_line *new)
-{
-	t_line	*tmp;
+// void	line_addback(t_line **lst, t_line *new)
+// {
+// 	t_line	*tmp;
 
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-}
+// 	if (!*lst)
+// 	{
+// 		*lst = new;
+// 		return ;
+// 	}
+// 	tmp = *lst;
+// 	while (tmp->next)
+// 		tmp = tmp->next;
+// 	tmp->next = new;
+// }
 
 int	*get_res(int *x, int *y, int *z, t_line **res)
 {
@@ -207,10 +221,10 @@ int	*get_res(int *x, int *y, int *z, t_line **res)
 	t_line	*tmp;
 	int		scale;
 
+	scale = 25;
 	node = malloc(sizeof(t_line));
 	if (!node)
-		return (0);
-	line_addback(res, node);
+		return (free_lines(*res));
 	if (!*res)
 		*res = node;
 	else
@@ -282,8 +296,10 @@ t_line	*plot(char ***cor, t_data *img)
 // 	{
 // 		drawline_h((double []){0 * 4, 20 * 4}, (double []){0 * 4, 0 * 4}, img);
 // 		drawline_v((double []){0 * 4, 0 * 4}, (double []){0 * 4, 20 * 4}, img);
-// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){20 * 4, 20 * 4}, img);
-// 		drawline_v((double []){20 * 4, 20 * 4}, (double []){0 * 4, 20 * 4}, img);
+// 		drawline_h((double []){0 * 4, 20 * 4}
+//			 , (double []){20 * 4, 20 * 4}, img);
+// 		drawline_v((double []){20 * 4, 20 * 4}
+//			 , (double []){0 * 4, 20 * 4}, img);
 // 		j++;
 // 	}
 // 	i++;
@@ -298,12 +314,17 @@ void	first(char ***cor)
 	t_line	*res;
 	t_data	img;
 
+	res = plot(cor, &img);
+	if (!res)
+	{
+		ft_dprintf(2, "Malloc failed\n");
+		exit(3);
+	}
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 920, 920, "first test");
 	img.img = mlx_new_image(mlx, 920, 920);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	res = plot(cor, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 20, 20);
 	mlx_loop(mlx);
 	mlx_destroy_window(mlx, mlx_win);
@@ -314,13 +335,25 @@ int	main(int argc, char *argv[])
 	int		fd;
 	char	***cor;
 
+	if (argc != 2)
+	{
+		ft_dprintf(2, "Wrong number of inputs\n");
+		return (1);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (perror(argv[1]), 1);
+	{
+		ft_dprintf(2, "Error opening %s\n", argv[1]);
+		return (2);
+	}
 	cor = grap_input(argv[1], fd);
+	if (!cor)
+	{
+		ft_dprintf(2, "Malloc failed\n");
+		return (3);
+	}
 	close(fd);
 	first(cor);
 	free_cor(cor);
-	argc -= 1;
-	return (argc);
+	return (0);
 }
