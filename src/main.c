@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/23 21:20:32 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/24 19:45:37 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,17 +169,6 @@ double	get_dest(int x, int y, int z, int is_x)
 	double	a;
 	double	res;
 
-	// a = (1.0 * PI) / 6.0;
-	// if (is_x)
-	// 	res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
-	// else
-	// 	res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
-	
-	// if (is_x)
-	// 	res = (x - z) / sqrt(2);
-	// else
-	// 	res = (x + 2 * y + z ) / sqrt(6);
-	
 	if (is_x)
 		res = x - y;
 	else
@@ -187,82 +176,126 @@ double	get_dest(int x, int y, int z, int is_x)
 	return (res);
 }
 
-void	plot(char ***cor, t_data *img)
+// a = (1.0 * PI) / 6.0;
+// if (is_x)
+// 	res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
+// else
+// 	res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
+// if (is_x)
+// 	res = (x - z) / sqrt(2);
+// else
+// 	res = (x + 2 * y + z ) / sqrt(6);
+
+void	line_addback(t_line **lst, t_line *new)
 {
-	t_line	dest;
+	t_line	*tmp;
+
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = *lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+int	*get_res(int *x, int *y, int *z, t_line **res)
+{
+	t_line	*node;
+	t_line	*tmp;
+	int		scale;
+
+	node = malloc(sizeof(t_line));
+	if (!node)
+		return (0);
+	line_addback(res, node);
+	if (!*res)
+		*res = node;
+	else
+	{
+		tmp = *res;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = node;
+	}
+	node->next = NULL;
+	node->x0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 1);
+	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
+	node->x1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1);
+	node->y1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0);
+	return (1);
+}
+
+t_line	*plot(char ***cor, t_data *img)
+{
+	t_line	*res;
 	int		y;
 	int		x;
 
 	y = 0;
+	res = NULL;
 	while (cor[y])
 	{
 		x = 0;
 		while (cor[y][x])
 		{
-			if (!dest.x0 || !dest.y0)
-			{
-				dest.x0 = x;
-				dest.y0 = y;
-			}
-			else
-			{
-				dest.x1 = get_dest(x + 1, y, ft_atoi(cor[y][x]), 1);
-				dest.y1 = get_dest(x + 1, y, ft_atoi(cor[y][x]), 0);
-				ft_printf("dest.x1 = %d, dest.y1 = %d\n", dest.x1, dest.y1);
-				drawline_h((int []){dest.x0 * 25, dest.x1 * 25}, (int []){dest.y0 * 25, dest.y1 * 25}, img);
-				dest.x1 = get_dest(x, y + 1, ft_atoi(cor[y][x]), 1);
-				dest.y1 = get_dest(x, y + 1, ft_atoi(cor[y][x]), 0);
-				drawline_v((int []){x * 25, dest.x1 * 25}, (int []){y * 25, dest.y1 * 25}, img);
-				dest.x0 = dest.x1;
-				dest.y0 = dest.y1;
-			}
+			if (cor[y + 1] && !get_res((int []){x, x}, (int []){y, (y + 1)}
+				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, res))
+				return (NULL);
+			if (cor[y][x + 1] && !get_res((int []){x, (x + 1)}, (int []){y, y}
+				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, res))
+				return (NULL);
 			x++;
 		}
 		y++;
 	}
-	
-	// int	tmpx;
-	// int	tmpy;
-	// int	i = 0;
-	// while (y <= 300)
-	// {
-	// 	x = 0;
-	// 	while (x <= 300)
-	// 	{
-	// 		// tmpx = get_dest(x + 10, y, 0, 1);
-	// 		// tmpy = get_dest(x, y + 10, 0, 0);
-	// 		drawline_h((int []){x, x + 10}, (int []){y, y}, img);
-	// 		drawline_v((int []){x, x}, (int []){y, y + 10}, img);
-	// 		x += 10;
-	// 	}
-	// 	i = +2;
-	// 	y += 10;
-	// }
-	// y = 0;
-	// while (y < 100)
-	// drawline_h((int []){0, 100}, (int []){0, 0}, img);
-	
-	// while (cor[i + 1])
-	// {
-	// 	j = 0;
-	// 	while (cor[i][j + 1])
-	// 	{
-	// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){0 * 4, 0 * 4}, img);
-	// 		drawline_v((double []){0 * 4, 0 * 4}, (double []){0 * 4, 20 * 4}, img);
-	// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){20 * 4, 20 * 4}, img);
-	// 		drawline_v((double []){20 * 4, 20 * 4}, (double []){0 * 4, 20 * 4}, img);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	// drawline_h((double []){0, 4 * 25}, (double []){0, 0}, img);
-	// drawline_v((double []){0, j * 25}, (double []){0, (i + 1) * 25}, img);
+	return (res);
 }
+
+// int	tmpx;
+// int	tmpy;
+// int	i = 0;
+// while (y <= 300)
+// {
+// 	x = 0;
+// 	while (x <= 300)
+// 	{
+// 		// tmpx = get_dest(x + 10, y, 0, 1);
+// 		// tmpy = get_dest(x, y + 10, 0, 0);
+// 		drawline_h((int []){x, x + 10}, (int []){y, y}, img);
+// 		drawline_v((int []){x, x}, (int []){y, y + 10}, img);
+// 		x += 10;
+// 	}
+// 	i = +2;
+// 	y += 10;
+// }
+// y = 0;
+// while (y < 100)
+// drawline_h((int []){0, 100}, (int []){0, 0}, img);
+
+// while (cor[i + 1])
+// {
+// 	j = 0;
+// 	while (cor[i][j + 1])
+// 	{
+// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){0 * 4, 0 * 4}, img);
+// 		drawline_v((double []){0 * 4, 0 * 4}, (double []){0 * 4, 20 * 4}, img);
+// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){20 * 4, 20 * 4}, img);
+// 		drawline_v((double []){20 * 4, 20 * 4}, (double []){0 * 4, 20 * 4}, img);
+// 		j++;
+// 	}
+// 	i++;
+// }
+// drawline_h((double []){0, 4 * 25}, (double []){0, 0}, img);
+// drawline_v((double []){0, j * 25}, (double []){0, (i + 1) * 25}, img);
 
 void	first(char ***cor)
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_line	*res;
 	t_data	img;
 
 	mlx = mlx_init();
@@ -270,7 +303,7 @@ void	first(char ***cor)
 	img.img = mlx_new_image(mlx, 920, 920);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	plot(cor, &img);
+	res = plot(cor, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 20, 20);
 	mlx_loop(mlx);
 	mlx_destroy_window(mlx, mlx_win);
@@ -291,4 +324,3 @@ int	main(int argc, char *argv[])
 	argc -= 1;
 	return (argc);
 }
- 
