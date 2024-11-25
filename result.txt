@@ -1,0 +1,2149 @@
+x: 0, y: 0, z: 0
+x is 0, y is 0 res is 0
+x is 0, y is 0 res is 0
+x is 0, y is 25 res is -22
+x is 0, y is 25 res is 13
+x is 0, y is 0 res is 0
+x is 0, y is 0 res is 0
+x is 25, y is 0 res is 22
+x is 25, y is 0 res is 13
+x: 1, y: 0, z: 0
+x is 25, y is 0 res is 22
+x is 25, y is 0 res is 13
+x is 25, y is 25 res is 0
+x is 25, y is 25 res is 25
+x is 25, y is 0 res is 22
+x is 25, y is 0 res is 13
+x is 50, y is 0 res is 43
+x is 50, y is 0 res is 25
+x: 2, y: 0, z: 0
+x is 50, y is 0 res is 43
+x is 50, y is 0 res is 25
+x is 50, y is 25 res is 22
+x is 50, y is 25 res is 38
+x is 50, y is 0 res is 43
+x is 50, y is 0 res is 25
+x is 75, y is 0 res is 65
+x is 75, y is 0 res is 38
+x: 3, y: 0, z: 0
+x is 75, y is 0 res is 65
+x is 75, y is 0 res is 38
+x is 75, y is 25 res is 43
+x is 75, y is 25 res is 50
+x is 75, y is 0 res is 65
+x is 75, y is 0 res is 38
+x is 100, y is 0 res is 87
+x is 100, y is 0 res is 50
+x: 4, y: 0, z: 0
+x is 100, y is 0 res is 87
+x is 100, y is 0 res is 50
+x is 100, y is 25 res is 65
+x is 100, y is 25 res is 63
+x is 100, y is 0 res is 87
+x is 100, y is 0 res is 50
+x is 125, y is 0 res is 108
+x is 125, y is 0 res is 63
+x: 5, y: 0, z: 0
+x is 125, y is 0 res is 108
+x is 125, y is 0 res is 63
+x is 125, y is 25 res is 87
+x is 125, y is 25 res is 75
+x is 125, y is 0 res is 108
+x is 125, y is 0 res is 63
+x is 150, y is 0 res is 130
+x is 150, y is 0 res is 75
+x: 6, y: 0, z: 0
+x is 150, y is 0 res is 130
+x is 150, y is 0 res is 75
+x is 150, y is 25 res is 108
+x is 150, y is 25 res is 88
+x is 150, y is 0 res is 130
+x is 150, y is 0 res is 75
+x is 175, y is 0 res is 152
+x is 175, y is 0 res is 88
+x: 7, y: 0, z: 0
+x is 175, y is 0 res is 152
+x is 175, y is 0 res is 88
+x is 175, y is 25 res is 130
+x is 175, y is 25 res is 100
+x is 175, y is 0 res is 152
+x is 175, y is 0 res is 88
+x is 200, y is 0 res is 173
+x is 200, y is 0 res is 100
+x: 8, y: 0, z: 0
+x is 200, y is 0 res is 173
+x is 200, y is 0 res is 100
+x is 200, y is 25 res is 152
+x is 200, y is 25 res is 113
+x is 200, y is 0 res is 173
+x is 200, y is 0 res is 100
+x is 225, y is 0 res is 195
+x is 225, y is 0 res is 113
+x: 9, y: 0, z: 0
+x is 225, y is 0 res is 195
+x is 225, y is 0 res is 113
+x is 225, y is 25 res is 173
+x is 225, y is 25 res is 125
+x is 225, y is 0 res is 195
+x is 225, y is 0 res is 113
+x is 250, y is 0 res is 217
+x is 250, y is 0 res is 125
+x: 10, y: 0, z: 0
+x is 250, y is 0 res is 217
+x is 250, y is 0 res is 125
+x is 250, y is 25 res is 195
+x is 250, y is 25 res is 138
+x is 250, y is 0 res is 217
+x is 250, y is 0 res is 125
+x is 275, y is 0 res is 238
+x is 275, y is 0 res is 138
+x: 11, y: 0, z: 0
+x is 275, y is 0 res is 238
+x is 275, y is 0 res is 138
+x is 275, y is 25 res is 217
+x is 275, y is 25 res is 150
+x is 275, y is 0 res is 238
+x is 275, y is 0 res is 138
+x is 300, y is 0 res is 260
+x is 300, y is 0 res is 150
+x: 12, y: 0, z: 0
+x is 300, y is 0 res is 260
+x is 300, y is 0 res is 150
+x is 300, y is 25 res is 238
+x is 300, y is 25 res is 163
+x is 300, y is 0 res is 260
+x is 300, y is 0 res is 150
+x is 325, y is 0 res is 281
+x is 325, y is 0 res is 163
+x: 13, y: 0, z: 0
+x is 325, y is 0 res is 281
+x is 325, y is 0 res is 163
+x is 325, y is 25 res is 260
+x is 325, y is 25 res is 175
+x is 325, y is 0 res is 281
+x is 325, y is 0 res is 163
+x is 350, y is 0 res is 303
+x is 350, y is 0 res is 175
+x: 14, y: 0, z: 0
+x is 350, y is 0 res is 303
+x is 350, y is 0 res is 175
+x is 350, y is 25 res is 281
+x is 350, y is 25 res is 188
+x is 350, y is 0 res is 303
+x is 350, y is 0 res is 175
+x is 375, y is 0 res is 325
+x is 375, y is 0 res is 188
+x: 15, y: 0, z: 0
+x is 375, y is 0 res is 325
+x is 375, y is 0 res is 188
+x is 375, y is 25 res is 303
+x is 375, y is 25 res is 200
+x is 375, y is 0 res is 325
+x is 375, y is 0 res is 188
+x is 400, y is 0 res is 346
+x is 400, y is 0 res is 200
+x: 16, y: 0, z: 0
+x is 400, y is 0 res is 346
+x is 400, y is 0 res is 200
+x is 400, y is 25 res is 325
+x is 400, y is 25 res is 213
+x is 400, y is 0 res is 346
+x is 400, y is 0 res is 200
+x is 425, y is 0 res is 368
+x is 425, y is 0 res is 213
+x: 17, y: 0, z: 0
+x is 425, y is 0 res is 368
+x is 425, y is 0 res is 213
+x is 425, y is 25 res is 346
+x is 425, y is 25 res is 225
+x is 425, y is 0 res is 368
+x is 425, y is 0 res is 213
+x is 450, y is 0 res is 390
+x is 450, y is 0 res is 225
+x: 18, y: 0, z: 0
+x is 450, y is 0 res is 390
+x is 450, y is 0 res is 225
+x is 450, y is 25 res is 368
+x is 450, y is 25 res is 238
+x: 0, y: 1, z: 0
+x is 0, y is 25 res is -22
+x is 0, y is 25 res is 13
+x is 0, y is 50 res is -43
+x is 0, y is 50 res is 25
+x is 0, y is 25 res is -22
+x is 0, y is 25 res is 13
+x is 25, y is 25 res is 0
+x is 25, y is 25 res is 25
+x: 1, y: 1, z: 0
+x is 25, y is 25 res is 0
+x is 25, y is 25 res is 25
+x is 25, y is 50 res is -22
+x is 25, y is 50 res is 38
+x is 25, y is 25 res is 0
+x is 25, y is 25 res is 25
+x is 50, y is 25 res is 22
+x is 50, y is 25 res is 38
+x: 2, y: 1, z: 0
+x is 50, y is 25 res is 22
+x is 50, y is 25 res is 38
+x is 50, y is 50 res is 0
+x is 50, y is 50 res is 50
+x is 50, y is 25 res is 22
+x is 50, y is 25 res is 38
+x is 75, y is 25 res is 43
+x is 75, y is 25 res is 50
+x: 3, y: 1, z: 0
+x is 75, y is 25 res is 43
+x is 75, y is 25 res is 50
+x is 75, y is 50 res is 22
+x is 75, y is 50 res is 63
+x is 75, y is 25 res is 43
+x is 75, y is 25 res is 50
+x is 100, y is 25 res is 65
+x is 100, y is 25 res is 63
+x: 4, y: 1, z: 0
+x is 100, y is 25 res is 65
+x is 100, y is 25 res is 63
+x is 100, y is 50 res is 43
+x is 100, y is 50 res is 75
+x is 100, y is 25 res is 65
+x is 100, y is 25 res is 63
+x is 125, y is 25 res is 87
+x is 125, y is 25 res is 75
+x: 5, y: 1, z: 0
+x is 125, y is 25 res is 87
+x is 125, y is 25 res is 75
+x is 125, y is 50 res is 65
+x is 125, y is 50 res is 88
+x is 125, y is 25 res is 87
+x is 125, y is 25 res is 75
+x is 150, y is 25 res is 108
+x is 150, y is 25 res is 88
+x: 6, y: 1, z: 0
+x is 150, y is 25 res is 108
+x is 150, y is 25 res is 88
+x is 150, y is 50 res is 87
+x is 150, y is 50 res is 100
+x is 150, y is 25 res is 108
+x is 150, y is 25 res is 88
+x is 175, y is 25 res is 130
+x is 175, y is 25 res is 100
+x: 7, y: 1, z: 0
+x is 175, y is 25 res is 130
+x is 175, y is 25 res is 100
+x is 175, y is 50 res is 108
+x is 175, y is 50 res is 113
+x is 175, y is 25 res is 130
+x is 175, y is 25 res is 100
+x is 200, y is 25 res is 152
+x is 200, y is 25 res is 113
+x: 8, y: 1, z: 0
+x is 200, y is 25 res is 152
+x is 200, y is 25 res is 113
+x is 200, y is 50 res is 130
+x is 200, y is 50 res is 125
+x is 200, y is 25 res is 152
+x is 200, y is 25 res is 113
+x is 225, y is 25 res is 173
+x is 225, y is 25 res is 125
+x: 9, y: 1, z: 0
+x is 225, y is 25 res is 173
+x is 225, y is 25 res is 125
+x is 225, y is 50 res is 152
+x is 225, y is 50 res is 138
+x is 225, y is 25 res is 173
+x is 225, y is 25 res is 125
+x is 250, y is 25 res is 195
+x is 250, y is 25 res is 138
+x: 10, y: 1, z: 0
+x is 250, y is 25 res is 195
+x is 250, y is 25 res is 138
+x is 250, y is 50 res is 173
+x is 250, y is 50 res is 150
+x is 250, y is 25 res is 195
+x is 250, y is 25 res is 138
+x is 275, y is 25 res is 217
+x is 275, y is 25 res is 150
+x: 11, y: 1, z: 0
+x is 275, y is 25 res is 217
+x is 275, y is 25 res is 150
+x is 275, y is 50 res is 195
+x is 275, y is 50 res is 163
+x is 275, y is 25 res is 217
+x is 275, y is 25 res is 150
+x is 300, y is 25 res is 238
+x is 300, y is 25 res is 163
+x: 12, y: 1, z: 0
+x is 300, y is 25 res is 238
+x is 300, y is 25 res is 163
+x is 300, y is 50 res is 217
+x is 300, y is 50 res is 175
+x is 300, y is 25 res is 238
+x is 300, y is 25 res is 163
+x is 325, y is 25 res is 260
+x is 325, y is 25 res is 175
+x: 13, y: 1, z: 0
+x is 325, y is 25 res is 260
+x is 325, y is 25 res is 175
+x is 325, y is 50 res is 238
+x is 325, y is 50 res is 188
+x is 325, y is 25 res is 260
+x is 325, y is 25 res is 175
+x is 350, y is 25 res is 281
+x is 350, y is 25 res is 188
+x: 14, y: 1, z: 0
+x is 350, y is 25 res is 281
+x is 350, y is 25 res is 188
+x is 350, y is 50 res is 260
+x is 350, y is 50 res is 200
+x is 350, y is 25 res is 281
+x is 350, y is 25 res is 188
+x is 375, y is 25 res is 303
+x is 375, y is 25 res is 200
+x: 15, y: 1, z: 0
+x is 375, y is 25 res is 303
+x is 375, y is 25 res is 200
+x is 375, y is 50 res is 281
+x is 375, y is 50 res is 213
+x is 375, y is 25 res is 303
+x is 375, y is 25 res is 200
+x is 400, y is 25 res is 325
+x is 400, y is 25 res is 213
+x: 16, y: 1, z: 0
+x is 400, y is 25 res is 325
+x is 400, y is 25 res is 213
+x is 400, y is 50 res is 303
+x is 400, y is 50 res is 225
+x is 400, y is 25 res is 325
+x is 400, y is 25 res is 213
+x is 425, y is 25 res is 346
+x is 425, y is 25 res is 225
+x: 17, y: 1, z: 0
+x is 425, y is 25 res is 346
+x is 425, y is 25 res is 225
+x is 425, y is 50 res is 325
+x is 425, y is 50 res is 238
+x is 425, y is 25 res is 346
+x is 425, y is 25 res is 225
+x is 450, y is 25 res is 368
+x is 450, y is 25 res is 238
+x: 18, y: 1, z: 0
+x is 450, y is 25 res is 368
+x is 450, y is 25 res is 238
+x is 450, y is 50 res is 346
+x is 450, y is 50 res is 250
+x: 0, y: 2, z: 0
+x is 0, y is 50 res is -43
+x is 0, y is 50 res is 25
+x is 0, y is 75 res is -65
+x is 0, y is 75 res is 38
+x is 0, y is 50 res is -43
+x is 0, y is 50 res is 25
+x is 25, y is 50 res is -22
+x is 25, y is 50 res is 38
+x: 1, y: 2, z: 0
+x is 25, y is 50 res is -22
+x is 25, y is 50 res is 38
+x is 25, y is 75 res is -43
+x is 25, y is 75 res is 50
+x is 25, y is 50 res is -22
+x is 25, y is 50 res is 38
+x is 50, y is 50 res is 0
+x is 50, y is 50 res is 50
+x: 2, y: 2, z: 0
+x is 50, y is 50 res is 0
+x is 50, y is 50 res is 50
+x is 50, y is 75 res is -22
+x is 50, y is 75 res is 63
+x is 50, y is 50 res is 0
+x is 50, y is 50 res is 50
+x is 75, y is 50 res is 22
+x is 75, y is 50 res is 63
+x: 3, y: 2, z: 0
+x is 75, y is 50 res is 22
+x is 75, y is 50 res is 63
+x is 75, y is 75 res is 0
+x is 75, y is 75 res is 75
+x is 75, y is 50 res is 22
+x is 75, y is 50 res is 63
+x is 100, y is 50 res is 43
+x is 100, y is 50 res is 75
+x: 4, y: 2, z: 0
+x is 100, y is 50 res is 43
+x is 100, y is 50 res is 75
+x is 100, y is 75 res is 22
+x is 100, y is 75 res is 88
+x is 100, y is 50 res is 43
+x is 100, y is 50 res is 75
+x is 125, y is 50 res is 65
+x is 125, y is 50 res is 88
+x: 5, y: 2, z: 0
+x is 125, y is 50 res is 65
+x is 125, y is 50 res is 88
+x is 125, y is 75 res is 43
+x is 125, y is 75 res is 100
+x is 125, y is 50 res is 65
+x is 125, y is 50 res is 88
+x is 150, y is 50 res is 87
+x is 150, y is 50 res is 100
+x: 6, y: 2, z: 0
+x is 150, y is 50 res is 87
+x is 150, y is 50 res is 100
+x is 150, y is 75 res is 65
+x is 150, y is 75 res is 113
+x is 150, y is 50 res is 87
+x is 150, y is 50 res is 100
+x is 175, y is 50 res is 108
+x is 175, y is 50 res is 113
+x: 7, y: 2, z: 0
+x is 175, y is 50 res is 108
+x is 175, y is 50 res is 113
+x is 175, y is 75 res is 87
+x is 175, y is 75 res is 125
+x is 175, y is 50 res is 108
+x is 175, y is 50 res is 113
+x is 200, y is 50 res is 130
+x is 200, y is 50 res is 125
+x: 8, y: 2, z: 0
+x is 200, y is 50 res is 130
+x is 200, y is 50 res is 125
+x is 200, y is 75 res is 108
+x is 200, y is 75 res is 138
+x is 200, y is 50 res is 130
+x is 200, y is 50 res is 125
+x is 225, y is 50 res is 152
+x is 225, y is 50 res is 138
+x: 9, y: 2, z: 0
+x is 225, y is 50 res is 152
+x is 225, y is 50 res is 138
+x is 225, y is 75 res is 130
+x is 225, y is 75 res is 150
+x is 225, y is 50 res is 152
+x is 225, y is 50 res is 138
+x is 250, y is 50 res is 173
+x is 250, y is 50 res is 150
+x: 10, y: 2, z: 0
+x is 250, y is 50 res is 173
+x is 250, y is 50 res is 150
+x is 250, y is 75 res is 152
+x is 250, y is 75 res is 163
+x is 250, y is 50 res is 173
+x is 250, y is 50 res is 150
+x is 275, y is 50 res is 195
+x is 275, y is 50 res is 163
+x: 11, y: 2, z: 0
+x is 275, y is 50 res is 195
+x is 275, y is 50 res is 163
+x is 275, y is 75 res is 173
+x is 275, y is 75 res is 175
+x is 275, y is 50 res is 195
+x is 275, y is 50 res is 163
+x is 300, y is 50 res is 217
+x is 300, y is 50 res is 175
+x: 12, y: 2, z: 0
+x is 300, y is 50 res is 217
+x is 300, y is 50 res is 175
+x is 300, y is 75 res is 195
+x is 300, y is 75 res is 188
+x is 300, y is 50 res is 217
+x is 300, y is 50 res is 175
+x is 325, y is 50 res is 238
+x is 325, y is 50 res is 188
+x: 13, y: 2, z: 0
+x is 325, y is 50 res is 238
+x is 325, y is 50 res is 188
+x is 325, y is 75 res is 217
+x is 325, y is 75 res is 200
+x is 325, y is 50 res is 238
+x is 325, y is 50 res is 188
+x is 350, y is 50 res is 260
+x is 350, y is 50 res is 200
+x: 14, y: 2, z: 0
+x is 350, y is 50 res is 260
+x is 350, y is 50 res is 200
+x is 350, y is 75 res is 238
+x is 350, y is 75 res is 213
+x is 350, y is 50 res is 260
+x is 350, y is 50 res is 200
+x is 375, y is 50 res is 281
+x is 375, y is 50 res is 213
+x: 15, y: 2, z: 0
+x is 375, y is 50 res is 281
+x is 375, y is 50 res is 213
+x is 375, y is 75 res is 260
+x is 375, y is 75 res is 225
+x is 375, y is 50 res is 281
+x is 375, y is 50 res is 213
+x is 400, y is 50 res is 303
+x is 400, y is 50 res is 225
+x: 16, y: 2, z: 0
+x is 400, y is 50 res is 303
+x is 400, y is 50 res is 225
+x is 400, y is 75 res is 281
+x is 400, y is 75 res is 238
+x is 400, y is 50 res is 303
+x is 400, y is 50 res is 225
+x is 425, y is 50 res is 325
+x is 425, y is 50 res is 238
+x: 17, y: 2, z: 0
+x is 425, y is 50 res is 325
+x is 425, y is 50 res is 238
+x is 425, y is 75 res is 303
+x is 425, y is 75 res is 250
+x is 425, y is 50 res is 325
+x is 425, y is 50 res is 238
+x is 450, y is 50 res is 346
+x is 450, y is 50 res is 250
+x: 18, y: 2, z: 0
+x is 450, y is 50 res is 346
+x is 450, y is 50 res is 250
+x is 450, y is 75 res is 325
+x is 450, y is 75 res is 263
+x: 0, y: 3, z: 0
+x is 0, y is 75 res is -65
+x is 0, y is 75 res is 38
+x is 0, y is 100 res is -87
+x is 0, y is 100 res is 50
+x is 0, y is 75 res is -65
+x is 0, y is 75 res is 38
+x is 25, y is 75 res is -43
+x is 25, y is 75 res is 50
+x: 1, y: 3, z: 0
+x is 25, y is 75 res is -43
+x is 25, y is 75 res is 50
+x is 25, y is 100 res is -65
+x is 25, y is 100 res is 63
+x is 25, y is 75 res is -43
+x is 25, y is 75 res is 50
+x is 50, y is 75 res is -22
+x is 50, y is 75 res is 63
+x: 2, y: 3, z: 0
+x is 50, y is 75 res is -22
+x is 50, y is 75 res is 63
+x is 50, y is 100 res is -43
+x is 50, y is 100 res is 75
+x is 50, y is 75 res is -22
+x is 50, y is 75 res is 63
+x is 75, y is 75 res is 0
+x is 75, y is 75 res is 75
+x: 3, y: 3, z: 0
+x is 75, y is 75 res is 0
+x is 75, y is 75 res is 75
+x is 75, y is 100 res is -22
+x is 75, y is 100 res is 88
+x is 75, y is 75 res is 0
+x is 75, y is 75 res is 75
+x is 100, y is 75 res is 22
+x is 100, y is 75 res is 88
+x: 4, y: 3, z: 0
+x is 100, y is 75 res is 22
+x is 100, y is 75 res is 88
+x is 100, y is 100 res is 0
+x is 100, y is 100 res is 100
+x is 100, y is 75 res is 22
+x is 100, y is 75 res is 88
+x is 125, y is 75 res is 43
+x is 125, y is 75 res is 100
+x: 5, y: 3, z: 0
+x is 125, y is 75 res is 43
+x is 125, y is 75 res is 100
+x is 125, y is 100 res is 22
+x is 125, y is 100 res is 113
+x is 125, y is 75 res is 43
+x is 125, y is 75 res is 100
+x is 150, y is 75 res is 65
+x is 150, y is 75 res is 113
+x: 6, y: 3, z: 0
+x is 150, y is 75 res is 65
+x is 150, y is 75 res is 113
+x is 150, y is 100 res is 43
+x is 150, y is 100 res is 125
+x is 150, y is 75 res is 65
+x is 150, y is 75 res is 113
+x is 175, y is 75 res is 87
+x is 175, y is 75 res is 125
+x: 7, y: 3, z: 0
+x is 175, y is 75 res is 87
+x is 175, y is 75 res is 125
+x is 175, y is 100 res is 65
+x is 175, y is 100 res is 138
+x is 175, y is 75 res is 87
+x is 175, y is 75 res is 125
+x is 200, y is 75 res is 108
+x is 200, y is 75 res is 138
+x: 8, y: 3, z: 0
+x is 200, y is 75 res is 108
+x is 200, y is 75 res is 138
+x is 200, y is 100 res is 87
+x is 200, y is 100 res is 150
+x is 200, y is 75 res is 108
+x is 200, y is 75 res is 138
+x is 225, y is 75 res is 130
+x is 225, y is 75 res is 150
+x: 9, y: 3, z: 0
+x is 225, y is 75 res is 130
+x is 225, y is 75 res is 150
+x is 225, y is 100 res is 108
+x is 225, y is 100 res is 163
+x is 225, y is 75 res is 130
+x is 225, y is 75 res is 150
+x is 250, y is 75 res is 152
+x is 250, y is 75 res is 163
+x: 10, y: 3, z: 0
+x is 250, y is 75 res is 152
+x is 250, y is 75 res is 163
+x is 250, y is 100 res is 130
+x is 250, y is 100 res is 175
+x is 250, y is 75 res is 152
+x is 250, y is 75 res is 163
+x is 275, y is 75 res is 173
+x is 275, y is 75 res is 175
+x: 11, y: 3, z: 0
+x is 275, y is 75 res is 173
+x is 275, y is 75 res is 175
+x is 275, y is 100 res is 152
+x is 275, y is 100 res is 188
+x is 275, y is 75 res is 173
+x is 275, y is 75 res is 175
+x is 300, y is 75 res is 195
+x is 300, y is 75 res is 188
+x: 12, y: 3, z: 0
+x is 300, y is 75 res is 195
+x is 300, y is 75 res is 188
+x is 300, y is 100 res is 173
+x is 300, y is 100 res is 200
+x is 300, y is 75 res is 195
+x is 300, y is 75 res is 188
+x is 325, y is 75 res is 217
+x is 325, y is 75 res is 200
+x: 13, y: 3, z: 0
+x is 325, y is 75 res is 217
+x is 325, y is 75 res is 200
+x is 325, y is 100 res is 195
+x is 325, y is 100 res is 213
+x is 325, y is 75 res is 217
+x is 325, y is 75 res is 200
+x is 350, y is 75 res is 238
+x is 350, y is 75 res is 213
+x: 14, y: 3, z: 0
+x is 350, y is 75 res is 238
+x is 350, y is 75 res is 213
+x is 350, y is 100 res is 217
+x is 350, y is 100 res is 225
+x is 350, y is 75 res is 238
+x is 350, y is 75 res is 213
+x is 375, y is 75 res is 260
+x is 375, y is 75 res is 225
+x: 15, y: 3, z: 0
+x is 375, y is 75 res is 260
+x is 375, y is 75 res is 225
+x is 375, y is 100 res is 238
+x is 375, y is 100 res is 238
+x is 375, y is 75 res is 260
+x is 375, y is 75 res is 225
+x is 400, y is 75 res is 281
+x is 400, y is 75 res is 238
+x: 16, y: 3, z: 0
+x is 400, y is 75 res is 281
+x is 400, y is 75 res is 238
+x is 400, y is 100 res is 260
+x is 400, y is 100 res is 250
+x is 400, y is 75 res is 281
+x is 400, y is 75 res is 238
+x is 425, y is 75 res is 303
+x is 425, y is 75 res is 250
+x: 17, y: 3, z: 0
+x is 425, y is 75 res is 303
+x is 425, y is 75 res is 250
+x is 425, y is 100 res is 281
+x is 425, y is 100 res is 263
+x is 425, y is 75 res is 303
+x is 425, y is 75 res is 250
+x is 450, y is 75 res is 325
+x is 450, y is 75 res is 263
+x: 18, y: 3, z: 0
+x is 450, y is 75 res is 325
+x is 450, y is 75 res is 263
+x is 450, y is 100 res is 303
+x is 450, y is 100 res is 275
+x: 0, y: 4, z: 0
+x is 0, y is 100 res is -87
+x is 0, y is 100 res is 50
+x is 0, y is 125 res is -108
+x is 0, y is 125 res is 63
+x is 0, y is 100 res is -87
+x is 0, y is 100 res is 50
+x is 25, y is 100 res is -65
+x is 25, y is 100 res is 63
+x: 1, y: 4, z: 0
+x is 25, y is 100 res is -65
+x is 25, y is 100 res is 63
+x is 25, y is 125 res is -87
+x is 25, y is 125 res is 75
+x is 25, y is 100 res is -65
+x is 25, y is 100 res is 63
+x is 50, y is 100 res is -43
+x is 50, y is 100 res is 75
+x: 2, y: 4, z: 0
+x is 50, y is 100 res is -43
+x is 50, y is 100 res is 75
+x is 50, y is 125 res is -65
+x is 50, y is 125 res is 88
+x is 50, y is 100 res is -43
+x is 50, y is 100 res is 75
+x is 75, y is 100 res is -22
+x is 75, y is 100 res is 88
+x: 3, y: 4, z: 0
+x is 75, y is 100 res is -22
+x is 75, y is 100 res is 88
+x is 75, y is 125 res is -43
+x is 75, y is 125 res is 100
+x is 75, y is 100 res is -22
+x is 75, y is 100 res is 88
+x is 100, y is 100 res is 0
+x is 100, y is 100 res is 100
+x: 4, y: 4, z: 0
+x is 100, y is 100 res is 0
+x is 100, y is 100 res is 100
+x is 100, y is 125 res is -22
+x is 100, y is 125 res is 113
+x is 100, y is 100 res is 0
+x is 100, y is 100 res is 100
+x is 125, y is 100 res is 22
+x is 125, y is 100 res is 113
+x: 5, y: 4, z: 0
+x is 125, y is 100 res is 22
+x is 125, y is 100 res is 113
+x is 125, y is 125 res is 0
+x is 125, y is 125 res is 125
+x is 125, y is 100 res is 22
+x is 125, y is 100 res is 113
+x is 150, y is 100 res is 43
+x is 150, y is 100 res is 125
+x: 6, y: 4, z: 0
+x is 150, y is 100 res is 43
+x is 150, y is 100 res is 125
+x is 150, y is 125 res is 22
+x is 150, y is 125 res is 138
+x is 150, y is 100 res is 43
+x is 150, y is 100 res is 125
+x is 175, y is 100 res is 65
+x is 175, y is 100 res is 138
+x: 7, y: 4, z: 0
+x is 175, y is 100 res is 65
+x is 175, y is 100 res is 138
+x is 175, y is 125 res is 43
+x is 175, y is 125 res is 150
+x is 175, y is 100 res is 65
+x is 175, y is 100 res is 138
+x is 200, y is 100 res is 87
+x is 200, y is 100 res is 150
+x: 8, y: 4, z: 0
+x is 200, y is 100 res is 87
+x is 200, y is 100 res is 150
+x is 200, y is 125 res is 65
+x is 200, y is 125 res is 163
+x is 200, y is 100 res is 87
+x is 200, y is 100 res is 150
+x is 225, y is 100 res is 108
+x is 225, y is 100 res is 163
+x: 9, y: 4, z: 0
+x is 225, y is 100 res is 108
+x is 225, y is 100 res is 163
+x is 225, y is 125 res is 87
+x is 225, y is 125 res is 175
+x is 225, y is 100 res is 108
+x is 225, y is 100 res is 163
+x is 250, y is 100 res is 130
+x is 250, y is 100 res is 175
+x: 10, y: 4, z: 0
+x is 250, y is 100 res is 130
+x is 250, y is 100 res is 175
+x is 250, y is 125 res is 108
+x is 250, y is 125 res is 188
+x is 250, y is 100 res is 130
+x is 250, y is 100 res is 175
+x is 275, y is 100 res is 152
+x is 275, y is 100 res is 188
+x: 11, y: 4, z: 0
+x is 275, y is 100 res is 152
+x is 275, y is 100 res is 188
+x is 275, y is 125 res is 130
+x is 275, y is 125 res is 200
+x is 275, y is 100 res is 152
+x is 275, y is 100 res is 188
+x is 300, y is 100 res is 173
+x is 300, y is 100 res is 200
+x: 12, y: 4, z: 0
+x is 300, y is 100 res is 173
+x is 300, y is 100 res is 200
+x is 300, y is 125 res is 152
+x is 300, y is 125 res is 213
+x is 300, y is 100 res is 173
+x is 300, y is 100 res is 200
+x is 325, y is 100 res is 195
+x is 325, y is 100 res is 213
+x: 13, y: 4, z: 0
+x is 325, y is 100 res is 195
+x is 325, y is 100 res is 213
+x is 325, y is 125 res is 173
+x is 325, y is 125 res is 225
+x is 325, y is 100 res is 195
+x is 325, y is 100 res is 213
+x is 350, y is 100 res is 217
+x is 350, y is 100 res is 225
+x: 14, y: 4, z: 0
+x is 350, y is 100 res is 217
+x is 350, y is 100 res is 225
+x is 350, y is 125 res is 195
+x is 350, y is 125 res is 238
+x is 350, y is 100 res is 217
+x is 350, y is 100 res is 225
+x is 375, y is 100 res is 238
+x is 375, y is 100 res is 238
+x: 15, y: 4, z: 0
+x is 375, y is 100 res is 238
+x is 375, y is 100 res is 238
+x is 375, y is 125 res is 217
+x is 375, y is 125 res is 250
+x is 375, y is 100 res is 238
+x is 375, y is 100 res is 238
+x is 400, y is 100 res is 260
+x is 400, y is 100 res is 250
+x: 16, y: 4, z: 0
+x is 400, y is 100 res is 260
+x is 400, y is 100 res is 250
+x is 400, y is 125 res is 238
+x is 400, y is 125 res is 263
+x is 400, y is 100 res is 260
+x is 400, y is 100 res is 250
+x is 425, y is 100 res is 281
+x is 425, y is 100 res is 263
+x: 17, y: 4, z: 0
+x is 425, y is 100 res is 281
+x is 425, y is 100 res is 263
+x is 425, y is 125 res is 260
+x is 425, y is 125 res is 275
+x is 425, y is 100 res is 281
+x is 425, y is 100 res is 263
+x is 450, y is 100 res is 303
+x is 450, y is 100 res is 275
+x: 18, y: 4, z: 0
+x is 450, y is 100 res is 303
+x is 450, y is 100 res is 275
+x is 450, y is 125 res is 281
+x is 450, y is 125 res is 288
+x: 0, y: 5, z: 0
+x is 0, y is 125 res is -108
+x is 0, y is 125 res is 63
+x is 0, y is 150 res is -130
+x is 0, y is 150 res is 75
+x is 0, y is 125 res is -108
+x is 0, y is 125 res is 63
+x is 25, y is 125 res is -87
+x is 25, y is 125 res is 75
+x: 1, y: 5, z: 0
+x is 25, y is 125 res is -87
+x is 25, y is 125 res is 75
+x is 25, y is 150 res is -108
+x is 25, y is 150 res is 88
+x is 25, y is 125 res is -87
+x is 25, y is 125 res is 75
+x is 50, y is 125 res is -65
+x is 50, y is 125 res is 88
+x: 2, y: 5, z: 0
+x is 50, y is 125 res is -65
+x is 50, y is 125 res is 88
+x is 50, y is 150 res is -87
+x is 50, y is 150 res is 100
+x is 50, y is 125 res is -65
+x is 50, y is 125 res is 88
+x is 75, y is 125 res is -43
+x is 75, y is 125 res is 100
+x: 3, y: 5, z: 0
+x is 75, y is 125 res is -43
+x is 75, y is 125 res is 100
+x is 75, y is 150 res is -65
+x is 75, y is 150 res is 113
+x is 75, y is 125 res is -43
+x is 75, y is 125 res is 100
+x is 100, y is 125 res is -22
+x is 100, y is 125 res is 113
+x: 4, y: 5, z: 0
+x is 100, y is 125 res is -22
+x is 100, y is 125 res is 113
+x is 100, y is 150 res is -43
+x is 100, y is 150 res is 125
+x is 100, y is 125 res is -22
+x is 100, y is 125 res is 113
+x is 125, y is 125 res is 0
+x is 125, y is 125 res is 125
+x: 5, y: 5, z: 0
+x is 125, y is 125 res is 0
+x is 125, y is 125 res is 125
+x is 125, y is 150 res is -22
+x is 125, y is 150 res is 138
+x is 125, y is 125 res is 0
+x is 125, y is 125 res is 125
+x is 150, y is 125 res is 22
+x is 150, y is 125 res is 138
+x: 6, y: 5, z: 0
+x is 150, y is 125 res is 22
+x is 150, y is 125 res is 138
+x is 150, y is 150 res is 0
+x is 150, y is 150 res is 150
+x is 150, y is 125 res is 22
+x is 150, y is 125 res is 138
+x is 175, y is 125 res is 43
+x is 175, y is 125 res is 150
+x: 7, y: 5, z: 0
+x is 175, y is 125 res is 43
+x is 175, y is 125 res is 150
+x is 175, y is 150 res is 22
+x is 175, y is 150 res is 163
+x is 175, y is 125 res is 43
+x is 175, y is 125 res is 150
+x is 200, y is 125 res is 65
+x is 200, y is 125 res is 163
+x: 8, y: 5, z: 0
+x is 200, y is 125 res is 65
+x is 200, y is 125 res is 163
+x is 200, y is 150 res is 43
+x is 200, y is 150 res is 175
+x is 200, y is 125 res is 65
+x is 200, y is 125 res is 163
+x is 225, y is 125 res is 87
+x is 225, y is 125 res is 175
+x: 9, y: 5, z: 0
+x is 225, y is 125 res is 87
+x is 225, y is 125 res is 175
+x is 225, y is 150 res is 65
+x is 225, y is 150 res is 188
+x is 225, y is 125 res is 87
+x is 225, y is 125 res is 175
+x is 250, y is 125 res is 108
+x is 250, y is 125 res is 188
+x: 10, y: 5, z: 0
+x is 250, y is 125 res is 108
+x is 250, y is 125 res is 188
+x is 250, y is 150 res is 87
+x is 250, y is 150 res is 200
+x is 250, y is 125 res is 108
+x is 250, y is 125 res is 188
+x is 275, y is 125 res is 130
+x is 275, y is 125 res is 200
+x: 11, y: 5, z: 0
+x is 275, y is 125 res is 130
+x is 275, y is 125 res is 200
+x is 275, y is 150 res is 108
+x is 275, y is 150 res is 213
+x is 275, y is 125 res is 130
+x is 275, y is 125 res is 200
+x is 300, y is 125 res is 152
+x is 300, y is 125 res is 213
+x: 12, y: 5, z: 0
+x is 300, y is 125 res is 152
+x is 300, y is 125 res is 213
+x is 300, y is 150 res is 130
+x is 300, y is 150 res is 225
+x is 300, y is 125 res is 152
+x is 300, y is 125 res is 213
+x is 325, y is 125 res is 173
+x is 325, y is 125 res is 225
+x: 13, y: 5, z: 0
+x is 325, y is 125 res is 173
+x is 325, y is 125 res is 225
+x is 325, y is 150 res is 152
+x is 325, y is 150 res is 238
+x is 325, y is 125 res is 173
+x is 325, y is 125 res is 225
+x is 350, y is 125 res is 195
+x is 350, y is 125 res is 238
+x: 14, y: 5, z: 0
+x is 350, y is 125 res is 195
+x is 350, y is 125 res is 238
+x is 350, y is 150 res is 173
+x is 350, y is 150 res is 250
+x is 350, y is 125 res is 195
+x is 350, y is 125 res is 238
+x is 375, y is 125 res is 217
+x is 375, y is 125 res is 250
+x: 15, y: 5, z: 0
+x is 375, y is 125 res is 217
+x is 375, y is 125 res is 250
+x is 375, y is 150 res is 195
+x is 375, y is 150 res is 263
+x is 375, y is 125 res is 217
+x is 375, y is 125 res is 250
+x is 400, y is 125 res is 238
+x is 400, y is 125 res is 263
+x: 16, y: 5, z: 0
+x is 400, y is 125 res is 238
+x is 400, y is 125 res is 263
+x is 400, y is 150 res is 217
+x is 400, y is 150 res is 275
+x is 400, y is 125 res is 238
+x is 400, y is 125 res is 263
+x is 425, y is 125 res is 260
+x is 425, y is 125 res is 275
+x: 17, y: 5, z: 0
+x is 425, y is 125 res is 260
+x is 425, y is 125 res is 275
+x is 425, y is 150 res is 238
+x is 425, y is 150 res is 288
+x is 425, y is 125 res is 260
+x is 425, y is 125 res is 275
+x is 450, y is 125 res is 281
+x is 450, y is 125 res is 288
+x: 18, y: 5, z: 0
+x is 450, y is 125 res is 281
+x is 450, y is 125 res is 288
+x is 450, y is 150 res is 260
+x is 450, y is 150 res is 300
+x: 0, y: 6, z: 0
+x is 0, y is 150 res is -130
+x is 0, y is 150 res is 75
+x is 0, y is 175 res is -152
+x is 0, y is 175 res is 88
+x is 0, y is 150 res is -130
+x is 0, y is 150 res is 75
+x is 25, y is 150 res is -108
+x is 25, y is 150 res is 88
+x: 1, y: 6, z: 0
+x is 25, y is 150 res is -108
+x is 25, y is 150 res is 88
+x is 25, y is 175 res is -130
+x is 25, y is 175 res is 100
+x is 25, y is 150 res is -108
+x is 25, y is 150 res is 88
+x is 50, y is 150 res is -87
+x is 50, y is 150 res is 100
+x: 2, y: 6, z: 0
+x is 50, y is 150 res is -87
+x is 50, y is 150 res is 100
+x is 50, y is 175 res is -108
+x is 50, y is 175 res is 113
+x is 50, y is 150 res is -87
+x is 50, y is 150 res is 100
+x is 75, y is 150 res is -65
+x is 75, y is 150 res is 113
+x: 3, y: 6, z: 0
+x is 75, y is 150 res is -65
+x is 75, y is 150 res is 113
+x is 75, y is 175 res is -87
+x is 75, y is 175 res is 125
+x is 75, y is 150 res is -65
+x is 75, y is 150 res is 113
+x is 100, y is 150 res is -43
+x is 100, y is 150 res is 125
+x: 4, y: 6, z: 0
+x is 100, y is 150 res is -43
+x is 100, y is 150 res is 125
+x is 100, y is 175 res is -65
+x is 100, y is 175 res is 138
+x is 100, y is 150 res is -43
+x is 100, y is 150 res is 125
+x is 125, y is 150 res is -22
+x is 125, y is 150 res is 138
+x: 5, y: 6, z: 0
+x is 125, y is 150 res is -22
+x is 125, y is 150 res is 138
+x is 125, y is 175 res is -43
+x is 125, y is 175 res is 150
+x is 125, y is 150 res is -22
+x is 125, y is 150 res is 138
+x is 150, y is 150 res is 0
+x is 150, y is 150 res is 150
+x: 6, y: 6, z: 0
+x is 150, y is 150 res is 0
+x is 150, y is 150 res is 150
+x is 150, y is 175 res is -22
+x is 150, y is 175 res is 163
+x is 150, y is 150 res is 0
+x is 150, y is 150 res is 150
+x is 175, y is 150 res is 22
+x is 175, y is 150 res is 163
+x: 7, y: 6, z: 0
+x is 175, y is 150 res is 22
+x is 175, y is 150 res is 163
+x is 175, y is 175 res is 0
+x is 175, y is 175 res is 175
+x is 175, y is 150 res is 22
+x is 175, y is 150 res is 163
+x is 200, y is 150 res is 43
+x is 200, y is 150 res is 175
+x: 8, y: 6, z: 0
+x is 200, y is 150 res is 43
+x is 200, y is 150 res is 175
+x is 200, y is 175 res is 22
+x is 200, y is 175 res is 188
+x is 200, y is 150 res is 43
+x is 200, y is 150 res is 175
+x is 225, y is 150 res is 65
+x is 225, y is 150 res is 188
+x: 9, y: 6, z: 0
+x is 225, y is 150 res is 65
+x is 225, y is 150 res is 188
+x is 225, y is 175 res is 43
+x is 225, y is 175 res is 200
+x is 225, y is 150 res is 65
+x is 225, y is 150 res is 188
+x is 250, y is 150 res is 87
+x is 250, y is 150 res is 200
+x: 10, y: 6, z: 0
+x is 250, y is 150 res is 87
+x is 250, y is 150 res is 200
+x is 250, y is 175 res is 65
+x is 250, y is 175 res is 213
+x is 250, y is 150 res is 87
+x is 250, y is 150 res is 200
+x is 275, y is 150 res is 108
+x is 275, y is 150 res is 213
+x: 11, y: 6, z: 0
+x is 275, y is 150 res is 108
+x is 275, y is 150 res is 213
+x is 275, y is 175 res is 87
+x is 275, y is 175 res is 225
+x is 275, y is 150 res is 108
+x is 275, y is 150 res is 213
+x is 300, y is 150 res is 130
+x is 300, y is 150 res is 225
+x: 12, y: 6, z: 0
+x is 300, y is 150 res is 130
+x is 300, y is 150 res is 225
+x is 300, y is 175 res is 108
+x is 300, y is 175 res is 238
+x is 300, y is 150 res is 130
+x is 300, y is 150 res is 225
+x is 325, y is 150 res is 152
+x is 325, y is 150 res is 238
+x: 13, y: 6, z: 0
+x is 325, y is 150 res is 152
+x is 325, y is 150 res is 238
+x is 325, y is 175 res is 130
+x is 325, y is 175 res is 250
+x is 325, y is 150 res is 152
+x is 325, y is 150 res is 238
+x is 350, y is 150 res is 173
+x is 350, y is 150 res is 250
+x: 14, y: 6, z: 0
+x is 350, y is 150 res is 173
+x is 350, y is 150 res is 250
+x is 350, y is 175 res is 152
+x is 350, y is 175 res is 263
+x is 350, y is 150 res is 173
+x is 350, y is 150 res is 250
+x is 375, y is 150 res is 195
+x is 375, y is 150 res is 263
+x: 15, y: 6, z: 0
+x is 375, y is 150 res is 195
+x is 375, y is 150 res is 263
+x is 375, y is 175 res is 173
+x is 375, y is 175 res is 275
+x is 375, y is 150 res is 195
+x is 375, y is 150 res is 263
+x is 400, y is 150 res is 217
+x is 400, y is 150 res is 275
+x: 16, y: 6, z: 0
+x is 400, y is 150 res is 217
+x is 400, y is 150 res is 275
+x is 400, y is 175 res is 195
+x is 400, y is 175 res is 288
+x is 400, y is 150 res is 217
+x is 400, y is 150 res is 275
+x is 425, y is 150 res is 238
+x is 425, y is 150 res is 288
+x: 17, y: 6, z: 0
+x is 425, y is 150 res is 238
+x is 425, y is 150 res is 288
+x is 425, y is 175 res is 217
+x is 425, y is 175 res is 300
+x is 425, y is 150 res is 238
+x is 425, y is 150 res is 288
+x is 450, y is 150 res is 260
+x is 450, y is 150 res is 300
+x: 18, y: 6, z: 0
+x is 450, y is 150 res is 260
+x is 450, y is 150 res is 300
+x is 450, y is 175 res is 238
+x is 450, y is 175 res is 313
+x: 0, y: 7, z: 0
+x is 0, y is 175 res is -152
+x is 0, y is 175 res is 88
+x is 0, y is 200 res is -173
+x is 0, y is 200 res is 100
+x is 0, y is 175 res is -152
+x is 0, y is 175 res is 88
+x is 25, y is 175 res is -130
+x is 25, y is 175 res is 100
+x: 1, y: 7, z: 0
+x is 25, y is 175 res is -130
+x is 25, y is 175 res is 100
+x is 25, y is 200 res is -152
+x is 25, y is 200 res is 113
+x is 25, y is 175 res is -130
+x is 25, y is 175 res is 100
+x is 50, y is 175 res is -108
+x is 50, y is 175 res is 113
+x: 2, y: 7, z: 0
+x is 50, y is 175 res is -108
+x is 50, y is 175 res is 113
+x is 50, y is 200 res is -130
+x is 50, y is 200 res is 125
+x is 50, y is 175 res is -108
+x is 50, y is 175 res is 113
+x is 75, y is 175 res is -87
+x is 75, y is 175 res is 125
+x: 3, y: 7, z: 0
+x is 75, y is 175 res is -87
+x is 75, y is 175 res is 125
+x is 75, y is 200 res is -108
+x is 75, y is 200 res is 138
+x is 75, y is 175 res is -87
+x is 75, y is 175 res is 125
+x is 100, y is 175 res is -65
+x is 100, y is 175 res is 138
+x: 4, y: 7, z: 0
+x is 100, y is 175 res is -65
+x is 100, y is 175 res is 138
+x is 100, y is 200 res is -87
+x is 100, y is 200 res is 150
+x is 100, y is 175 res is -65
+x is 100, y is 175 res is 138
+x is 125, y is 175 res is -43
+x is 125, y is 175 res is 150
+x: 5, y: 7, z: 0
+x is 125, y is 175 res is -43
+x is 125, y is 175 res is 150
+x is 125, y is 200 res is -65
+x is 125, y is 200 res is 163
+x is 125, y is 175 res is -43
+x is 125, y is 175 res is 150
+x is 150, y is 175 res is -22
+x is 150, y is 175 res is 163
+x: 6, y: 7, z: 0
+x is 150, y is 175 res is -22
+x is 150, y is 175 res is 163
+x is 150, y is 200 res is -43
+x is 150, y is 200 res is 175
+x is 150, y is 175 res is -22
+x is 150, y is 175 res is 163
+x is 175, y is 175 res is 0
+x is 175, y is 175 res is 175
+x: 7, y: 7, z: 0
+x is 175, y is 175 res is 0
+x is 175, y is 175 res is 175
+x is 175, y is 200 res is -22
+x is 175, y is 200 res is 188
+x is 175, y is 175 res is 0
+x is 175, y is 175 res is 175
+x is 200, y is 175 res is 22
+x is 200, y is 175 res is 188
+x: 8, y: 7, z: 0
+x is 200, y is 175 res is 22
+x is 200, y is 175 res is 188
+x is 200, y is 200 res is 0
+x is 200, y is 200 res is 200
+x is 200, y is 175 res is 22
+x is 200, y is 175 res is 188
+x is 225, y is 175 res is 43
+x is 225, y is 175 res is 200
+x: 9, y: 7, z: 0
+x is 225, y is 175 res is 43
+x is 225, y is 175 res is 200
+x is 225, y is 200 res is 22
+x is 225, y is 200 res is 213
+x is 225, y is 175 res is 43
+x is 225, y is 175 res is 200
+x is 250, y is 175 res is 65
+x is 250, y is 175 res is 213
+x: 10, y: 7, z: 0
+x is 250, y is 175 res is 65
+x is 250, y is 175 res is 213
+x is 250, y is 200 res is 43
+x is 250, y is 200 res is 225
+x is 250, y is 175 res is 65
+x is 250, y is 175 res is 213
+x is 275, y is 175 res is 87
+x is 275, y is 175 res is 225
+x: 11, y: 7, z: 0
+x is 275, y is 175 res is 87
+x is 275, y is 175 res is 225
+x is 275, y is 200 res is 65
+x is 275, y is 200 res is 238
+x is 275, y is 175 res is 87
+x is 275, y is 175 res is 225
+x is 300, y is 175 res is 108
+x is 300, y is 175 res is 238
+x: 12, y: 7, z: 0
+x is 300, y is 175 res is 108
+x is 300, y is 175 res is 238
+x is 300, y is 200 res is 87
+x is 300, y is 200 res is 250
+x is 300, y is 175 res is 108
+x is 300, y is 175 res is 238
+x is 325, y is 175 res is 130
+x is 325, y is 175 res is 250
+x: 13, y: 7, z: 0
+x is 325, y is 175 res is 130
+x is 325, y is 175 res is 250
+x is 325, y is 200 res is 108
+x is 325, y is 200 res is 263
+x is 325, y is 175 res is 130
+x is 325, y is 175 res is 250
+x is 350, y is 175 res is 152
+x is 350, y is 175 res is 263
+x: 14, y: 7, z: 0
+x is 350, y is 175 res is 152
+x is 350, y is 175 res is 263
+x is 350, y is 200 res is 130
+x is 350, y is 200 res is 275
+x is 350, y is 175 res is 152
+x is 350, y is 175 res is 263
+x is 375, y is 175 res is 173
+x is 375, y is 175 res is 275
+x: 15, y: 7, z: 0
+x is 375, y is 175 res is 173
+x is 375, y is 175 res is 275
+x is 375, y is 200 res is 152
+x is 375, y is 200 res is 288
+x is 375, y is 175 res is 173
+x is 375, y is 175 res is 275
+x is 400, y is 175 res is 195
+x is 400, y is 175 res is 288
+x: 16, y: 7, z: 0
+x is 400, y is 175 res is 195
+x is 400, y is 175 res is 288
+x is 400, y is 200 res is 173
+x is 400, y is 200 res is 300
+x is 400, y is 175 res is 195
+x is 400, y is 175 res is 288
+x is 425, y is 175 res is 217
+x is 425, y is 175 res is 300
+x: 17, y: 7, z: 0
+x is 425, y is 175 res is 217
+x is 425, y is 175 res is 300
+x is 425, y is 200 res is 195
+x is 425, y is 200 res is 313
+x is 425, y is 175 res is 217
+x is 425, y is 175 res is 300
+x is 450, y is 175 res is 238
+x is 450, y is 175 res is 313
+x: 18, y: 7, z: 0
+x is 450, y is 175 res is 238
+x is 450, y is 175 res is 313
+x is 450, y is 200 res is 217
+x is 450, y is 200 res is 325
+x: 0, y: 8, z: 0
+x is 0, y is 200 res is -173
+x is 0, y is 200 res is 100
+x is 0, y is 225 res is -195
+x is 0, y is 225 res is 113
+x is 0, y is 200 res is -173
+x is 0, y is 200 res is 100
+x is 25, y is 200 res is -152
+x is 25, y is 200 res is 113
+x: 1, y: 8, z: 0
+x is 25, y is 200 res is -152
+x is 25, y is 200 res is 113
+x is 25, y is 225 res is -173
+x is 25, y is 225 res is 125
+x is 25, y is 200 res is -152
+x is 25, y is 200 res is 113
+x is 50, y is 200 res is -130
+x is 50, y is 200 res is 125
+x: 2, y: 8, z: 0
+x is 50, y is 200 res is -130
+x is 50, y is 200 res is 125
+x is 50, y is 225 res is -152
+x is 50, y is 225 res is 138
+x is 50, y is 200 res is -130
+x is 50, y is 200 res is 125
+x is 75, y is 200 res is -108
+x is 75, y is 200 res is 138
+x: 3, y: 8, z: 0
+x is 75, y is 200 res is -108
+x is 75, y is 200 res is 138
+x is 75, y is 225 res is -130
+x is 75, y is 225 res is 150
+x is 75, y is 200 res is -108
+x is 75, y is 200 res is 138
+x is 100, y is 200 res is -87
+x is 100, y is 200 res is 150
+x: 4, y: 8, z: 0
+x is 100, y is 200 res is -87
+x is 100, y is 200 res is 150
+x is 100, y is 225 res is -108
+x is 100, y is 225 res is 163
+x is 100, y is 200 res is -87
+x is 100, y is 200 res is 150
+x is 125, y is 200 res is -65
+x is 125, y is 200 res is 163
+x: 5, y: 8, z: 0
+x is 125, y is 200 res is -65
+x is 125, y is 200 res is 163
+x is 125, y is 225 res is -87
+x is 125, y is 225 res is 175
+x is 125, y is 200 res is -65
+x is 125, y is 200 res is 163
+x is 150, y is 200 res is -43
+x is 150, y is 200 res is 175
+x: 6, y: 8, z: 0
+x is 150, y is 200 res is -43
+x is 150, y is 200 res is 175
+x is 150, y is 225 res is -65
+x is 150, y is 225 res is 188
+x is 150, y is 200 res is -43
+x is 150, y is 200 res is 175
+x is 175, y is 200 res is -22
+x is 175, y is 200 res is 188
+x: 7, y: 8, z: 0
+x is 175, y is 200 res is -22
+x is 175, y is 200 res is 188
+x is 175, y is 225 res is -43
+x is 175, y is 225 res is 200
+x is 175, y is 200 res is -22
+x is 175, y is 200 res is 188
+x is 200, y is 200 res is 0
+x is 200, y is 200 res is 200
+x: 8, y: 8, z: 0
+x is 200, y is 200 res is 0
+x is 200, y is 200 res is 200
+x is 200, y is 225 res is -22
+x is 200, y is 225 res is 213
+x is 200, y is 200 res is 0
+x is 200, y is 200 res is 200
+x is 225, y is 200 res is 22
+x is 225, y is 200 res is 213
+x: 9, y: 8, z: 0
+x is 225, y is 200 res is 22
+x is 225, y is 200 res is 213
+x is 225, y is 225 res is 0
+x is 225, y is 225 res is 225
+x is 225, y is 200 res is 22
+x is 225, y is 200 res is 213
+x is 250, y is 200 res is 43
+x is 250, y is 200 res is 225
+x: 10, y: 8, z: 0
+x is 250, y is 200 res is 43
+x is 250, y is 200 res is 225
+x is 250, y is 225 res is 22
+x is 250, y is 225 res is 238
+x is 250, y is 200 res is 43
+x is 250, y is 200 res is 225
+x is 275, y is 200 res is 65
+x is 275, y is 200 res is 238
+x: 11, y: 8, z: 0
+x is 275, y is 200 res is 65
+x is 275, y is 200 res is 238
+x is 275, y is 225 res is 43
+x is 275, y is 225 res is 250
+x is 275, y is 200 res is 65
+x is 275, y is 200 res is 238
+x is 300, y is 200 res is 87
+x is 300, y is 200 res is 250
+x: 12, y: 8, z: 0
+x is 300, y is 200 res is 87
+x is 300, y is 200 res is 250
+x is 300, y is 225 res is 65
+x is 300, y is 225 res is 263
+x is 300, y is 200 res is 87
+x is 300, y is 200 res is 250
+x is 325, y is 200 res is 108
+x is 325, y is 200 res is 263
+x: 13, y: 8, z: 0
+x is 325, y is 200 res is 108
+x is 325, y is 200 res is 263
+x is 325, y is 225 res is 87
+x is 325, y is 225 res is 275
+x is 325, y is 200 res is 108
+x is 325, y is 200 res is 263
+x is 350, y is 200 res is 130
+x is 350, y is 200 res is 275
+x: 14, y: 8, z: 0
+x is 350, y is 200 res is 130
+x is 350, y is 200 res is 275
+x is 350, y is 225 res is 108
+x is 350, y is 225 res is 288
+x is 350, y is 200 res is 130
+x is 350, y is 200 res is 275
+x is 375, y is 200 res is 152
+x is 375, y is 200 res is 288
+x: 15, y: 8, z: 0
+x is 375, y is 200 res is 152
+x is 375, y is 200 res is 288
+x is 375, y is 225 res is 130
+x is 375, y is 225 res is 300
+x is 375, y is 200 res is 152
+x is 375, y is 200 res is 288
+x is 400, y is 200 res is 173
+x is 400, y is 200 res is 300
+x: 16, y: 8, z: 0
+x is 400, y is 200 res is 173
+x is 400, y is 200 res is 300
+x is 400, y is 225 res is 152
+x is 400, y is 225 res is 313
+x is 400, y is 200 res is 173
+x is 400, y is 200 res is 300
+x is 425, y is 200 res is 195
+x is 425, y is 200 res is 313
+x: 17, y: 8, z: 0
+x is 425, y is 200 res is 195
+x is 425, y is 200 res is 313
+x is 425, y is 225 res is 173
+x is 425, y is 225 res is 325
+x is 425, y is 200 res is 195
+x is 425, y is 200 res is 313
+x is 450, y is 200 res is 217
+x is 450, y is 200 res is 325
+x: 18, y: 8, z: 0
+x is 450, y is 200 res is 217
+x is 450, y is 200 res is 325
+x is 450, y is 225 res is 195
+x is 450, y is 225 res is 338
+x: 0, y: 9, z: 0
+x is 0, y is 225 res is -195
+x is 0, y is 225 res is 113
+x is 0, y is 250 res is -217
+x is 0, y is 250 res is 125
+x is 0, y is 225 res is -195
+x is 0, y is 225 res is 113
+x is 25, y is 225 res is -173
+x is 25, y is 225 res is 125
+x: 1, y: 9, z: 0
+x is 25, y is 225 res is -173
+x is 25, y is 225 res is 125
+x is 25, y is 250 res is -195
+x is 25, y is 250 res is 138
+x is 25, y is 225 res is -173
+x is 25, y is 225 res is 125
+x is 50, y is 225 res is -152
+x is 50, y is 225 res is 138
+x: 2, y: 9, z: 0
+x is 50, y is 225 res is -152
+x is 50, y is 225 res is 138
+x is 50, y is 250 res is -173
+x is 50, y is 250 res is 150
+x is 50, y is 225 res is -152
+x is 50, y is 225 res is 138
+x is 75, y is 225 res is -130
+x is 75, y is 225 res is 150
+x: 3, y: 9, z: 0
+x is 75, y is 225 res is -130
+x is 75, y is 225 res is 150
+x is 75, y is 250 res is -152
+x is 75, y is 250 res is 163
+x is 75, y is 225 res is -130
+x is 75, y is 225 res is 150
+x is 100, y is 225 res is -108
+x is 100, y is 225 res is 163
+x: 4, y: 9, z: 0
+x is 100, y is 225 res is -108
+x is 100, y is 225 res is 163
+x is 100, y is 250 res is -130
+x is 100, y is 250 res is 175
+x is 100, y is 225 res is -108
+x is 100, y is 225 res is 163
+x is 125, y is 225 res is -87
+x is 125, y is 225 res is 175
+x: 5, y: 9, z: 0
+x is 125, y is 225 res is -87
+x is 125, y is 225 res is 175
+x is 125, y is 250 res is -108
+x is 125, y is 250 res is 188
+x is 125, y is 225 res is -87
+x is 125, y is 225 res is 175
+x is 150, y is 225 res is -65
+x is 150, y is 225 res is 188
+x: 6, y: 9, z: 0
+x is 150, y is 225 res is -65
+x is 150, y is 225 res is 188
+x is 150, y is 250 res is -87
+x is 150, y is 250 res is 200
+x is 150, y is 225 res is -65
+x is 150, y is 225 res is 188
+x is 175, y is 225 res is -43
+x is 175, y is 225 res is 200
+x: 7, y: 9, z: 0
+x is 175, y is 225 res is -43
+x is 175, y is 225 res is 200
+x is 175, y is 250 res is -65
+x is 175, y is 250 res is 213
+x is 175, y is 225 res is -43
+x is 175, y is 225 res is 200
+x is 200, y is 225 res is -22
+x is 200, y is 225 res is 213
+x: 8, y: 9, z: 0
+x is 200, y is 225 res is -22
+x is 200, y is 225 res is 213
+x is 200, y is 250 res is -43
+x is 200, y is 250 res is 225
+x is 200, y is 225 res is -22
+x is 200, y is 225 res is 213
+x is 225, y is 225 res is 0
+x is 225, y is 225 res is 225
+x: 9, y: 9, z: 0
+x is 225, y is 225 res is 0
+x is 225, y is 225 res is 225
+x is 225, y is 250 res is -22
+x is 225, y is 250 res is 238
+x is 225, y is 225 res is 0
+x is 225, y is 225 res is 225
+x is 250, y is 225 res is 22
+x is 250, y is 225 res is 238
+x: 10, y: 9, z: 0
+x is 250, y is 225 res is 22
+x is 250, y is 225 res is 238
+x is 250, y is 250 res is 0
+x is 250, y is 250 res is 250
+x is 250, y is 225 res is 22
+x is 250, y is 225 res is 238
+x is 275, y is 225 res is 43
+x is 275, y is 225 res is 250
+x: 11, y: 9, z: 0
+x is 275, y is 225 res is 43
+x is 275, y is 225 res is 250
+x is 275, y is 250 res is 22
+x is 275, y is 250 res is 263
+x is 275, y is 225 res is 43
+x is 275, y is 225 res is 250
+x is 300, y is 225 res is 65
+x is 300, y is 225 res is 263
+x: 12, y: 9, z: 0
+x is 300, y is 225 res is 65
+x is 300, y is 225 res is 263
+x is 300, y is 250 res is 43
+x is 300, y is 250 res is 275
+x is 300, y is 225 res is 65
+x is 300, y is 225 res is 263
+x is 325, y is 225 res is 87
+x is 325, y is 225 res is 275
+x: 13, y: 9, z: 0
+x is 325, y is 225 res is 87
+x is 325, y is 225 res is 275
+x is 325, y is 250 res is 65
+x is 325, y is 250 res is 288
+x is 325, y is 225 res is 87
+x is 325, y is 225 res is 275
+x is 350, y is 225 res is 108
+x is 350, y is 225 res is 288
+x: 14, y: 9, z: 0
+x is 350, y is 225 res is 108
+x is 350, y is 225 res is 288
+x is 350, y is 250 res is 87
+x is 350, y is 250 res is 300
+x is 350, y is 225 res is 108
+x is 350, y is 225 res is 288
+x is 375, y is 225 res is 130
+x is 375, y is 225 res is 300
+x: 15, y: 9, z: 0
+x is 375, y is 225 res is 130
+x is 375, y is 225 res is 300
+x is 375, y is 250 res is 108
+x is 375, y is 250 res is 313
+x is 375, y is 225 res is 130
+x is 375, y is 225 res is 300
+x is 400, y is 225 res is 152
+x is 400, y is 225 res is 313
+x: 16, y: 9, z: 0
+x is 400, y is 225 res is 152
+x is 400, y is 225 res is 313
+x is 400, y is 250 res is 130
+x is 400, y is 250 res is 325
+x is 400, y is 225 res is 152
+x is 400, y is 225 res is 313
+x is 425, y is 225 res is 173
+x is 425, y is 225 res is 325
+x: 17, y: 9, z: 0
+x is 425, y is 225 res is 173
+x is 425, y is 225 res is 325
+x is 425, y is 250 res is 152
+x is 425, y is 250 res is 338
+x is 425, y is 225 res is 173
+x is 425, y is 225 res is 325
+x is 450, y is 225 res is 195
+x is 450, y is 225 res is 338
+x: 18, y: 9, z: 0
+x is 450, y is 225 res is 195
+x is 450, y is 225 res is 338
+x is 450, y is 250 res is 173
+x is 450, y is 250 res is 350
+x: 0, y: 10, z: 0
+x is 0, y is 250 res is -217
+x is 0, y is 250 res is 125
+x is 25, y is 250 res is -195
+x is 25, y is 250 res is 138
+x: 1, y: 10, z: 0
+x is 25, y is 250 res is -195
+x is 25, y is 250 res is 138
+x is 50, y is 250 res is -173
+x is 50, y is 250 res is 150
+x: 2, y: 10, z: 0
+x is 50, y is 250 res is -173
+x is 50, y is 250 res is 150
+x is 75, y is 250 res is -152
+x is 75, y is 250 res is 163
+x: 3, y: 10, z: 0
+x is 75, y is 250 res is -152
+x is 75, y is 250 res is 163
+x is 100, y is 250 res is -130
+x is 100, y is 250 res is 175
+x: 4, y: 10, z: 0
+x is 100, y is 250 res is -130
+x is 100, y is 250 res is 175
+x is 125, y is 250 res is -108
+x is 125, y is 250 res is 188
+x: 5, y: 10, z: 0
+x is 125, y is 250 res is -108
+x is 125, y is 250 res is 188
+x is 150, y is 250 res is -87
+x is 150, y is 250 res is 200
+x: 6, y: 10, z: 0
+x is 150, y is 250 res is -87
+x is 150, y is 250 res is 200
+x is 175, y is 250 res is -65
+x is 175, y is 250 res is 213
+x: 7, y: 10, z: 0
+x is 175, y is 250 res is -65
+x is 175, y is 250 res is 213
+x is 200, y is 250 res is -43
+x is 200, y is 250 res is 225
+x: 8, y: 10, z: 0
+x is 200, y is 250 res is -43
+x is 200, y is 250 res is 225
+x is 225, y is 250 res is -22
+x is 225, y is 250 res is 238
+x: 9, y: 10, z: 0
+x is 225, y is 250 res is -22
+x is 225, y is 250 res is 238
+x is 250, y is 250 res is 0
+x is 250, y is 250 res is 250
+x: 10, y: 10, z: 0
+x is 250, y is 250 res is 0
+x is 250, y is 250 res is 250
+x is 275, y is 250 res is 22
+x is 275, y is 250 res is 263
+x: 11, y: 10, z: 0
+x is 275, y is 250 res is 22
+x is 275, y is 250 res is 263
+x is 300, y is 250 res is 43
+x is 300, y is 250 res is 275
+x: 12, y: 10, z: 0
+x is 300, y is 250 res is 43
+x is 300, y is 250 res is 275
+x is 325, y is 250 res is 65
+x is 325, y is 250 res is 288
+x: 13, y: 10, z: 0
+x is 325, y is 250 res is 65
+x is 325, y is 250 res is 288
+x is 350, y is 250 res is 87
+x is 350, y is 250 res is 300
+x: 14, y: 10, z: 0
+x is 350, y is 250 res is 87
+x is 350, y is 250 res is 300
+x is 375, y is 250 res is 108
+x is 375, y is 250 res is 313
+x: 15, y: 10, z: 0
+x is 375, y is 250 res is 108
+x is 375, y is 250 res is 313
+x is 400, y is 250 res is 130
+x is 400, y is 250 res is 325
+x: 16, y: 10, z: 0
+x is 400, y is 250 res is 130
+x is 400, y is 250 res is 325
+x is 425, y is 250 res is 152
+x is 425, y is 250 res is 338
+x: 17, y: 10, z: 0
+x is 425, y is 250 res is 152
+x is 425, y is 250 res is 338
+x is 450, y is 250 res is 173
+x is 450, y is 250 res is 350
+x: 18, y: 10, z: 0
+Segment[(217, 217), (195, 230)]
+Segment[(217, 217), (239, 230)]
+Segment[(239, 230), (217, 242)]
+Segment[(239, 230), (260, 242)]
+Segment[(260, 242), (239, 255)]
+Segment[(260, 242), (282, 255)]
+Segment[(282, 255), (260, 267)]
+Segment[(282, 255), (304, 267)]
+Segment[(304, 267), (282, 280)]
+Segment[(304, 267), (325, 280)]
+Segment[(325, 280), (304, 292)]
+Segment[(325, 280), (347, 292)]
+Segment[(347, 292), (325, 305)]
+Segment[(347, 292), (369, 305)]
+Segment[(369, 305), (347, 317)]
+Segment[(369, 305), (390, 317)]
+Segment[(390, 317), (369, 330)]
+Segment[(390, 317), (412, 330)]
+Segment[(412, 330), (390, 342)]
+Segment[(412, 330), (434, 342)]
+Segment[(434, 342), (412, 355)]
+Segment[(434, 342), (455, 355)]
+Segment[(455, 355), (434, 367)]
+Segment[(455, 355), (477, 367)]
+Segment[(477, 367), (455, 380)]
+Segment[(477, 367), (498, 380)]
+Segment[(498, 380), (477, 392)]
+Segment[(498, 380), (520, 392)]
+Segment[(520, 392), (498, 405)]
+Segment[(520, 392), (542, 405)]
+Segment[(542, 405), (520, 417)]
+Segment[(542, 405), (563, 417)]
+Segment[(563, 417), (542, 430)]
+Segment[(563, 417), (585, 430)]
+Segment[(585, 430), (563, 442)]
+Segment[(585, 430), (607, 442)]
+Segment[(607, 442), (585, 455)]
+Segment[(195, 230), (174, 242)]
+Segment[(195, 230), (217, 242)]
+Segment[(217, 242), (195, 255)]
+Segment[(217, 242), (239, 255)]
+Segment[(239, 255), (217, 267)]
+Segment[(239, 255), (260, 267)]
+Segment[(260, 267), (239, 280)]
+Segment[(260, 267), (282, 280)]
+Segment[(282, 280), (260, 292)]
+Segment[(282, 280), (304, 292)]
+Segment[(304, 292), (282, 305)]
+Segment[(304, 292), (325, 305)]
+Segment[(325, 305), (304, 317)]
+Segment[(325, 305), (347, 317)]
+Segment[(347, 317), (325, 330)]
+Segment[(347, 317), (369, 330)]
+Segment[(369, 330), (347, 342)]
+Segment[(369, 330), (390, 342)]
+Segment[(390, 342), (369, 355)]
+Segment[(390, 342), (412, 355)]
+Segment[(412, 355), (390, 367)]
+Segment[(412, 355), (434, 367)]
+Segment[(434, 367), (412, 380)]
+Segment[(434, 367), (455, 380)]
+Segment[(455, 380), (434, 392)]
+Segment[(455, 380), (477, 392)]
+Segment[(477, 392), (455, 405)]
+Segment[(477, 392), (498, 405)]
+Segment[(498, 405), (477, 417)]
+Segment[(498, 405), (520, 417)]
+Segment[(520, 417), (498, 430)]
+Segment[(520, 417), (542, 430)]
+Segment[(542, 430), (520, 442)]
+Segment[(542, 430), (563, 442)]
+Segment[(563, 442), (542, 455)]
+Segment[(563, 442), (585, 455)]
+Segment[(585, 455), (563, 467)]
+Segment[(174, 242), (152, 255)]
+Segment[(174, 242), (195, 255)]
+Segment[(195, 255), (174, 267)]
+Segment[(195, 255), (217, 267)]
+Segment[(217, 267), (195, 280)]
+Segment[(217, 267), (239, 280)]
+Segment[(239, 280), (217, 292)]
+Segment[(239, 280), (260, 292)]
+Segment[(260, 292), (239, 305)]
+Segment[(260, 292), (282, 305)]
+Segment[(282, 305), (260, 317)]
+Segment[(282, 305), (304, 317)]
+Segment[(304, 317), (282, 330)]
+Segment[(304, 317), (325, 330)]
+Segment[(325, 330), (304, 342)]
+Segment[(325, 330), (347, 342)]
+Segment[(347, 342), (325, 355)]
+Segment[(347, 342), (369, 355)]
+Segment[(369, 355), (347, 367)]
+Segment[(369, 355), (390, 367)]
+Segment[(390, 367), (369, 380)]
+Segment[(390, 367), (412, 380)]
+Segment[(412, 380), (390, 392)]
+Segment[(412, 380), (434, 392)]
+Segment[(434, 392), (412, 405)]
+Segment[(434, 392), (455, 405)]
+Segment[(455, 405), (434, 417)]
+Segment[(455, 405), (477, 417)]
+Segment[(477, 417), (455, 430)]
+Segment[(477, 417), (498, 430)]
+Segment[(498, 430), (477, 442)]
+Segment[(498, 430), (520, 442)]
+Segment[(520, 442), (498, 455)]
+Segment[(520, 442), (542, 455)]
+Segment[(542, 455), (520, 467)]
+Segment[(542, 455), (563, 467)]
+Segment[(563, 467), (542, 480)]
+Segment[(152, 255), (130, 267)]
+Segment[(152, 255), (174, 267)]
+Segment[(174, 267), (152, 280)]
+Segment[(174, 267), (195, 280)]
+Segment[(195, 280), (174, 292)]
+Segment[(195, 280), (217, 292)]
+Segment[(217, 292), (195, 305)]
+Segment[(217, 292), (239, 305)]
+Segment[(239, 305), (217, 317)]
+Segment[(239, 305), (260, 317)]
+Segment[(260, 317), (239, 330)]
+Segment[(260, 317), (282, 330)]
+Segment[(282, 330), (260, 342)]
+Segment[(282, 330), (304, 342)]
+Segment[(304, 342), (282, 355)]
+Segment[(304, 342), (325, 355)]
+Segment[(325, 355), (304, 367)]
+Segment[(325, 355), (347, 367)]
+Segment[(347, 367), (325, 380)]
+Segment[(347, 367), (369, 380)]
+Segment[(369, 380), (347, 392)]
+Segment[(369, 380), (390, 392)]
+Segment[(390, 392), (369, 405)]
+Segment[(390, 392), (412, 405)]
+Segment[(412, 405), (390, 417)]
+Segment[(412, 405), (434, 417)]
+Segment[(434, 417), (412, 430)]
+Segment[(434, 417), (455, 430)]
+Segment[(455, 430), (434, 442)]
+Segment[(455, 430), (477, 442)]
+Segment[(477, 442), (455, 455)]
+Segment[(477, 442), (498, 455)]
+Segment[(498, 455), (477, 467)]
+Segment[(498, 455), (520, 467)]
+Segment[(520, 467), (498, 480)]
+Segment[(520, 467), (542, 480)]
+Segment[(542, 480), (520, 492)]
+Segment[(130, 267), (109, 280)]
+Segment[(130, 267), (152, 280)]
+Segment[(152, 280), (130, 292)]
+Segment[(152, 280), (174, 292)]
+Segment[(174, 292), (152, 305)]
+Segment[(174, 292), (195, 305)]
+Segment[(195, 305), (174, 317)]
+Segment[(195, 305), (217, 317)]
+Segment[(217, 317), (195, 330)]
+Segment[(217, 317), (239, 330)]
+Segment[(239, 330), (217, 342)]
+Segment[(239, 330), (260, 342)]
+Segment[(260, 342), (239, 355)]
+Segment[(260, 342), (282, 355)]
+Segment[(282, 355), (260, 367)]
+Segment[(282, 355), (304, 367)]
+Segment[(304, 367), (282, 380)]
+Segment[(304, 367), (325, 380)]
+Segment[(325, 380), (304, 392)]
+Segment[(325, 380), (347, 392)]
+Segment[(347, 392), (325, 405)]
+Segment[(347, 392), (369, 405)]
+Segment[(369, 405), (347, 417)]
+Segment[(369, 405), (390, 417)]
+Segment[(390, 417), (369, 430)]
+Segment[(390, 417), (412, 430)]
+Segment[(412, 430), (390, 442)]
+Segment[(412, 430), (434, 442)]
+Segment[(434, 442), (412, 455)]
+Segment[(434, 442), (455, 455)]
+Segment[(455, 455), (434, 467)]
+Segment[(455, 455), (477, 467)]
+Segment[(477, 467), (455, 480)]
+Segment[(477, 467), (498, 480)]
+Segment[(498, 480), (477, 492)]
+Segment[(498, 480), (520, 492)]
+Segment[(520, 492), (498, 505)]
+Segment[(109, 280), (87, 292)]
+Segment[(109, 280), (130, 292)]
+Segment[(130, 292), (109, 305)]
+Segment[(130, 292), (152, 305)]
+Segment[(152, 305), (130, 317)]
+Segment[(152, 305), (174, 317)]
+Segment[(174, 317), (152, 330)]
+Segment[(174, 317), (195, 330)]
+Segment[(195, 330), (174, 342)]
+Segment[(195, 330), (217, 342)]
+Segment[(217, 342), (195, 355)]
+Segment[(217, 342), (239, 355)]
+Segment[(239, 355), (217, 367)]
+Segment[(239, 355), (260, 367)]
+Segment[(260, 367), (239, 380)]
+Segment[(260, 367), (282, 380)]
+Segment[(282, 380), (260, 392)]
+Segment[(282, 380), (304, 392)]
+Segment[(304, 392), (282, 405)]
+Segment[(304, 392), (325, 405)]
+Segment[(325, 405), (304, 417)]
+Segment[(325, 405), (347, 417)]
+Segment[(347, 417), (325, 430)]
+Segment[(347, 417), (369, 430)]
+Segment[(369, 430), (347, 442)]
+Segment[(369, 430), (390, 442)]
+Segment[(390, 442), (369, 455)]
+Segment[(390, 442), (412, 455)]
+Segment[(412, 455), (390, 467)]
+Segment[(412, 455), (434, 467)]
+Segment[(434, 467), (412, 480)]
+Segment[(434, 467), (455, 480)]
+Segment[(455, 480), (434, 492)]
+Segment[(455, 480), (477, 492)]
+Segment[(477, 492), (455, 505)]
+Segment[(477, 492), (498, 505)]
+Segment[(498, 505), (477, 517)]
+Segment[(87, 292), (65, 305)]
+Segment[(87, 292), (109, 305)]
+Segment[(109, 305), (87, 317)]
+Segment[(109, 305), (130, 317)]
+Segment[(130, 317), (109, 330)]
+Segment[(130, 317), (152, 330)]
+Segment[(152, 330), (130, 342)]
+Segment[(152, 330), (174, 342)]
+Segment[(174, 342), (152, 355)]
+Segment[(174, 342), (195, 355)]
+Segment[(195, 355), (174, 367)]
+Segment[(195, 355), (217, 367)]
+Segment[(217, 367), (195, 380)]
+Segment[(217, 367), (239, 380)]
+Segment[(239, 380), (217, 392)]
+Segment[(239, 380), (260, 392)]
+Segment[(260, 392), (239, 405)]
+Segment[(260, 392), (282, 405)]
+Segment[(282, 405), (260, 417)]
+Segment[(282, 405), (304, 417)]
+Segment[(304, 417), (282, 430)]
+Segment[(304, 417), (325, 430)]
+Segment[(325, 430), (304, 442)]
+Segment[(325, 430), (347, 442)]
+Segment[(347, 442), (325, 455)]
+Segment[(347, 442), (369, 455)]
+Segment[(369, 455), (347, 467)]
+Segment[(369, 455), (390, 467)]
+Segment[(390, 467), (369, 480)]
+Segment[(390, 467), (412, 480)]
+Segment[(412, 480), (390, 492)]
+Segment[(412, 480), (434, 492)]
+Segment[(434, 492), (412, 505)]
+Segment[(434, 492), (455, 505)]
+Segment[(455, 505), (434, 517)]
+Segment[(455, 505), (477, 517)]
+Segment[(477, 517), (455, 530)]
+Segment[(65, 305), (44, 317)]
+Segment[(65, 305), (87, 317)]
+Segment[(87, 317), (65, 330)]
+Segment[(87, 317), (109, 330)]
+Segment[(109, 330), (87, 342)]
+Segment[(109, 330), (130, 342)]
+Segment[(130, 342), (109, 355)]
+Segment[(130, 342), (152, 355)]
+Segment[(152, 355), (130, 367)]
+Segment[(152, 355), (174, 367)]
+Segment[(174, 367), (152, 380)]
+Segment[(174, 367), (195, 380)]
+Segment[(195, 380), (174, 392)]
+Segment[(195, 380), (217, 392)]
+Segment[(217, 392), (195, 405)]
+Segment[(217, 392), (239, 405)]
+Segment[(239, 405), (217, 417)]
+Segment[(239, 405), (260, 417)]
+Segment[(260, 417), (239, 430)]
+Segment[(260, 417), (282, 430)]
+Segment[(282, 430), (260, 442)]
+Segment[(282, 430), (304, 442)]
+Segment[(304, 442), (282, 455)]
+Segment[(304, 442), (325, 455)]
+Segment[(325, 455), (304, 467)]
+Segment[(325, 455), (347, 467)]
+Segment[(347, 467), (325, 480)]
+Segment[(347, 467), (369, 480)]
+Segment[(369, 480), (347, 492)]
+Segment[(369, 480), (390, 492)]
+Segment[(390, 492), (369, 505)]
+Segment[(390, 492), (412, 505)]
+Segment[(412, 505), (390, 517)]
+Segment[(412, 505), (434, 517)]
+Segment[(434, 517), (412, 530)]
+Segment[(434, 517), (455, 530)]
+Segment[(455, 530), (434, 542)]
+Segment[(44, 317), (22, 330)]
+Segment[(44, 317), (65, 330)]
+Segment[(65, 330), (44, 342)]
+Segment[(65, 330), (87, 342)]
+Segment[(87, 342), (65, 355)]
+Segment[(87, 342), (109, 355)]
+Segment[(109, 355), (87, 367)]
+Segment[(109, 355), (130, 367)]
+Segment[(130, 367), (109, 380)]
+Segment[(130, 367), (152, 380)]
+Segment[(152, 380), (130, 392)]
+Segment[(152, 380), (174, 392)]
+Segment[(174, 392), (152, 405)]
+Segment[(174, 392), (195, 405)]
+Segment[(195, 405), (174, 417)]
+Segment[(195, 405), (217, 417)]
+Segment[(217, 417), (195, 430)]
+Segment[(217, 417), (239, 430)]
+Segment[(239, 430), (217, 442)]
+Segment[(239, 430), (260, 442)]
+Segment[(260, 442), (239, 455)]
+Segment[(260, 442), (282, 455)]
+Segment[(282, 455), (260, 467)]
+Segment[(282, 455), (304, 467)]
+Segment[(304, 467), (282, 480)]
+Segment[(304, 467), (325, 480)]
+Segment[(325, 480), (304, 492)]
+Segment[(325, 480), (347, 492)]
+Segment[(347, 492), (325, 505)]
+Segment[(347, 492), (369, 505)]
+Segment[(369, 505), (347, 517)]
+Segment[(369, 505), (390, 517)]
+Segment[(390, 517), (369, 530)]
+Segment[(390, 517), (412, 530)]
+Segment[(412, 530), (390, 542)]
+Segment[(412, 530), (434, 542)]
+Segment[(434, 542), (412, 555)]
+Segment[(22, 330), (0, 342)]
+Segment[(22, 330), (44, 342)]
+Segment[(44, 342), (22, 355)]
+Segment[(44, 342), (65, 355)]
+Segment[(65, 355), (44, 367)]
+Segment[(65, 355), (87, 367)]
+Segment[(87, 367), (65, 380)]
+Segment[(87, 367), (109, 380)]
+Segment[(109, 380), (87, 392)]
+Segment[(109, 380), (130, 392)]
+Segment[(130, 392), (109, 405)]
+Segment[(130, 392), (152, 405)]
+Segment[(152, 405), (130, 417)]
+Segment[(152, 405), (174, 417)]
+Segment[(174, 417), (152, 430)]
+Segment[(174, 417), (195, 430)]
+Segment[(195, 430), (174, 442)]
+Segment[(195, 430), (217, 442)]
+Segment[(217, 442), (195, 455)]
+Segment[(217, 442), (239, 455)]
+Segment[(239, 455), (217, 467)]
+Segment[(239, 455), (260, 467)]
+Segment[(260, 467), (239, 480)]
+Segment[(260, 467), (282, 480)]
+Segment[(282, 480), (260, 492)]
+Segment[(282, 480), (304, 492)]
+Segment[(304, 492), (282, 505)]
+Segment[(304, 492), (325, 505)]
+Segment[(325, 505), (304, 517)]
+Segment[(325, 505), (347, 517)]
+Segment[(347, 517), (325, 530)]
+Segment[(347, 517), (369, 530)]
+Segment[(369, 530), (347, 542)]
+Segment[(369, 530), (390, 542)]
+Segment[(390, 542), (369, 555)]
+Segment[(390, 542), (412, 555)]
+Segment[(412, 555), (390, 567)]
+Segment[(0, 342), (22, 355)]
+Segment[(22, 355), (44, 367)]
+Segment[(44, 367), (65, 380)]
+Segment[(65, 380), (87, 392)]
+Segment[(87, 392), (109, 405)]
+Segment[(109, 405), (130, 417)]
+Segment[(130, 417), (152, 430)]
+Segment[(152, 430), (174, 442)]
+Segment[(174, 442), (195, 455)]
+Segment[(195, 455), (217, 467)]
+Segment[(217, 467), (239, 480)]
+Segment[(239, 480), (260, 492)]
+Segment[(260, 492), (282, 505)]
+Segment[(282, 505), (304, 517)]
+Segment[(304, 517), (325, 530)]
+Segment[(325, 530), (347, 542)]
+Segment[(347, 542), (369, 555)]
+Segment[(369, 555), (390, 567)]

@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/23 17:51:27 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/25 21:55:41 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // We can calculate it very easily by using the following formula:
 // int offset = (y * line_length + x * (bits_per_pixel / 8));
 
-static int	swap_sign(int *x0, int *y0, int *x1, int *y1)
+static int	swap(int *x0, int *y0, int *x1, int *y1)
 {
 	int	tmp;
 
@@ -32,11 +32,9 @@ static int	swap_sign(int *x0, int *y0, int *x1, int *y1)
 		*y0 = *y1;
 		*y1 = tmp;
 	}
-	if ((*y1 - *y0) < 0)
-		tmp = -1;
-	else
-		tmp = 1;
-	return (tmp);
+	if (*y0 > *y1)
+		return (-1);
+	return (1);
 }
 
 // void	drawline_h(double *x_start, double *y_start, t_data *img)
@@ -49,7 +47,7 @@ static int	swap_sign(int *x0, int *y0, int *x1, int *y1)
 // 	i = 0;
 // 	if ((x_start[1] - x_start[0]) == 0)
 // 		return ;
-// 	dir = swap_sign(&x_start[0], &y_start[0], &x_start[1], &y_start[1]);
+// 	dir = swap(&x_start[0], &y_start[0], &x_start[1], &y_start[1]);
 // 	p = 2.0 * (y_start[1] - y_start[0]) * dir - (x_start[1] - x_start[0]);
 // 	y = y_start[0];
 // 	while (i <= (x_start[1] - x_start[0]))
@@ -66,30 +64,59 @@ static int	swap_sign(int *x0, int *y0, int *x1, int *y1)
 // 	}
 // }
 
-void	drawline_h(int *x_start, int *y_start, t_data *img)
-{
-	int dir;
-	int p;
-	int i;
-	int y;
+// void	drawline_h(int *x_start, int *y_start, t_data *img)
+// {
+// 	int	p;
+// 	int	i;
+// 	int	y;
 
-	i = 0;
-	if (x_start[1] - x_start[0] == 0)
-		return;
-	dir = swap_sign(&x_start[0], &y_start[0], &x_start[1], &y_start[1]);
-	p = 2 * (y_start[1] - y_start[0]) * dir - (x_start[1] - x_start[0]);
-	y = y_start[0];
-	while (i <= (x_start[1] - x_start[0]))
+// 	i = 0;
+// 	if (x_start[1] - x_start[0] == 0)
+// 		return ;
+// 	swap(&x_start[0], &y_start[0], &x_start[1], &y_start[1]);
+// 	p = 2 * ABS(y_start[1] - y_start[0]) - (x_start[1] - x_start[0]);
+// 	y = y_start[0];
+// 	while (i <= (x_start[1] - x_start[0]))
+// 	{
+// 		ft_printf("drawn x is %d, y is %d\n", x_start[0] + i, y);
+// 		my_mlx_pixel_put(img, x_start[0] + i, y, 0xFF0000);
+// 		if (p >= 0)
+// 		{
+// 			y += 1;
+// 			p -= 2 * (x_start[1] - x_start[0]);
+// 		}
+// 		else
+// 			p += 2 * ABS(y_start[1] - y_start[0]);
+// 		i++;
+// 	}
+// 	ft_printf("drawn x is %d, y is %d\n", x_start[0] + i, y);
+// }
+
+void	drawline_h(int *x, int *y, t_data *img)
+{
+	int	p;
+	int	i;
+	int	dx;
+	int	dy;
+	int dir;
+
+	i = -1;
+	dir = swap(&x[0], &y[0], &x[1], &y[1]);
+	dx = x[1] - x[0];
+	dy = ABS(y[1] - y[0]);
+	if (dx == 0)
+		return ;
+	p = 2 * dy - dx;
+	while (i++ <= dx)
 	{
-		my_mlx_pixel_put(img, x_start[0] + i, y, 0xFF0000);
+		my_mlx_pixel_put(img, x[0] + i, y[0], 0xFF0000);
 		if (p >= 0)
 		{
-			y += dir;
-			p -= 2 * (x_start[1] - x_start[0]);
+			y[0] += dir;
+			p -= 2 * dx;
 		}
 		else
-			p += 2 * (y_start[1] - y_start[0]) * dir;
-		i++;
+			p += 2 * dy;
 	}
 }
 
@@ -103,7 +130,7 @@ void	drawline_h(int *x_start, int *y_start, t_data *img)
 // 	i = 0;
 // 	if ((x_int[1] - x_int[0]) == 0)
 // 		return ;
-// 	dir = swap_sign(&x_int[0], &y_int[0], &x_int[1], &y_int[1]);
+// 	dir = swap(&x_int[0], &y_int[0], &x_int[1], &y_int[1]);
 // 	p = 2 * (y_int[1] - y_int[0]) * dir - (x_int[1] - x_int[0]);
 // 	y = y_int[0];
 // 	while (i <= (x_int[1] - x_int[0]))
@@ -120,29 +147,31 @@ void	drawline_h(int *x_start, int *y_start, t_data *img)
 // 	}
 // }
 
-void	drawline_v(int *x_int, int *y_int, t_data *img)
+void	drawline_v(int *x, int *y, t_data *img)
 {
-	int		dir;
 	int	p;
 	int	i;
-	int	x;
+	int dx;
+	int dy;
+	int	dir;
 
 	i = 0;
-	if ((y_int[1] - y_int[0]) == 0)
+	dir = swap(&y[0], &x[0], &y[1], &x[1]);
+	dx = (x[1] - x[0]) * dir;
+	dy = y[1] - y[0];
+	if (dy == 0)
 		return ;
-	dir = swap_sign(&y_int[0], &x_int[0], &y_int[1], &x_int[1]);
-	p = 2 * (x_int[1] - x_int[0]) * dir - (y_int[1] - y_int[0]);
-	x = x_int[0];
-	while (i <= (y_int[1] - y_int[0]))
+	p = 2 * dx - dy;
+	while (i <= dy)
 	{
-		my_mlx_pixel_put(img, x, y_int[0] + i, 0xFF0000);
+		my_mlx_pixel_put(img, x[0], y[0] + i, 0xFF0000);
 		if (p >= 0)
 		{
-			x += dir;
-			p -= 2 * (y_int[1] - y_int[0]);
+			x[0] += dir;
+			p -= 2 * dy;
 		}
 		else
-			p += 2 * (x_int[1] - x_int[0]) * dir;
+			p += 2 * dx;
 		i++;
 	}
 }

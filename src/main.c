@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/24 20:50:27 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/25 20:53:43 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	***free_cor(char ***string)
 	int	j;
 
 	if (!string)
-		return ;
+		return (NULL);
 	i = 0;
 	while (string[i])
 	{
@@ -94,6 +94,18 @@ void	print_cor(char ***cor)
 // 		ft_printf("\n");
 // 	}
 // }
+
+void	print_lines(t_line *lines)
+{
+	t_line	*tmp;
+
+	tmp = lines;
+	while (tmp)
+	{
+		ft_printf("Segment[(%d, %d), (%d, %d)]\n", tmp->x0, tmp->y0, tmp->x1, tmp->y1);
+		tmp = tmp->next;
+	}
+}
 
 // int	**get_res(char ***cor)
 // {
@@ -178,27 +190,35 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 drawline_h if ∣dx∣>∣dy∣
 */
 
-double	get_dest(int x, int y, int z, int is_x)
+int	get_dest(int x, int y, int z, int is_x)
 {
 	double	a;
 	double	res;
 
+	// a = (2.0 * PI) / 3.0;
+	// if (is_x)
+	// 	res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
+	// else
+	// 	res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
+	// if (is_x)
+	// 	res = (x - z) / sqrt(2);
+	// else
+	// 	res = (x + 2 * y + z ) / sqrt(6);
+	int tmp;
+
+	tmp = x;
 	if (is_x)
-		res = x - y;
+		res = (tmp - y) * cos(0.523599);
 	else
-		res = ((x + y) / 2) - z;
-	return (res);
+		res = (tmp + y) * sin(0.523599) - z;
+	ft_printf("x is %d, y is %d res is %d\n", x, y, (int)round(res));
+	// if (is_x)
+	// 	res = x - y;
+	// else
+	// 	res = ((x + y) / 2) - z;
+	return ((int)round(res));
 }
 
-// a = (1.0 * PI) / 6.0;
-// if (is_x)
-// 	res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
-// else
-// 	res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
-// if (is_x)
-// 	res = (x - z) / sqrt(2);
-// else
-// 	res = (x + 2 * y + z ) / sqrt(6);
 
 // void	line_addback(t_line **lst, t_line *new)
 // {
@@ -215,43 +235,41 @@ double	get_dest(int x, int y, int z, int is_x)
 // 	tmp->next = new;
 // }
 
-void	compare_replace(t_line *lst, int *x, int *y)
+void	compare_replace(t_line *lst, int *offset)
 {
-	if (lst->x0 < *x)
-		*x = lst->x0;
-	if (lst->x1 < *x)
-		*x = lst->x1;
-	if (lst->y0 < *y)
-		*y = lst->y0;
-	if (lst->y1 < *y)
-		*y = lst->y1;
+	if (lst->x0 < *offset)
+		*offset = lst->x0;
+	if (lst->x1 < *offset)
+		*offset = lst->x1;
+	if (lst->y0 < *offset)
+		*offset = lst->y0;
+	if (lst->y1 < *offset)
+		*offset = lst->y1;
 }
 
 void	shift(t_line *res)
 {
-	int		x;
-	int		y;
+	int		offset;
 	t_line	*tmp;
 
-	x = 0;
-	y = 0;
+	offset = 0;
 	tmp = res;
 	while (tmp)
 	{
-		compare_replace(tmp, &x, &y);
+		compare_replace(tmp, &offset);
 		tmp = tmp->next;
 	}
 	while (res)
 	{
-		res->x0 -= x;
-		res->x1 -= x;
-		res->y0 -= y;
-		res->y1 -= y;
+		res->x0 -= offset;
+		res->x1 -= offset;
+		res->y0 -= offset;
+		res->y1 -= offset;
 		res = res->next;
 	}
 }
 
-int	*get_res(int *x, int *y, int *z, t_line **res)
+int	get_res(int *x, int *y, int *z, t_line **res)
 {
 	t_line	*node;
 	t_line	*tmp;
@@ -291,11 +309,12 @@ t_line	*plot(char ***cor, t_data *img)
 		x = 0;
 		while (cor[y][x])
 		{
+			ft_printf("x: %d, y: %d, z: %d\n", x, y, ft_atoi(cor[y][x]));
 			if (cor[y + 1] && !get_res((int []){x, x}, (int []){y, (y + 1)}
-				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, res))
+				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &res))
 				return (NULL);
 			if (cor[y][x + 1] && !get_res((int []){x, (x + 1)}, (int []){y, y}
-				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, res))
+				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, &res))
 				return (NULL);
 			x++;
 		}
@@ -345,22 +364,21 @@ t_line	*plot(char ***cor, t_data *img)
 
 void	draw(char ***cor, t_line *res, t_data *img)
 {
-	int	i;
 	int	x;
 	int	y;
 
-	i = 0;
 	y = 0;
 	while (cor[y])
 	{
 		x = 0;
 		while (cor[y][x])
 		{
-			if (i % 2 == 0 && cor[y][x + 1])
-				drawline_h((int []){res->x0, res->x1}, (int []){res->y0, res->y1}, img);
-			else if (i % 2 != 0 && cor[y + 1])
-				drawline_v((int []){res->x0, res->x1}, (int []){res->y0, res->y1}, img);
-			i++;
+			if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0) && cor[y][x + 1])
+				drawline_h((int []){res->x0, res->x1},
+					(int []){res->y0, res->y1}, img);
+			else if (cor[y + 1])
+				drawline_v((int []){res->x0, res->x1},
+					(int []){res->y0, res->y1}, img);
 			x++;
 			res = res->next;
 		}
@@ -382,12 +400,13 @@ void	first(char ***cor)
 		exit(3);
 	}
 	shift(res);
+	print_lines(res);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 920, 920, "first test");
 	img.img = mlx_new_image(mlx, 920, 920);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	draw(cor, res, img);
+	draw(cor, res, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 20, 20);
 	mlx_loop(mlx);
 	mlx_destroy_window(mlx, mlx_win);
