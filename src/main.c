@@ -215,6 +215,42 @@ double	get_dest(int x, int y, int z, int is_x)
 // 	tmp->next = new;
 // }
 
+void	compare_replace(t_line *lst, int *x, int *y)
+{
+	if (lst->x0 < *x)
+		*x = lst->x0;
+	if (lst->x1 < *x)
+		*x = lst->x1;
+	if (lst->y0 < *y)
+		*y = lst->y0;
+	if (lst->y1 < *y)
+		*y = lst->y1;
+}
+
+void	shift(t_line *res)
+{
+	int		x;
+	int		y;
+	t_line	*tmp;
+
+	x = 0;
+	y = 0;
+	tmp = res;
+	while (tmp)
+	{
+		compare_replace(tmp, &x, &y);
+		tmp = tmp->next;
+	}
+	while (res)
+	{
+		res->x0 -= x;
+		res->x1 -= x;
+		res->y0 -= y;
+		res->y1 -= y;
+		res = res->next;
+	}
+}
+
 int	*get_res(int *x, int *y, int *z, t_line **res)
 {
 	t_line	*node;
@@ -307,6 +343,31 @@ t_line	*plot(char ***cor, t_data *img)
 // drawline_h((double []){0, 4 * 25}, (double []){0, 0}, img);
 // drawline_v((double []){0, j * 25}, (double []){0, (i + 1) * 25}, img);
 
+void	draw(char ***cor, t_line *res, t_data *img)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	y = 0;
+	while (cor[y])
+	{
+		x = 0;
+		while (cor[y][x])
+		{
+			if (i % 2 == 0 && cor[y][x + 1])
+				drawline_h((int []){res->x0, res->x1}, (int []){res->y0, res->y1}, img);
+			else if (i % 2 != 0 && cor[y + 1])
+				drawline_v((int []){res->x0, res->x1}, (int []){res->y0, res->y1}, img);
+			i++;
+			x++;
+			res = res->next;
+		}
+		y++;
+	}
+}
+
 void	first(char ***cor)
 {
 	void	*mlx;
@@ -320,11 +381,13 @@ void	first(char ***cor)
 		ft_dprintf(2, "Malloc failed\n");
 		exit(3);
 	}
+	shift(res);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 920, 920, "first test");
 	img.img = mlx_new_image(mlx, 920, 920);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
+	draw(cor, res, img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 20, 20);
 	mlx_loop(mlx);
 	mlx_destroy_window(mlx, mlx_win);
