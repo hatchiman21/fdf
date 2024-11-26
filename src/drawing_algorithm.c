@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/25 21:55:41 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/26 06:11:53 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,95 @@ static int	swap(int *x0, int *y0, int *x1, int *y1)
 // 	}
 // }
 
-void	drawline_v(int *x, int *y, t_data *img)
-{
-	double	y;
-	int		i;
+// void	drawline_v(int *x, int *y, t_data *img)
+// {
+// 	double	y2;
+// 	int		i;
 
-	y = (double)y[0];
-	swap(&y[0], &x[0], &y[1], &x[1]);
+// 	y2 = (double)y[0];
+// 	swap(&y[0], &x[0], &y[1], &x[1]);
+// 	i = 0;
+// 	while (i < (x[1] - x[0]))
+// 	{
+// 		my_mlx_pixel_put(img, x[0] + i, (int)round(y2), 0xFF0000);
+// 		// y = (double)(y[0] * (x[1] - x[0] - i) + y[1] * i) / (double)(x[1] - x[0]);
+// 		y2 = (double)((double)((x[0] + i - x[1]) * (y[1] - y[0])) / (x[1] - x[0])) + (double)y[0];
+// 		i++;
+// 	}
+// }
+
+void drawline_v(int *x, int *y, t_data *img)
+{
+	int dx, dy, p, x2, y2, x_end;
+
+	dx = ABS(x[1] - x[0]);
+	dy = ABS(y[1] - y[0]);
+	p = 2 * dy - dx;
+	if (x[0] > x[1]) {
+		x2 = x[1];
+		y2 = y[1];
+		x_end = x[0];
+	} else {
+		x2 = x[0];
+		y2 = y[0];
+		x_end = x[1];
+	}
+	my_mlx_pixel_put(img, x2, y2, 0xFF0000);
+	while (x2 < x_end) {
+		x2++;
+		if (p < 0) {
+			p = p + 2 * dy;
+		} else {
+			y2 += (y[1] > y[0]) ? 1 : -1;
+			p = p + 2 * dy - 2 * dx;
+		}
+		my_mlx_pixel_put(img, x2, y2, 5);
+	}
+}
+
+void drawline_h(int *x, int *y, t_data *img)
+{
+	int dx, dy, p, x2, y2, y_end;
+
+	dx = ABS(x[1] - x[0]);
+	dy = ABS(y[1] - y[0]);
+	p = 2 * dx - dy;
+	if (y[0] > y[1]) {
+		x2 = x[1];
+		y2 = y[1];
+		y_end = y[0];
+	} else {
+		x2 = x[0];
+		y2 = y[0];
+		y_end = y[1];
+	}
+	my_mlx_pixel_put(img, x2, y2, 0xFF0000);
+	while (y2 < y_end) {
+		y2++;
+		if (p < 0) {
+			p = p + 2 * dx;
+		} else {
+			x2 += (x[1] > x[0]) ? 1 : -1;
+			p = p + 2 * dx - 2 * dy;
+		}
+		my_mlx_pixel_put(img, x2, y2, 10);
+	}
+}
+
+void drawline_all(int *x, int *y, t_data *img)
+{
+	double	t;
+	int		i;
+	int		x2;
+	int		y2;
+
 	i = 0;
-	while (i < (x[1] - x[0]))
+	while (i <= ABS(x[1] - x[0]))
 	{
-		my_mlx_pixel_put(img, x[0] + i, (int)round(y), 0xFF0000);
-		// y = (double)(y[0] * (x[1] - x[0] - i) + y[1] * i) / (double)(x[1] - x[0]);
-		y = (double)((double)((x[0] + i - x[1]) * (y[1] - y[0])) / (x[1] - x[0])) + (double)y[0];
+		t = (double)i / (double)ABS(x[1] - x[0]);
+		x2 = (int)round((double)x[0] + t * (double)(x[1] - x[0]));
+		y2 = (int)round((double)y[0] + t * (double)(y[1] - y[0]));
+		my_mlx_pixel_put(img, x2, y2, 0xFF0000);
 		i++;
 	}
 }
@@ -111,19 +187,19 @@ void	drawline_v(int *x, int *y, t_data *img)
 // 	}
 // }
 
-void	drawline_h(int *x, int *y, t_data *img)
-{
-	double	x;
-	int		i;
+// void	drawline_h(int *x, int *y, t_data *img)
+// {
+// 	double	x2;
+// 	int		i;
 
-	x = (double)x[0];
-	swap(&x[0], &y[0], &x[1], &y[1]);
-	i = 0;
-	while (i < (y[1] - y[0]))
-	{
-		my_mlx_pixel_put(img, (int)round(x), y[0] + i, 0xFF0000);
-		// x = (double)(y[0] * (x[1] - x[0] - i) + y[1] * i) / (double)(x[1] - x[0]);
-		x = (double)((double)(i * (x[1] - x[0]) / (y[1] = y[0])) / (y[1] - y[0])) + (double)x[0]
-		i++;
-	}
-}
+// 	x2 = (double)x[0];
+// 	swap(&x[0], &y[0], &x[1], &y[1]);
+// 	i = 0;
+// 	while (i < (y[1] - y[0]))
+// 	{
+// 		my_mlx_pixel_put(img, (int)round(x2), y[0] + i, 0xFF0000);
+// 		// x = (double)(y[0] * (x[1] - x[0] - i) + y[1] * i) / (double)(x[1] - x[0]);
+// 		x2 = (double)((double)(i * (x[1] - x[0]) / (y[1] = y[0])) / (y[1] - y[0])) + (double)x[0];
+// 		i++;
+// 	}
+// }

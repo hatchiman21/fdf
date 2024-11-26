@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/25 20:14:06 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/26 06:13:53 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_line
 	int	y0;
 	int	x1;
 	int	y1;
+	int	color;
 	struct	s_line	*next;
 }				t_line;
 
@@ -50,5 +51,6 @@ typedef struct	s_res
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	drawline_v(int *x_start, int *y_start, t_data *img);
 void	drawline_h(int *x_start, int *y_start, t_data *img);
+void 	drawline_all(int *x, int *y, t_data *img);
 
 #endif

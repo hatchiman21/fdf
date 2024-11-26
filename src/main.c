@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/25 20:53:43 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/26 06:12:11 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	print_lines(t_line *lines)
 	tmp = lines;
 	while (tmp)
 	{
-		ft_printf("Segment[(%d, %d), (%d, %d)]\n", tmp->x0, tmp->y0, tmp->x1, tmp->y1);
+		ft_printf("[(%d, %d), (%d, %d)], \n", tmp->x0, tmp->y0, tmp->x1, tmp->y1);
 		tmp = tmp->next;
 	}
 }
@@ -211,7 +211,7 @@ int	get_dest(int x, int y, int z, int is_x)
 		res = (tmp - y) * cos(0.523599);
 	else
 		res = (tmp + y) * sin(0.523599) - z;
-	ft_printf("x is %d, y is %d res is %d\n", x, y, (int)round(res));
+	// ft_printf("x is %d, y is %d res is %d\n", x, y, (int)round(res));
 	// if (is_x)
 	// 	res = x - y;
 	// else
@@ -234,6 +234,26 @@ int	get_dest(int x, int y, int z, int is_x)
 // 		tmp = tmp->next;
 // 	tmp->next = new;
 // }
+
+int	get_scale(t_line *lst)
+{
+	int	scale;
+
+	scale = 25;
+	while (lst)
+	{
+		while (scale && lst->x0 * scale >= 900)
+			scale -= 1;
+		while (scale && lst->x1 * scale >= 900)
+			scale -= 1;
+		while (scale && lst->y0 * scale >= 900)
+			scale -= 1;
+		while (scale && lst->y1 * scale >= 900)
+			scale -= 1;
+		lst = lst->next;
+	}
+	return (scale);
+}
 
 void	compare_replace(t_line *lst, int *offset)
 {
@@ -275,7 +295,7 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 	t_line	*tmp;
 	int		scale;
 
-	scale = 25;
+	scale = 1;
 	node = malloc(sizeof(t_line));
 	if (!node)
 		return (free_lines(*res));
@@ -309,7 +329,7 @@ t_line	*plot(char ***cor, t_data *img)
 		x = 0;
 		while (cor[y][x])
 		{
-			ft_printf("x: %d, y: %d, z: %d\n", x, y, ft_atoi(cor[y][x]));
+			// ft_printf("x: %d, y: %d, z: %d\n", x, y, ft_atoi(cor[y][x]));
 			if (cor[y + 1] && !get_res((int []){x, x}, (int []){y, (y + 1)}
 				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &res))
 				return (NULL);
@@ -364,25 +384,39 @@ t_line	*plot(char ***cor, t_data *img)
 
 void	draw(char ***cor, t_line *res, t_data *img)
 {
-	int	x;
-	int	y;
+	// int	x;
+	// int	y;
+	int	scale;
 
-	y = 0;
-	while (cor[y])
+	scale = get_scale(res);
+	// y = 0;
+	// while (cor[y])
+	// {
+	// 	x = 0;
+	// 	while (cor[y][x])
+	// 	{
+	// 		// if (cor[y][x + 1])
+	// 			drawline_v((int []){res->x0, res->x1},
+	// 				(int []){res->y0, res->y1}, img);
+	// 		// if (cor[y + 1])
+	// 			drawline_v((int []){res->x0, res->x1},
+	// 				(int []){res->y0, res->y1}, img);
+	// 		x++;
+	// 		res = res->next;
+	// 	}
+	// 	y++;
+	// }
+	while (res)
 	{
-		x = 0;
-		while (cor[y][x])
-		{
-			if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0) && cor[y][x + 1])
-				drawline_h((int []){res->x0, res->x1},
-					(int []){res->y0, res->y1}, img);
-			else if (cor[y + 1])
-				drawline_v((int []){res->x0, res->x1},
-					(int []){res->y0, res->y1}, img);
-			x++;
-			res = res->next;
-		}
-		y++;
+		// if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0))
+		// 	drawline_v((int []){res->x0, res->x1},
+		// 		(int []){res->y0, res->y1}, img);
+		// else
+		// 	drawline_h((int []){res->x0, res->x1},
+		// 		(int []){res->y0, res->y1}, img);
+		drawline_all((int []){res->x0 * scale, res->x1 * scale},
+			(int []){res->y0 * scale, res->y1 * scale}, img);
+		res = res->next;
 	}
 }
 
