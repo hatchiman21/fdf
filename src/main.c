@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/26 06:12:11 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/28 21:58:06 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	print_lines(t_line *lines)
 	tmp = lines;
 	while (tmp)
 	{
-		ft_printf("[(%d, %d), (%d, %d)], \n", tmp->x0, tmp->y0, tmp->x1, tmp->y1);
+		ft_printf("Segment((%d, %d), (%d, %d))\n", tmp->x0, tmp->y0, tmp->x1, tmp->y1);
 		tmp = tmp->next;
 	}
 }
@@ -183,40 +183,29 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel) / 8);
+	dst = data->addr + y * data->line_length + (x * data->bits_per_pixel) / 8;
 	*(unsigned int *)dst = color;
 }
 /*
 drawline_h if ∣dx∣>∣dy∣
 */
 
-int	get_dest(int x, int y, int z, int is_x)
+int	get_dest(int x_old, int y_old, int z, int is_x)
 {
-	double	a;
-	double	res;
-
-	// a = (2.0 * PI) / 3.0;
-	// if (is_x)
-	// 	res = x * cos(a) + y * cos(a + 2) + z * cos(a - 2);
-	// else
-	// 	res = x * sin(a) + y * sin(a + 2) + z * sin(a - 2);
-	// if (is_x)
-	// 	res = (x - z) / sqrt(2);
-	// else
-	// 	res = (x + 2 * y + z ) / sqrt(6);
-	int tmp;
-
-	tmp = x;
-	if (is_x)
-		res = (tmp - y) * cos(0.523599);
-	else
-		res = (tmp + y) * sin(0.523599) - z;
-	// ft_printf("x is %d, y is %d res is %d\n", x, y, (int)round(res));
+	// int	res;
+	
+	// res = 0;
 	// if (is_x)
 	// 	res = x - y;
 	// else
 	// 	res = ((x + y) / 2) - z;
-	return ((int)round(res));
+	// return ((int)round(res));
+
+	int	x_new;
+	int y_new;
+
+	x_new = x_old - y_old;
+	y_new = ((x_old + y_old) / 2) - z
 }
 
 
@@ -235,21 +224,43 @@ int	get_dest(int x, int y, int z, int is_x)
 // 	tmp->next = new;
 // }
 
-int	get_scale(t_line *lst)
-{
-	int	scale;
+// int	get_scale(int *x, int *y, int *z)
+// {
+	
+// 	int	scale;
 
-	scale = 25;
+// 	scale = 1;
+// 	while (lst)
+// 	{
+// 		while (scale && get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 1) >= 900)
+// 			scale -= 1;
+// 		while (scale && get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0) >= 900)
+// 			scale -= 1;
+// 		while (scale && get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1) >= 900)
+// 			scale -= 1;
+// 		while (scale && get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0) >= 900)
+// 			scale -= 1;
+// 		lst = lst->next;
+// 	}
+// 	return (scale);
+// }
+
+float	get_scale(t_line *lst)
+{
+	
+	float	scale;
+
+	scale = 1;
 	while (lst)
 	{
 		while (scale && lst->x0 * scale >= 900)
-			scale -= 1;
+			scale -= 0.01;
 		while (scale && lst->x1 * scale >= 900)
-			scale -= 1;
+			scale -= 0.01;
 		while (scale && lst->y0 * scale >= 900)
-			scale -= 1;
+			scale -= 0.01;
 		while (scale && lst->y1 * scale >= 900)
-			scale -= 1;
+			scale -= 0.01;
 		lst = lst->next;
 	}
 	return (scale);
@@ -295,7 +306,7 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 	t_line	*tmp;
 	int		scale;
 
-	scale = 1;
+	scale = 100;
 	node = malloc(sizeof(t_line));
 	if (!node)
 		return (free_lines(*res));
@@ -329,7 +340,6 @@ t_line	*plot(char ***cor, t_data *img)
 		x = 0;
 		while (cor[y][x])
 		{
-			// ft_printf("x: %d, y: %d, z: %d\n", x, y, ft_atoi(cor[y][x]));
 			if (cor[y + 1] && !get_res((int []){x, x}, (int []){y, (y + 1)}
 				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &res))
 				return (NULL);
@@ -386,7 +396,7 @@ void	draw(char ***cor, t_line *res, t_data *img)
 {
 	// int	x;
 	// int	y;
-	int	scale;
+	float	scale;
 
 	scale = get_scale(res);
 	// y = 0;
@@ -406,6 +416,7 @@ void	draw(char ***cor, t_line *res, t_data *img)
 	// 	}
 	// 	y++;
 	// }
+	printf("scale is %f\n", scale);
 	while (res)
 	{
 		// if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0))
@@ -414,8 +425,8 @@ void	draw(char ***cor, t_line *res, t_data *img)
 		// else
 		// 	drawline_h((int []){res->x0, res->x1},
 		// 		(int []){res->y0, res->y1}, img);
-		drawline_all((int []){res->x0 * scale, res->x1 * scale},
-			(int []){res->y0 * scale, res->y1 * scale}, img);
+		drawline_test((int []){round(res->x0 * scale), round(res->x1 * scale)},
+			(int []){round(res->y0 * scale), round(res->y1 * scale)}, img);
 		res = res->next;
 	}
 }

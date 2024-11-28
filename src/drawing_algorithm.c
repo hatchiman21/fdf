@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/26 06:11:53 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/28 22:00:47 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // Now we have the image address, but still no pixels.Before we start with this
 // , we must understand that the bytes are not aligned,
 // this means that the line_length differs from the actual window width.
-// We therefore should ALWAYS calculate the memory offset using the line length set by mlx_get_data_addr.
 // We can calculate it very easily by using the following formula:
 // int offset = (y * line_length + x * (bits_per_pixel / 8));
 
@@ -157,6 +156,170 @@ void drawline_all(int *x, int *y, t_data *img)
 		i++;
 	}
 }
+
+// void	drawline_test(int *x, int *y, t_data *img)
+// {
+// 	int dx;
+// 	int dy;
+// 	int p;
+// 	int x_tmp;
+// 	int y_tmp;
+	
+// 	dx = x[1] - x[0];
+// 	dy = y[1] - y[0];
+// 	x_tmp = x[0];
+// 	y_tmp = y[0];
+// 	p = 2 * dy - dx;
+// 	while (x_tmp < x[1])
+// 	{
+// 		if (p >= 0)
+// 		{
+// 			my_mlx_pixel_put(img, x_tmp, y_tmp, 0xFF0000);
+// 			y_tmp += 1;
+// 			p = p + 2 * dy - 2 * dx;
+// 		}
+// 		else
+// 		{
+// 			my_mlx_pixel_put(img, x_tmp, y_tmp, 0xFF0000);
+// 			p = p + 2 * dy;
+// 		}
+// 		x_tmp += 1;
+// 	}
+// }
+
+// void	drawline_test(int *x, int *y, t_data *img)
+// {
+// 	int m_new = 2 * (y[1] - y[0]);
+// 	int slope_error_new = m_new - (x[1] - x[0]);
+// 	int x_tmp, y_tmp;
+
+// 	for (x_tmp = x[0], y_tmp = y[0]; x_tmp <= x[1]; x++)
+// 	{
+// 		my_mlx_pixel_put(img, x_tmp, y_tmp, 0xFF0000);
+// 		slope_error_new += m_new;
+// 		if (slope_error_new >= 0)
+// 		{
+// 			y++;
+// 			slope_error_new -= 2 * (x[1] - x[0]);
+// 		}
+// 	}
+// }
+
+// void	drawline_test(int *x, int *y, t_data *img)
+// {
+// 	int dy;
+// 	int dx;
+// 	int d;
+// 	int x_tmp;
+// 	int y_tmp;
+
+// 	dy = y[1] - y[0];
+// 	dx = x[1] - x[0];
+// 	d = 2 * dy - dx;
+// 	x_tmp = x[0];
+// 	y_tmp = y[0];
+// 	while (x_tmp <= x[1])
+// 	{
+// 		my_mlx_pixel_put(img, x_tmp, y_tmp, 0xFF0000);
+// 		x_tmp += 1;
+// 		if (d < 0)
+// 			d += 2 * dy;
+// 		else
+// 		{
+// 			d += 2 * (dy - dx);
+// 			y += 1;
+// 		}
+// 	}
+// }
+
+// void	drawline_test(int *x, int *y, t_data *img)
+// {
+// 	int w = x[1] - x[0];
+// 	int h = y[1] - y[0];
+// 	int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
+
+// 	if (w < 0)
+// 		dx1 = -1;
+// 	else if (w > 0)
+// 		dx1 = 1;
+// 	if (h < 0)
+// 		dy1 = -1;
+// 	else if (h > 0)
+// 		dy1 = 1;
+// 	if (w < 0)
+// 		dx2 = -1;
+// 	else if (w > 0)
+// 		dx2 = 1;
+// 	int longest = ABS(w);
+// 	int shortest = ABS(h);
+// 	if (!(longest > shortest))
+// 	{
+// 		longest = ABS(h);
+// 		shortest = ABS(w);
+// 		if (h < 0)
+// 			dy2 = -1;
+// 		else if (h > 0)
+// 			dy2 = 1;
+// 		dx2 = 0;
+// 	}
+// 	int numerator = longest >> 1;
+// 	for (int i = 0; i <= longest; i++)
+// 	{
+// 		ft_printf("x is %d and y is %d\n", x[0], y[0]);
+// 		my_mlx_pixel_put(img, (x[0]), (y[0]), 0xFF0000);
+// 		numerator += shortest;
+// 		if (!(numerator < longest))
+// 		{
+// 			numerator -= longest;
+// 			x += dx1;
+// 			y += dy1;
+// 		}
+// 		else
+// 		{
+// 			x += dx2;
+// 			y += dy2;
+// 		}
+// 	}
+// }
+
+#include <stdlib.h> // For abs()
+
+void drawline_test(int *x, int *y, t_data *img)
+{
+    int w = x[1] - x[0];
+    int h = y[1] - y[0];
+    int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
+
+    if (w < 0) dx1 = -1; else if (w > 0) dx1 = 1;
+    if (h < 0) dy1 = -1; else if (h > 0) dy1 = 1;
+    if (w < 0) dx2 = -1; else if (w > 0) dx2 = 1;
+
+    int longest = abs(w);
+    int shortest = abs(h);
+
+    if (!(longest > shortest)) {
+        longest = abs(h);
+        shortest = abs(w);
+        if (h < 0) dy2 = -1; else if (h > 0) dy2 = 1;
+        dx2 = 0;
+    }
+
+    int numerator = longest >> 1;
+    for (int i = 0; i <= longest; i++) {
+        my_mlx_pixel_put(img, ABS(x[0]), ABS(y[0]), 0xFF0000);
+        numerator += shortest;
+        if (!(numerator < longest)) {
+            numerator -= longest;
+            x[0] += dx1;
+            y[0] += dy1;
+        } else {
+            x[0] += dx2;
+            y[0] += dy2;
+        }
+    }
+}
+
+
 
 // void	drawline_v(int *x, int *y, t_data *img)
 // {
