@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/26 06:12:11 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/28 07:23:48 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,30 @@ int	free_lines(t_line *lines)
 	return (0);
 }
 
+int	free_points(t_point *point)
+{
+	t_point	*tmp;
+	t_point	*tmp2;
+
+	if (!point)
+		return (0);
+	tmp = point->next_y;
+	while (point)
+	{
+		tmp2 = point->next_x;
+		free(point);
+		if (tmp2)
+			point = tmp2;
+		else
+		{
+			point = tmp;
+			if (tmp)
+				tmp = tmp->next_y;
+		}
+	}
+	return (0);
+}
+
 void	free_split(char **string)
 {
 	int	i;
@@ -71,69 +95,40 @@ void	print_cor(char ***cor)
 	{
 		j = 0;
 		while (cor[i][j])
-			ft_printf("%s ", cor[i][j++]);
+			ft_printf("%d ",ft_atoi(cor[i][j++]));
 		i++;
 		ft_printf("\n");
 	}
 }
 
-// void	print_res(int **res)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	if (!res)
-// 		return ;
-// 	i = 0;
-// 	while (res[i])
-// 	{
-// 		j = 0;
-// 		while (res[i][j])
-// 			ft_printf("%d ", res[i][j++]);
-// 		i++;
-// 		ft_printf("\n");
-// 	}
-// }
-
-void	print_lines(t_line *lines)
+void	print_lines(t_point *point)
 {
-	t_line	*tmp;
+	t_point	*next_row;
+	t_point	*tmp_x;
+	t_point	*tmp_y;
 
-	tmp = lines;
-	while (tmp)
+	if (!point)
+		return ;
+	next_row = point->next_y;
+	while (point)
 	{
-		ft_printf("[(%d, %d), (%d, %d)], \n", tmp->x0, tmp->y0, tmp->x1, tmp->y1);
-		tmp = tmp->next;
+		ft_printf("\n");
+		tmp_x = point->next_x;
+		tmp_y = point->next_y;
+		if (tmp_x)
+			ft_printf("{(%d, %d), (%d, %d)]\n",point->x, point->y, tmp_x->x, tmp_x->y);
+		if (tmp_y)
+			ft_printf("{(%d, %d), (%d, %d)]\n",point->x, point->y, tmp_y->x, tmp_y->y);
+		if (point->next_x)
+			point = point->next_x;
+		else
+		{
+			point = next_row;
+			if (next_row)
+				next_row = next_row->next_y;
+		}
 	}
 }
-
-// int	**get_res(char ***cor)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	**res;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (cor[0][j])
-// 		j++;
-// 	while (cor[i])
-// 		i++;
-// 	res = malloc(sizeof(int *) * i);
-// 	i = 0;
-// 	while (cor[i])
-// 	{
-// 		res[i] = malloc(sizeof(int) * j);
-// 		j = 0;
-// 		while (cor[i][j])
-// 		{
-// 			res[i][j] = ft_atoi(cor[i][j]);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (res);
-// }
 
 char	***intial_malloc(int fd)
 {
@@ -219,231 +214,284 @@ int	get_dest(int x, int y, int z, int is_x)
 	return ((int)round(res));
 }
 
-
-// void	line_addback(t_line **lst, t_line *new)
-// {
-// 	t_line	*tmp;
-
-// 	if (!*lst)
-// 	{
-// 		*lst = new;
-// 		return ;
-// 	}
-// 	tmp = *lst;
-// 	while (tmp->next)
-// 		tmp = tmp->next;
-// 	tmp->next = new;
-// }
-
-int	get_scale(t_line *lst)
+int	get_scale(t_point *res)
 {
-	int	scale;
+	int		scale;
+	t_point	*tmp;
 
 	scale = 25;
-	while (lst)
+	tmp = res->next_y;
+	while (res)
 	{
-		while (scale && lst->x0 * scale >= 900)
+		while (res->x * scale > 900)
 			scale -= 1;
-		while (scale && lst->x1 * scale >= 900)
+		while (res->y * scale > 900)
 			scale -= 1;
-		while (scale && lst->y0 * scale >= 900)
+		while (res->next_y && res->next_y->x * scale > 900)
 			scale -= 1;
-		while (scale && lst->y1 * scale >= 900)
+		while (res->next_x && res->next_x->x * scale > 900)
 			scale -= 1;
-		lst = lst->next;
+		if (!res->next_x)
+		{
+			res = tmp;
+			if (tmp)
+				tmp = tmp->next_y;
+		}
+		else
+			res = res->next_x;
 	}
 	return (scale);
 }
 
-void	compare_replace(t_line *lst, int *offset)
+void	compare(t_point *res, int *offset)
 {
-	if (lst->x0 < *offset)
-		*offset = lst->x0;
-	if (lst->x1 < *offset)
-		*offset = lst->x1;
-	if (lst->y0 < *offset)
-		*offset = lst->y0;
-	if (lst->y1 < *offset)
-		*offset = lst->y1;
+	t_point	*tmp;
+
+	tmp = res->next_y;
+	while (res)
+	{
+		if (res->x < *offset)
+			*offset = res->x;
+		if (res->y < *offset)
+			*offset = res->y;
+		if (res->next_x)
+			res = res->next_x;
+		else
+		{
+			res = tmp;
+			if (tmp)
+				tmp = tmp->next_y;
+		}
+	}
 }
 
-void	shift(t_line *res)
+	// t_point	*tmp;
+
+	// tmp = res->next_y;
+	// while (res)
+	// {
+	// 	res->x -= offset;
+	// 	res->y -= offset;
+	// 	if (res->next_x)
+	// 		res = res->next_x;
+	// 	else
+	// 	{
+	// 		res = tmp;
+	// 		if (tmp)
+	// 			tmp = tmp->next_y;
+	// 	}
+	// }
+// void adjust_coordinates(t_point *res, int offset)
+// {
+//     t_point *row_start = res; // Start of the current row
+//     t_point *current;
+
+//     while (row_start) // Traverse rows (next_y)
+//     {
+//         current = row_start; // Start at the beginning of the row
+//         while (current) // Traverse columns (next_x)
+//         {
+//             current->x -= offset;
+//             current->y -= offset;
+//             current = current->next_x;
+//         }
+//         row_start = row_start->next_y; // Move to the next row
+//     }
+// }
+
+void	adjust_coordinates(t_point *res, int offset)
+{
+	t_point	*tmp;
+
+	tmp = res->next_y;
+	while (res)
+	{
+		while (res)
+		{
+			res->x -= offset;
+			res->y -= offset;
+			res = res->next_x;
+		}
+		res = tmp;
+		if (tmp)
+			tmp = tmp->next_y;
+	}
+}
+void print_points(t_point *res)
+{
+    t_point *row_start = res;
+    t_point *current;
+
+    while (row_start)
+    {
+        current = row_start;
+        while (current)
+        {
+            printf("Point: (%d, %d)\n", current->x, current->y);
+            current = current->next_x;
+        }
+        row_start = row_start->next_y;
+    }
+}
+
+
+void	shift(t_point *res)
 {
 	int		offset;
-	t_line	*tmp;
+	t_point	*tmp;
+	t_point	*tmp2;
 
 	offset = 0;
 	tmp = res;
+	tmp2 = tmp->next_y;
 	while (tmp)
 	{
-		compare_replace(tmp, &offset);
-		tmp = tmp->next;
+		compare(tmp, &offset);
+		if (tmp->next_y)
+			compare(tmp->next_y, &offset);
+		if (tmp->next_x)
+			tmp = tmp->next_x;
+		else
+		{
+			tmp = NULL;
+			if (tmp2)
+			{
+				tmp = tmp2->next_x;
+				tmp2 = tmp2->next_y;
+			}
+		}
 	}
-	while (res)
-	{
-		res->x0 -= offset;
-		res->x1 -= offset;
-		res->y0 -= offset;
-		res->y1 -= offset;
-		res = res->next;
-	}
+	// ft_printf("offset is %d\n", offset);
+	adjust_coordinates(res, offset);
+	// print_lines(res);
 }
 
-int	get_res(int *x, int *y, int *z, t_line **res)
+t_point	*get_node(int x, int y, int z)
 {
-	t_line	*node;
-	t_line	*tmp;
-	int		scale;
+	t_point	*node;
 
-	scale = 1;
-	node = malloc(sizeof(t_line));
+	node = malloc(sizeof(t_point));
 	if (!node)
-		return (free_lines(*res));
-	if (!*res)
-		*res = node;
-	else
-	{
-		tmp = *res;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = node;
-	}
-	node->next = NULL;
-	node->x0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 1);
-	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
-	node->x1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1);
-	node->y1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0);
-	return (1);
+		return (NULL);
+	node->x = get_dest(x, y, z, 1);
+	node->y = get_dest(x, y, z, 0);
+	node->z = z;
+	node->next_x = NULL;
+	node->next_y = NULL;
+	return (node);
 }
 
-t_line	*plot(char ***cor, t_data *img)
+void	create_point_grid_step(char ***cor, t_data *img, int y, t_point **node)
 {
-	t_line	*res;
-	int		y;
+	t_point	*prev_node;
 	int		x;
 
+	x = 0;
+	prev_node = NULL;
+	while (cor[y][x])
+	{
+		if (!((*node)->next_x) && cor[y][x + 1])
+			(*node)->next_x = get_node(x + 1, y, ft_atoi(cor[y][x + 1]));
+		if (cor[y + 1])
+			(*node)->next_y = get_node(x, y + 1, ft_atoi(cor[y + 1][x]));
+		if (prev_node && (*node)->next_y)
+			prev_node->next_y->next_x = (*node)->next_y;
+		prev_node = (*node);
+		(*node) = (*node)->next_x;
+		// ft_printf("x is %d\n", x);
+		x++;
+	}
+}
+
+t_point	*create_point_grid(char ***cor, t_data *img)
+{
+	t_point	*res;
+	t_point	*node;
+	int		y;
+
+	res = get_node(0, 0, ft_atoi(cor[0][0]));
+	node = res;
 	y = 0;
-	res = NULL;
 	while (cor[y])
 	{
-		x = 0;
-		while (cor[y][x])
-		{
-			// ft_printf("x: %d, y: %d, z: %d\n", x, y, ft_atoi(cor[y][x]));
-			if (cor[y + 1] && !get_res((int []){x, x}, (int []){y, (y + 1)}
-				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &res))
-				return (NULL);
-			if (cor[y][x + 1] && !get_res((int []){x, (x + 1)}, (int []){y, y}
-				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, &res))
-				return (NULL);
-			x++;
-		}
+		create_point_grid_step(cor, img, y, &node);
+		node = res;
+		while (node && node->next_y)
+			node = node->next_y;
+		// ft_printf("y is %d\n", y);
 		y++;
 	}
 	return (res);
 }
+	// ft_printf("scale is %d\n", scale);
+	// next_row = res->next_y;
+	// while (res)
+	// {
+	// 	if (res->next_y)
+	// 		drawline_dda((int []){res->x, res->next_y->x},
+	// 			(int []){res->y, res->next_y->y}, img);
+	// 	if (res->next_x)
+	// 		drawline_dda((int []){res->x, res->next_x->x},
+	// 			(int []){res->y, res->next_x->y}, img);
+	// 	else
+	// 	{
+	// 		res = next_row;
+	// 		if (next_row)
+	// 			next_row = next_row->next_y;
+	// 	}
+	// }
 
-// int	tmpx;
-// int	tmpy;
-// int	i = 0;
-// while (y <= 300)
-// {
-// 	x = 0;
-// 	while (x <= 300)
-// 	{
-// 		// tmpx = get_dest(x + 10, y, 0, 1);
-// 		// tmpy = get_dest(x, y + 10, 0, 0);
-// 		drawline_h((int []){x, x + 10}, (int []){y, y}, img);
-// 		drawline_v((int []){x, x}, (int []){y, y + 10}, img);
-// 		x += 10;
-// 	}
-// 	i = +2;
-// 	y += 10;
-// }
-// y = 0;
-// while (y < 100)
-// drawline_h((int []){0, 100}, (int []){0, 0}, img);
-
-// while (cor[i + 1])
-// {
-// 	j = 0;
-// 	while (cor[i][j + 1])
-// 	{
-// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){0 * 4, 0 * 4}, img);
-// 		drawline_v((double []){0 * 4, 0 * 4}, (double []){0 * 4, 20 * 4}, img);
-// 		drawline_h((double []){0 * 4, 20 * 4}
-//			 , (double []){20 * 4, 20 * 4}, img);
-// 		drawline_v((double []){20 * 4, 20 * 4}
-//			 , (double []){0 * 4, 20 * 4}, img);
-// 		j++;
-// 	}
-// 	i++;
-// }
-// drawline_h((double []){0, 4 * 25}, (double []){0, 0}, img);
-// drawline_v((double []){0, j * 25}, (double []){0, (i + 1) * 25}, img);
-
-void	draw(char ***cor, t_line *res, t_data *img)
+void	draw(char ***cor, t_point *res, t_data *img)
 {
-	// int	x;
-	// int	y;
-	int	scale;
+	int		scale;
+	t_point	*next_row;
 
 	scale = get_scale(res);
-	// y = 0;
-	// while (cor[y])
-	// {
-	// 	x = 0;
-	// 	while (cor[y][x])
-	// 	{
-	// 		// if (cor[y][x + 1])
-	// 			drawline_v((int []){res->x0, res->x1},
-	// 				(int []){res->y0, res->y1}, img);
-	// 		// if (cor[y + 1])
-	// 			drawline_v((int []){res->x0, res->x1},
-	// 				(int []){res->y0, res->y1}, img);
-	// 		x++;
-	// 		res = res->next;
-	// 	}
-	// 	y++;
-	// }
+	next_row = res->next_y;
 	while (res)
 	{
-		// if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0))
-		// 	drawline_v((int []){res->x0, res->x1},
-		// 		(int []){res->y0, res->y1}, img);
-		// else
-		// 	drawline_h((int []){res->x0, res->x1},
-		// 		(int []){res->y0, res->y1}, img);
-		drawline_all((int []){res->x0 * scale, res->x1 * scale},
-			(int []){res->y0 * scale, res->y1 * scale}, img);
-		res = res->next;
+		if (res->next_y)
+			drawline_v((int []){res->x * scale, res->next_y->x * scale},
+				(int []){res->y * scale, res->next_y->y * scale}, img);
+		if (res->next_x)
+		{
+			drawline_h((int []){res->x * scale, res->next_x->x * scale},
+				(int []){res->y * scale, res->next_x->y * scale}, img);	
+			res = res->next_x;
+		}
+		else
+		{
+			res = next_row;
+			if (next_row)
+				next_row = next_row->next_y;
+		}
 	}
 }
 
 void	first(char ***cor)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_line	*res;
+	t_point	*res;
 	t_data	img;
 
-	res = plot(cor, &img);
+	if (cor[0])
+	res = create_point_grid(cor, &img);
 	if (!res)
 	{
 		ft_dprintf(2, "Malloc failed\n");
 		exit(3);
 	}
+	// print_lines(res);
 	shift(res);
-	print_lines(res);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 920, 920, "first test");
-	img.img = mlx_new_image(mlx, 920, 920);
+	// print_lines(res);
+	img.mlx = mlx_init();
+	img.win = mlx_new_window(img.mlx, 920, 920, "first test");
+	img.img = mlx_new_image(img.mlx, 920, 920);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	draw(cor, res, &img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 20, 20);
-	mlx_loop(mlx);
-	mlx_destroy_window(mlx, mlx_win);
+	mlx_put_image_to_window(img.mlx, img.win, img.img, 20, 20);
+	mlx_loop(img.mlx);
+	mlx_destroy_window(img.mlx, img.win);
 }
 
 int	main(int argc, char *argv[])
