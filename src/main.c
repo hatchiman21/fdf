@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/28 21:58:06 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/29 04:52:49 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,28 +184,22 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + y * data->line_length + (x * data->bits_per_pixel) / 8;
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = ft_itoa(color);
 }
 /*
 drawline_h if ∣dx∣>∣dy∣
 */
 
-int	get_dest(int x_old, int y_old, int z, int is_x)
+int	get_dest(int x, int y, int z, int is_x)
 {
-	// int	res;
+	int	res;
 	
-	// res = 0;
-	// if (is_x)
-	// 	res = x - y;
-	// else
-	// 	res = ((x + y) / 2) - z;
-	// return ((int)round(res));
-
-	int	x_new;
-	int y_new;
-
-	x_new = x_old - y_old;
-	y_new = ((x_old + y_old) / 2) - z
+	res = 0;
+	if (is_x)
+		res = x - y;
+	else
+		res = ((x + y) / 2) - z;
+	return ((int)round(res));
 }
 
 
@@ -324,6 +318,7 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
 	node->x1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1);
 	node->y1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0);
+	node->color = ABS(z[1] - z[0]);
 	return (1);
 }
 
@@ -416,7 +411,7 @@ void	draw(char ***cor, t_line *res, t_data *img)
 	// 	}
 	// 	y++;
 	// }
-	printf("scale is %f\n", scale);
+	// printf("scale is %f\n", scale);
 	while (res)
 	{
 		// if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0))
@@ -445,7 +440,7 @@ void	first(char ***cor)
 		exit(3);
 	}
 	shift(res);
-	print_lines(res);
+	// print_lines(res);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 920, 920, "first test");
 	img.img = mlx_new_image(mlx, 920, 920);

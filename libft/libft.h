@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 03:59:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/23 19:39:18 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/29 06:03:11 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 long int	ft_atoi(const char *str);
+unsigned long int	ft_atoi_base(const char *str, int base);
 
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_bzero(void *s, size_t n);
@@ -65,6 +66,7 @@ void		*ft_calloc(size_t count, size_t size);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 char		*ft_itoa(int n);
+char		*ft_itoa_hex(unsigned int n,int base);
 int			ft_putchar_fd(char c, int fd);
 int			ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);

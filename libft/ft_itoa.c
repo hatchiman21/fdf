@@ -6,29 +6,28 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:34:40 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/03 19:59:30 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/11/29 06:17:54 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	allocation(int n, char **res)
+static int	allocation(long int n, char **res, int base)
 {
 	int			i;
-	long int	temp;
 
 	i = 1;
-	temp = n;
-	if (temp < 0)
+	n = n;
+	if (n < 0)
 	{
 		i++;
-		temp *= -1;
+		n *= -1;
 	}
-	else if (temp == 0)
+	else if (n == 0)
 		i++;
-	while (temp > 0)
+	while (n > 0)
 	{
-		temp /= 10;
+		n /= base;
 		i++;
 	}
 	*res = (char *)malloc(sizeof(char) * i);
@@ -41,7 +40,7 @@ char	*ft_itoa(int n)
 	int			i;
 	long int	temp;
 
-	i = allocation(n, &res);
+	i = allocation((int)n, &res, 10);
 	if (res == NULL)
 		return (NULL);
 	temp = n;
@@ -57,6 +56,25 @@ char	*ft_itoa(int n)
 	{
 		res[i--] = (temp % 10) + '0';
 		temp /= 10;
+	}
+	return (res);
+}
+
+char	*ft_itoa_hex(unsigned int n,int base)
+{
+	char		*res;
+	int			i;
+
+	i = allocation((int)n, &res, base);
+	if (res == NULL)
+		return (NULL);
+	res[i--] = '\0';
+	if (n == 0)
+		res[i] = '0';
+	while (n > 0)
+	{
+		res[i--] = (n % base) + '0';
+		n /= base;
 	}
 	return (res);
 }
