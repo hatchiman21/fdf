@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 03:22:23 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:24:22 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ void	drawline_v(t_line *res, t_height height, t_modifiers m, t_data *img)
 
 	numerator = m.w / 2;
 	i = 0;
+	z = res->z0;
 	while (i++ <= m.w)
 	{
-		if (res->z1 >= res->z0 && m.w)
-			z = res->z0 + (i / m.w) * res->z1;
-		else if (m.w)
-			z = res->z0 - (i / m.w) * res->z1;
+		if (m.w)
+			z = res->z0 - res->z0 * (i / (float)m.w) + res->z1 * (i / (float)m.w);
 		my_mlx_pixel_put(img, res->x0, res->y0, calculate_color(z, height.min, height.max));
 		numerator += m.h;
 		res->y0 += m.dy;
@@ -70,20 +69,16 @@ void	drawline_v(t_line *res, t_height height, t_modifiers m, t_data *img)
 void	drawline_h(t_line *res, t_height height, t_modifiers m, t_data *img)
 {
 	int	numerator;
-	int	w;
-	int	h;
 	int	z;
 	int	i;
 
-	w = 
 	numerator = m.w / 2;
+	z = res->z0;
 	i = 0;
 	while (i++ <= m.w)
 	{
-		if (res->z1 >= res->z0 && m.w)
-			z = res->z0 + (i / m.w) * res->z1;
-		else if (m.w)
-			z = res->z0 - (i / m.w) * res->z1;
+		if (m.w)
+			z = res->z0 -res->z0 * (i / (float)m.w) + res->z1 * (i / (float)m.w);
 		my_mlx_pixel_put(img, res->x0, res->y0, calculate_color(z, height.min, height.max));
 		numerator += m.h;
 		res->x0 += m.dx;
