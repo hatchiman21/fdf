@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:33:07 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/29 06:16:33 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 06:39:37 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ long int	ft_atoi(const char *str)
 	res = 0;
 	while (((str[i] >= 9 && str[i] <= 13) || str[i] == ' ') && str[i])
 		i++;
+	if (str[i] == '0' && (str[i + 1] == 'x' || str[i + 1] == 'X'))
+		return (ft_atoi_base(str + i + 2, 16));
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')

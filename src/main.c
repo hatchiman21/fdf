@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/29 04:52:49 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 06:49:17 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,6 @@ void	print_cor(char ***cor)
 	}
 }
 
-// void	print_res(int **res)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	if (!res)
-// 		return ;
-// 	i = 0;
-// 	while (res[i])
-// 	{
-// 		j = 0;
-// 		while (res[i][j])
-// 			ft_printf("%d ", res[i][j++]);
-// 		i++;
-// 		ft_printf("\n");
-// 	}
-// }
-
 void	print_lines(t_line *lines)
 {
 	t_line	*tmp;
@@ -106,34 +88,6 @@ void	print_lines(t_line *lines)
 		tmp = tmp->next;
 	}
 }
-
-// int	**get_res(char ***cor)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	**res;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (cor[0][j])
-// 		j++;
-// 	while (cor[i])
-// 		i++;
-// 	res = malloc(sizeof(int *) * i);
-// 	i = 0;
-// 	while (cor[i])
-// 	{
-// 		res[i] = malloc(sizeof(int) * j);
-// 		j = 0;
-// 		while (cor[i][j])
-// 		{
-// 			res[i][j] = ft_atoi(cor[i][j]);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (res);
-// }
 
 char	***intial_malloc(int fd)
 {
@@ -184,11 +138,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + y * data->line_length + (x * data->bits_per_pixel) / 8;
-	*(unsigned int *)dst = ft_itoa(color);
+	*(unsigned int *)dst = color;
 }
-/*
-drawline_h if ∣dx∣>∣dy∣
-*/
 
 int	get_dest(int x, int y, int z, int is_x)
 {
@@ -202,62 +153,38 @@ int	get_dest(int x, int y, int z, int is_x)
 	return ((int)round(res));
 }
 
-
-// void	line_addback(t_line **lst, t_line *new)
-// {
-// 	t_line	*tmp;
-
-// 	if (!*lst)
-// 	{
-// 		*lst = new;
-// 		return ;
-// 	}
-// 	tmp = *lst;
-// 	while (tmp->next)
-// 		tmp = tmp->next;
-// 	tmp->next = new;
-// }
-
-// int	get_scale(int *x, int *y, int *z)
-// {
-	
-// 	int	scale;
-
-// 	scale = 1;
-// 	while (lst)
-// 	{
-// 		while (scale && get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 1) >= 900)
-// 			scale -= 1;
-// 		while (scale && get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0) >= 900)
-// 			scale -= 1;
-// 		while (scale && get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1) >= 900)
-// 			scale -= 1;
-// 		while (scale && get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0) >= 900)
-// 			scale -= 1;
-// 		lst = lst->next;
-// 	}
-// 	return (scale);
-// }
-
 float	get_scale(t_line *lst)
 {
-	
 	float	scale;
 
 	scale = 1;
 	while (lst)
 	{
 		while (scale && lst->x0 * scale >= 900)
-			scale -= 0.01;
+			scale -= 0.001;
 		while (scale && lst->x1 * scale >= 900)
-			scale -= 0.01;
+			scale -= 0.001;
 		while (scale && lst->y0 * scale >= 900)
-			scale -= 0.01;
+			scale -= 0.001;
 		while (scale && lst->y1 * scale >= 900)
-			scale -= 0.01;
+			scale -= 0.001;
 		lst = lst->next;
 	}
 	return (scale);
+}
+
+void	apply_scale(t_line *lst, float scale)
+{
+	while (lst)
+	{
+		lst->x0 = (int)round(scale * lst->x0);
+		lst->y0 = (int)round(scale * lst->y0);
+		lst->x1 = (int)round(scale * lst->x1);
+		lst->y1 = (int)round(scale * lst->y1);
+		lst->z0 = (int)round(scale * lst->z0);
+		lst->z1 = (int)round(scale * lst->z1);
+		lst = lst->next;
+	}
 }
 
 void	compare_replace(t_line *lst, int *offset)
@@ -318,7 +245,8 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
 	node->x1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1);
 	node->y1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0);
-	node->color = ABS(z[1] - z[0]);
+	node->z0 = z[0] * scale;
+	node->z1 = z[1] * scale;
 	return (1);
 }
 
@@ -348,80 +276,37 @@ t_line	*plot(char ***cor, t_data *img)
 	return (res);
 }
 
-// int	tmpx;
-// int	tmpy;
-// int	i = 0;
-// while (y <= 300)
-// {
-// 	x = 0;
-// 	while (x <= 300)
-// 	{
-// 		// tmpx = get_dest(x + 10, y, 0, 1);
-// 		// tmpy = get_dest(x, y + 10, 0, 0);
-// 		drawline_h((int []){x, x + 10}, (int []){y, y}, img);
-// 		drawline_v((int []){x, x}, (int []){y, y + 10}, img);
-// 		x += 10;
-// 	}
-// 	i = +2;
-// 	y += 10;
-// }
-// y = 0;
-// while (y < 100)
-// drawline_h((int []){0, 100}, (int []){0, 0}, img);
-
-// while (cor[i + 1])
-// {
-// 	j = 0;
-// 	while (cor[i][j + 1])
-// 	{
-// 		drawline_h((double []){0 * 4, 20 * 4}, (double []){0 * 4, 0 * 4}, img);
-// 		drawline_v((double []){0 * 4, 0 * 4}, (double []){0 * 4, 20 * 4}, img);
-// 		drawline_h((double []){0 * 4, 20 * 4}
-//			 , (double []){20 * 4, 20 * 4}, img);
-// 		drawline_v((double []){20 * 4, 20 * 4}
-//			 , (double []){0 * 4, 20 * 4}, img);
-// 		j++;
-// 	}
-// 	i++;
-// }
-// drawline_h((double []){0, 4 * 25}, (double []){0, 0}, img);
-// drawline_v((double []){0, j * 25}, (double []){0, (i + 1) * 25}, img);
+t_height	min_max_height(t_line *res)
+{
+	t_height	height;
+	
+	height.min = 0;
+	height.max = 0;
+	while (res)
+	{
+		if (res->z0 < height.min)
+			height.min = res->z0;
+		if (res->z1 < height.min)
+			height.min = res->z1;
+		if (res->z0 > height.max)
+			height.max = res->z0;
+		if (res->z1 > height.max)
+			height.max = res->z1;
+		res = res->next;
+	}
+	return (height);
+}
 
 void	draw(char ***cor, t_line *res, t_data *img)
 {
-	// int	x;
-	// int	y;
-	float	scale;
+	t_height	height;
 
-	scale = get_scale(res);
-	// y = 0;
-	// while (cor[y])
-	// {
-	// 	x = 0;
-	// 	while (cor[y][x])
-	// 	{
-	// 		// if (cor[y][x + 1])
-	// 			drawline_v((int []){res->x0, res->x1},
-	// 				(int []){res->y0, res->y1}, img);
-	// 		// if (cor[y + 1])
-	// 			drawline_v((int []){res->x0, res->x1},
-	// 				(int []){res->y0, res->y1}, img);
-	// 		x++;
-	// 		res = res->next;
-	// 	}
-	// 	y++;
-	// }
-	// printf("scale is %f\n", scale);
+	apply_scale(res, get_scale(res));
+	height = min_max_height(res);
 	while (res)
 	{
-		// if (ABS(res->x1 - res->x0) > ABS(res->y1 - res->y0))
-		// 	drawline_v((int []){res->x0, res->x1},
-		// 		(int []){res->y0, res->y1}, img);
-		// else
-		// 	drawline_h((int []){res->x0, res->x1},
-		// 		(int []){res->y0, res->y1}, img);
-		drawline_test((int []){round(res->x0 * scale), round(res->x1 * scale)},
-			(int []){round(res->y0 * scale), round(res->y1 * scale)}, img);
+		drawline(res, height,
+		 img);
 		res = res->next;
 	}
 }
