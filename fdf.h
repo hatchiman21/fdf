@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 02:50:10 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 20:42:53 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdio.h>
 # include <string.h>
 
-# define ABS(Value) (Value * ((Value < 0) ? 1 : -1))
 # define PI 3.14159265358979323846
 
 typedef struct	s_data
@@ -43,6 +42,15 @@ typedef struct	s_line
 	struct	s_line	*next;
 }				t_line;
 
+typedef struct	s_var
+{
+	void	*mlx;
+	void	*win;
+	char	***cor;
+	t_line	*lines_head;
+	t_data	img;
+}				t_var;
+
 typedef struct	s_modifiers
 {
 	int	w;
@@ -57,13 +65,18 @@ typedef struct s_height
 	int	max;
 }				t_height;
 
-typedef struct	s_res
-{
-	int	x;
-	int	y;
-}				t_res;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	drawline(t_line *res, t_height height, t_data *img);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		drawline(t_line *res, t_height height, t_data *img);
+int			close_win(int keycode, t_var *var);
+int			close_exit(t_var *var);
+int			free_lines(t_line *lines);
+char		***free_cor(char ***string);
+char		***grap_input(char *arg, int fd);
+void		get_offset(t_line *lst, int *offset);
+int			get_dest(int x, int y, int z, int is_x);
+float		get_scale(t_line *lst);
+t_height	min_max_height(t_line *res);
+void		shift(t_line *res);
+t_line		*plot(char ***cor, t_data *img);
 
 #endif

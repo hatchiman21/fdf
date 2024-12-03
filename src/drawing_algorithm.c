@@ -6,35 +6,31 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 17:24:22 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 21:30:38 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int calculate_color(int height, int min_h, int max_h)
+int	calculate_color(int height, int min_h, int max_h)
 {
 	int	normalized;
 	int	red;
 	int	green;
 	int	blue;
 
-	// Normalize height to range [0, 255]
 	if (max_h != min_h)
 		normalized = (height - min_h) * 255 / (max_h - min_h);
 	else
 		normalized = 255;
-	// Gradient from blue to green to red
 	if (normalized < 128)
 	{
-		// Blue to Green
 		red = 0;
 		green = normalized * 2;
 		blue = 255 - green;
 	}
 	else
 	{
-		// Green to Red
 		red = (normalized - 128) * 2;
 		green = 255 - red;
 		blue = 0;
@@ -44,7 +40,7 @@ int calculate_color(int height, int min_h, int max_h)
 
 void	drawline_v(t_line *res, t_height height, t_modifiers m, t_data *img)
 {
-	int numerator;
+	int	numerator;
 	int	z;
 	int	i;
 
@@ -54,8 +50,12 @@ void	drawline_v(t_line *res, t_height height, t_modifiers m, t_data *img)
 	while (i++ <= m.w)
 	{
 		if (m.w)
-			z = res->z0 - res->z0 * (i / (float)m.w) + res->z1 * (i / (float)m.w);
-		my_mlx_pixel_put(img, res->x0, res->y0, calculate_color(z, height.min, height.max));
+			z = res->z0 - res->z0 * (i / (float)m.w)
+				+ res->z1 * (i / (float)m.w);
+		if (z < height.min)
+			z = height.min;
+		my_mlx_pixel_put(img, res->x0, res->y0,
+			calculate_color(z, height.min, height.max));
 		numerator += m.h;
 		res->y0 += m.dy;
 		if (numerator >= m.w)
@@ -78,8 +78,12 @@ void	drawline_h(t_line *res, t_height height, t_modifiers m, t_data *img)
 	while (i++ <= m.w)
 	{
 		if (m.w)
-			z = res->z0 -res->z0 * (i / (float)m.w) + res->z1 * (i / (float)m.w);
-		my_mlx_pixel_put(img, res->x0, res->y0, calculate_color(z, height.min, height.max));
+			z = res->z0 - res->z0 * (i / (float)m.w)
+				+ res->z1 * (i / (float)m.w);
+		if (z < height.min)
+			z = height.min;
+		my_mlx_pixel_put(img, res->x0, res->y0,
+			calculate_color(z, height.min, height.max));
 		numerator += m.h;
 		res->x0 += m.dx;
 		if (numerator >= m.w)
@@ -87,7 +91,16 @@ void	drawline_h(t_line *res, t_height height, t_modifiers m, t_data *img)
 			numerator -= m.w;
 			res->y0 += m.dy;
 		}
+		if (res->y0 == 114)
+			ft_printf("x is %d\n", res->x0);
 	}
+}
+
+int	absolut(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
 }
 
 void	drawline(t_line *res, t_height height, t_data *img)
@@ -104,16 +117,16 @@ void	drawline(t_line *res, t_height height, t_data *img)
 		modifiers.dy = -1;
 	else if (res->y1 - res->y0 > 0)
 		modifiers.dy = 1;
-	if (abs(res->x1 - res->x0) > abs(res->y1 - res->y0))
+	if (absolut(res->x1 - res->x0) > absolut(res->y1 - res->y0))
 	{
-		modifiers.w = abs(res->x1 - res->x0);
-		modifiers.h = abs(res->y1 - res->y0);
+		modifiers.w = absolut(res->x1 - res->x0);
+		modifiers.h = absolut(res->y1 - res->y0);
 		drawline_h(res, height, modifiers, img);
 	}
 	else
 	{
-		modifiers.w = abs(res->y1 - res->y0);
-		modifiers.h = abs(res->x1 - res->x0);
+		modifiers.w = absolut(res->y1 - res->y0);
+		modifiers.h = absolut(res->x1 - res->x0);
 		drawline_v(res, height, modifiers, img);
 	}
 }

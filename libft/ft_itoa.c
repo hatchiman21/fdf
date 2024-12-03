@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:34:40 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/29 06:17:54 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 18:56:36 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_itoa(int n)
 	return (res);
 }
 
-char	*ft_itoa_hex(unsigned int n,int base)
+char	*ft_itoa_hex(unsigned int n, int base)
 {
 	char		*res;
 	int			i;

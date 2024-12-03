@@ -4,7 +4,7 @@ SRC_DR = ./src
 LIBFT = $(LIBFT_DIR)/libft.a
 MINILIBX = $(MLX_DIR)
 
-SRCS = main.c drawing_algorithm.c
+SRCS = main.c drawing_algorithm.c free.c plot.c intiate.c get_value.c
 SRCS:= $(addprefix $(SRC_DR)/, $(SRCS))
 OBJS = $(SRCS:.c=.o)
 

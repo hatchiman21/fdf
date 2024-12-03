@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:33:07 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 06:39:37 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:00:12 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ long int	ft_atoi(const char *str)
 	res = 0;
 	while (((str[i] >= 9 && str[i] <= 13) || str[i] == ' ') && str[i])
 		i++;
-	if (str[i] == '0' && (str[i + 1] == 'x' || str[i + 1] == 'X'))
-		return (ft_atoi_base(str + i + 2, 16));
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
@@ -40,7 +38,7 @@ long int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-unsigned long int	ft_atoi_base(const char *str, int base)
+unsigned int	ft_atoi_base(const char *str, int base)
 {
 	int			i;
 	long int	res;
@@ -49,7 +47,8 @@ unsigned long int	ft_atoi_base(const char *str, int base)
 	res = 0;
 	while (((str[i] >= 9 && str[i] <= 13) || str[i] == ' ') && str[i])
 		i++;
-	while (str[i] && (str[i] >= '0' && str[i] <= '9') && (str[i] > 64 && str[i] <= 64 + base))
+	while (str[i] && (str[i] >= '0' && str[i] <= '9')
+		&& (str[i] > 64 && str[i] <= 64 + base))
 	{
 		if (str[i] >= 'A' && str[i] <= 'Z')
 			res += str[i] - 'A' + 10;
