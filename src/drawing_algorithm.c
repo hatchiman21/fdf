@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 21:30:38 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:53:20 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	drawline_h(t_line *res, t_height height, t_modifiers m, t_data *img)
 			numerator -= m.w;
 			res->y0 += m.dy;
 		}
-		if (res->y0 == 114)
-			ft_printf("x is %d\n", res->x0);
 	}
 }
 

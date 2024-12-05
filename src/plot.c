@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 21:32:32 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:52:34 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
 	node->x1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1);
 	node->y1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0);
-	node->z0 = z[0] * scale;
-	node->z1 = z[1] * scale;
+	node->z0 = z[0];
+	node->z1 = z[1];
 	return (1);
 }
 
@@ -76,10 +76,12 @@ t_line	*plot(char ***cor, t_data *img)
 		x = 0;
 		while (cor[y][x])
 		{
-			if (cor[y + 1] && !get_res((int []){x, x}, (int []){y, (y + 1)}
+			if (cor[y + 1] && ft_isdigit(cor[y + 1][x][0])
+				&& !get_res((int []){x, x}, (int []){y, (y + 1)}
 				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &res))
 				return (NULL);
-			if (cor[y][x + 1] && !get_res((int []){x, (x + 1)}, (int []){y, y}
+			if (cor[y][x + 1] && ft_isdigit(cor[y][x + 1][0])
+				&& !get_res((int []){x, (x + 1)}, (int []){y, y}
 				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, &res))
 				return (NULL);
 			x++;

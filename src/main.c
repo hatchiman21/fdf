@@ -6,11 +6,62 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 21:37:46 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/04 18:38:01 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+int	highest_in_cor(char ***cor)
+{
+	int	i;
+	int	j;
+	int	highest;
+
+	i = 0;
+	highest = 0;
+	while (cor[i])
+	{
+		j = 0;
+		while (cor[i][j])
+		{
+			if (ft_atoi(cor[i][j]) > highest)
+				highest = ft_atoi(cor[i][j]);
+			j++;
+		}
+		i++;
+	}
+	return (highest);
+}
+
+void	print_cor(char ***cor)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (cor[i])
+	{
+		j = 0;
+		while (cor[i][j])
+		{
+			ft_printf("%s ", cor[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
+void	print_res(t_line *res)
+{
+	while (res)
+	{
+		ft_printf("x0: %d y0: %d z0: %d x1: %d y1: %d z1: %d\n",
+			res->x0, res->y0, res->z0, res->x1, res->y1, res->z1);
+		res = res->next;
+	}
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -28,8 +79,6 @@ void	apply_scale(t_line *lst, float scale)
 		lst->y0 = (int)round(scale * lst->y0);
 		lst->x1 = (int)round(scale * lst->x1);
 		lst->y1 = (int)round(scale * lst->y1);
-		lst->z0 = (int)round(scale * lst->z0);
-		lst->z1 = (int)round(scale * lst->z1);
 		lst = lst->next;
 	}
 }
@@ -37,39 +86,44 @@ void	apply_scale(t_line *lst, float scale)
 void	draw(char ***cor, t_line *res, t_data *img)
 {
 	t_height	height;
-	float scale;
-	int	y;
-	int	x;
+	float		scale;
 
 	scale = get_scale(res);
 	apply_scale(res, scale);
 	height = min_max_height(res);
-	x = 0;
-	y = 0;
-	printf("scale is %f max height :%d min height %d\n", scale * 100, height.max, height.min);
 	while (res)
 	{
 		drawline(res, height, img);
 		res = res->next;
 	}
-	ft_printf("max y is %d and max x is %d\n", y, x);
 }
 
 void	first(char ***cor, t_var *var)
 {
-	var->lines_head = plot(cor, &(var->img));
-	if (!var->lines_head)
-	{
-		ft_dprintf(2, "Malloc failed\n");
-		exit(3);
-	}
-	shift(var->lines_head);
 	var->mlx = mlx_init();
+	if (!var->mlx)
+	{
+		ft_dprintf(2, "mlx init malloc failed\n");
+		free_all(var, cor);
+		exit(4);
+	}
 	var->win = mlx_new_window(var->mlx, 920, 920, "window");
 	var->img.img = mlx_new_image(var->mlx, 920, 920);
+	if (!var->win || !var->img.img)
+	{
+		ft_dprintf(2, "mlx components malloc failed\n");
+		free_all(var, cor);
+		exit(5);
+	}
 	var->img.addr = mlx_get_data_addr(var->img.img,
 			&var->img.bits_per_pixel, &var->img.line_length, &var->img.endian);
-	draw(cor, var->lines_head, &(var->img));
+	if (!var->img.addr)
+	{
+		ft_dprintf(2, "mlx address malloc failed\n");
+		free_all(var, cor);
+		exit(6);
+	}
+	draw(cor, var->res, &(var->img));
 	mlx_put_image_to_window(var->mlx, var->win, var->img.img, 20, 20);
 	mlx_hook(var->win, 2, 1L << 0, close_win, var);
 	mlx_hook(var->win, 17, 0, close_exit, var);
@@ -82,23 +136,22 @@ int	main(int argc, char *argv[])
 	t_var	var;
 
 	if (argc != 2)
-	{
-		ft_dprintf(2, "Wrong number of inputs\n");
-		return (1);
-	}
+		return (ft_dprintf(2, "Wrong number of inputs\n"), 1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_dprintf(2, "Error opening %s\n", argv[1]);
-		return (2);
-	}
+		return (ft_dprintf(2, "Error opening %s\n", argv[1]), 2);
 	var.cor = grap_input(argv[1], fd);
+	close(fd);
 	if (!var.cor)
+		return (ft_dprintf(2, "Malloc failed\n"), 3);
+	var.res = plot(var.cor, &(var.img));
+	if (!var.res)
 	{
 		ft_dprintf(2, "Malloc failed\n");
-		return (3);
+		free_cor(var.cor);
+		exit(3);
 	}
-	close(fd);
+	shift(var.res);
 	first(var.cor, &var);
 	return (0);
 }

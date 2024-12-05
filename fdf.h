@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 20:42:53 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/04 18:13:38 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_var
 	void	*mlx;
 	void	*win;
 	char	***cor;
-	t_line	*lines_head;
+	t_line	*res;
 	t_data	img;
 }				t_var;
 
@@ -71,6 +71,7 @@ int			close_win(int keycode, t_var *var);
 int			close_exit(t_var *var);
 int			free_lines(t_line *lines);
 char		***free_cor(char ***string);
+void		free_all(t_var *var, char ***cor);
 char		***grap_input(char *arg, int fd);
 void		get_offset(t_line *lst, int *offset);
 int			get_dest(int x, int y, int z, int is_x);
