@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/07 11:46:38 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:52:59 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	apply_scale(t_line *lst, float scale)
+void	zoom(t_line *lst, float scale)
 {
 	while (lst)
 	{
@@ -88,13 +88,13 @@ void	draw(t_var *var)
 	t_height	height;
 	float		scale;
 
-	scale = get_scale(var->res, var);
-	apply_scale(var->res, scale);
-	height = min_max_height(var->res);
-	while (var->res)
+	scale = get_scale(var->d2_line, var);
+	zoom(var->d2_line, scale);
+	height = min_max_height(var->d2_line);
+	while (var->d2_line)
 	{
-		drawline(var->res, height, &var->img);
-		var->res = var->res->next;
+		drawline(var->d2_line, height, &var->img);
+		var->d2_line = var->d2_line->next;
 	}
 }
 
@@ -140,20 +140,20 @@ int	main(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_dprintf(2, "Error opening %s\n", argv[1]), 2);
-	var.cor = grap_input(argv[1], fd);
+	var.cor = grap_map(argv[1], fd);
 	close(fd);
 	if (!var.cor)
 		return (ft_dprintf(2, "Malloc failed\n"), 3);
-	var.res = plot(var.cor, &(var.img));
+	var.d2_line = gen_2d_map(var.cor, &(var.img));
 	var.width = 1600;
-	var.height = 1024;
-	if (!var.res)
+	var.height = 920;
+	if (!var.d2_line)
 	{
 		ft_dprintf(2, "Malloc failed\n");
 		free_cor(var.cor);
 		exit(3);
 	}
-	shift(var.res, var);
+	offset_map(var.d2_line, var);
 	first(&var);
 	return (0);
 }

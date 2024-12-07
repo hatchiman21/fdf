@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plot.c                                             :+:      :+:    :+:   */
+/*   gen_2d_map.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/07 11:45:55 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:48:35 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	shift(t_line *res, t_var vars)
+void	offset_map(t_line *res, t_var vars)
 {
 	int		offset;
 	t_line	*tmp;
@@ -34,7 +34,7 @@ void	shift(t_line *res, t_var vars)
 	}
 }
 
-int	get_res(int *x, int *y, int *z, t_line **res)
+int	gen_2d_line(int *x, int *y, int *z, t_line **res)
 {
 	t_line	*node;
 	int		scale;
@@ -52,16 +52,16 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 	else
 		*res = node;
 	node->next = NULL;
-	node->x0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 1);
-	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
-	node->x1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 1);
-	node->y1 = get_dest(x[1] * scale, y[1] * scale, z[1] * scale, 0);
+	node->x0 = get_point(x[0] * scale, y[0] * scale, z[0] * scale, 1);
+	node->y0 = get_point(x[0] * scale, y[0] * scale, z[0] * scale, 0);
+	node->x1 = get_point(x[1] * scale, y[1] * scale, z[1] * scale, 1);
+	node->y1 = get_point(x[1] * scale, y[1] * scale, z[1] * scale, 0);
 	node->z0 = z[0];
 	node->z1 = z[1];
 	return (1);
 }
 
-t_line	*plot(char ***cor, t_data *img)
+t_line	*gen_2d_map(char ***cor, t_data *img)
 {
 	t_line	*res;
 	t_line	*tmp;
@@ -77,13 +77,13 @@ t_line	*plot(char ***cor, t_data *img)
 		while (cor[y][x])
 		{
 			if (cor[y + 1] && ft_isdigit(cor[y + 1][x][0])
-				&& !get_res((int []){x, x}, (int []){y, (y + 1)}
+				&& !gen_2d_line((int []){x, x}, (int []){y, (y + 1)}
 				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &tmp))
 					return (free_lines(res));
 			if (res == NULL && tmp) 
 				res = tmp;
 			if (cor[y][x + 1] && ft_isdigit(cor[y][x + 1][0])
-				&& !get_res((int []){x, (x + 1)}, (int []){y, y}
+				&& !gen_2d_line((int []){x, (x + 1)}, (int []){y, y}
 				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, &tmp))
 				return (free_lines(res));
 			x++;

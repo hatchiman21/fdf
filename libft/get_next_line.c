@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:43:03 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/03 20:29:06 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:09:15 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ char	*get_next_line(int fd)
 	res[0] = '\0';
 	current = find_buffer(fd, &storage);
 	res = check_buffer(fd, current, res, &storage);
-	if (res == NULL)
+	if (res == NULL || !ft_strncmp(current->buff, "", 2))
 		ft_lstclear_item(&storage, fd);
 	return (res);
 }

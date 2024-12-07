@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/07 11:47:20 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:48:00 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_offset(t_line *lst, int *offset)
 		*offset = lst->y1;
 }
 
-int	get_dest(int x, int y, int z, int is_x)
+int	get_point(int x, int y, int z, int is_x)
 {
 	int	res;
 

@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/07 07:13:08 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:55:35 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ typedef struct	s_var
 	void	*mlx;
 	void	*win;
 	char	***cor;
-	t_line	*res;
+	t_line	*d2_line;
 	t_data	img;
 	int		width;
 	int		height;
+	float	x_angle;
+	float	y_angle;
 }				t_var;
 
 typedef struct	s_modifiers
@@ -74,12 +76,12 @@ int			close_exit(t_var *var);
 t_line		*free_lines(t_line *lines);
 char		***free_cor(char ***string);
 void		free_all(t_var *var, char ***cor);
-char		***grap_input(char *arg, int fd);
+char		***grap_map(char *arg, int fd);
 void		get_offset(t_line *lst, int *offset);
-int			get_dest(int x, int y, int z, int is_x);
+int			get_point(int x, int y, int z, int is_x);
 float		get_scale(t_line *lst, t_var *var);
 t_height	min_max_height(t_line *res);
-void		shift(t_line *res, t_var vars);
-t_line		*plot(char ***cor, t_data *img);
+void		offset_map(t_line *res, t_var vars);
+t_line		*gen_2d_map(char ***cor, t_data *img);
 
 #endif

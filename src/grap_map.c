@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:55 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 20:35:07 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:50:09 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	***intial_malloc(int fd)
 	return (cor);
 }
 
-char	***grap_input(char *arg, int fd)
+char	***grap_map(char *arg, int fd)
 {
 	int		i;
 	char	***cor;

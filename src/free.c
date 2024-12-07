@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:31:30 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/06 16:07:33 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 00:51:29 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	free_all(t_var *var, char ***cor)
 		mlx_destroy_display(var->mlx);
 		free(var->mlx);
 	}
-	free_lines(var->res);
+	free_lines(var->d2_line);
 	free_cor(cor);
 }
 
@@ -64,7 +64,7 @@ int	close_exit(t_var *var)
 	mlx_destroy_image(var->mlx, var->img.img);
 	mlx_destroy_window(var->mlx, var->win);
 	mlx_destroy_display(var->mlx);
-	free_lines(var->res);
+	free_lines(var->d2_line);
 	free_cor(var->cor);
 	free(var->mlx);
 	exit(0);
@@ -78,7 +78,7 @@ int	close_win(int keycode, t_var *var)
 		mlx_destroy_image(var->mlx, var->img.img);
 		mlx_destroy_window(var->mlx, var->win);
 		mlx_destroy_display(var->mlx);
-		free_lines(var->res);
+		free_lines(var->d2_line);
 		free_cor(var->cor);
 		free(var->mlx);
 		exit(0);
