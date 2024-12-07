@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/03 21:28:00 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/07 11:47:20 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ int	get_dest(int x, int y, int z, int is_x)
 		res = x - y;
 	else
 		res = ((x + y) / 2) - z;
-	return ((int)round(res));
+	return (res);
 }
 
-float	get_scale(t_line *lst)
+float	get_scale(t_line *lst, t_var *var)
 {
 	float	scale;
 
 	scale = 1;
 	while (lst)
 	{
-		while (scale && lst->x0 * scale >= 900)
-			scale -= 0.005;
-		while (scale && lst->x1 * scale >= 900)
-			scale -= 0.005;
-		while (scale && lst->y0 * scale >= 900)
-			scale -= 0.005;
-		while (scale && lst->y1 * scale >= 900)
-			scale -= 0.005;
+		while (scale && lst->x0 * scale >= var->width)
+			scale -= 0.0005;
+		while (scale && lst->x1 * scale >= var->width)
+			scale -= 0.0005;
+		while (scale && lst->y0 * scale >= var->height)
+			scale -= 0.0005;
+		while (scale && lst->y1 * scale >= var->height)
+			scale -= 0.0005;
 		lst = lst->next;
 	}
 	return (scale);

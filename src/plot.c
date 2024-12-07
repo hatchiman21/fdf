@@ -6,13 +6,13 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/04 17:52:34 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/07 11:45:55 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	shift(t_line *res)
+void	shift(t_line *res, t_var vars)
 {
 	int		offset;
 	t_line	*tmp;
@@ -37,22 +37,20 @@ void	shift(t_line *res)
 int	get_res(int *x, int *y, int *z, t_line **res)
 {
 	t_line	*node;
-	t_line	*tmp;
 	int		scale;
 
 	scale = 100;
 	node = malloc(sizeof(t_line));
 	if (!node)
-		return (free_lines(*res));
-	if (!*res)
-		*res = node;
-	else
+		return (0);
+	if (*res != NULL)
 	{
-		tmp = *res;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = node;
+		while ((*res)->next)
+			*res = (*res)->next;
+		(*res)->next = node;
 	}
+	else
+		*res = node;
 	node->next = NULL;
 	node->x0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 1);
 	node->y0 = get_dest(x[0] * scale, y[0] * scale, z[0] * scale, 0);
@@ -66,10 +64,12 @@ int	get_res(int *x, int *y, int *z, t_line **res)
 t_line	*plot(char ***cor, t_data *img)
 {
 	t_line	*res;
+	t_line	*tmp;
 	int		y;
 	int		x;
 
 	y = 0;
+	tmp = NULL;
 	res = NULL;
 	while (cor[y])
 	{
@@ -78,12 +78,14 @@ t_line	*plot(char ***cor, t_data *img)
 		{
 			if (cor[y + 1] && ft_isdigit(cor[y + 1][x][0])
 				&& !get_res((int []){x, x}, (int []){y, (y + 1)}
-				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &res))
-				return (NULL);
+				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, &tmp))
+					return (free_lines(res));
+			if (res == NULL && tmp) 
+				res = tmp;
 			if (cor[y][x + 1] && ft_isdigit(cor[y][x + 1][0])
 				&& !get_res((int []){x, (x + 1)}, (int []){y, y}
-				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, &res))
-				return (NULL);
+				, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, &tmp))
+				return (free_lines(res));
 			x++;
 		}
 		y++;

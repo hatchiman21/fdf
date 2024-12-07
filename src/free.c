@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:31:30 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/04 18:16:34 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/06 16:07:33 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	***free_cor(char ***string)
 	return (NULL);
 }
 
-int	free_lines(t_line *lines)
+t_line	*free_lines(t_line *lines)
 {
 	t_line	*tmp;
 
@@ -41,7 +41,7 @@ int	free_lines(t_line *lines)
 		free(lines);
 		lines = tmp;
 	}
-	return (0);
+	return (NULL);
 }
 
 void	free_all(t_var *var, char ***cor)

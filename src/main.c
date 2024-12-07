@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/04 18:38:01 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/07 11:46:38 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,36 +83,36 @@ void	apply_scale(t_line *lst, float scale)
 	}
 }
 
-void	draw(char ***cor, t_line *res, t_data *img)
+void	draw(t_var *var)
 {
 	t_height	height;
 	float		scale;
 
-	scale = get_scale(res);
-	apply_scale(res, scale);
-	height = min_max_height(res);
-	while (res)
+	scale = get_scale(var->res, var);
+	apply_scale(var->res, scale);
+	height = min_max_height(var->res);
+	while (var->res)
 	{
-		drawline(res, height, img);
-		res = res->next;
+		drawline(var->res, height, &var->img);
+		var->res = var->res->next;
 	}
 }
 
-void	first(char ***cor, t_var *var)
+void	first(t_var *var)
 {
 	var->mlx = mlx_init();
 	if (!var->mlx)
 	{
 		ft_dprintf(2, "mlx init malloc failed\n");
-		free_all(var, cor);
+		free_all(var, var->cor);
 		exit(4);
 	}
-	var->win = mlx_new_window(var->mlx, 920, 920, "window");
-	var->img.img = mlx_new_image(var->mlx, 920, 920);
+	var->win = mlx_new_window(var->mlx, var->width, var->height, "window");
+	var->img.img = mlx_new_image(var->mlx, var->width, var->height);
 	if (!var->win || !var->img.img)
 	{
 		ft_dprintf(2, "mlx components malloc failed\n");
-		free_all(var, cor);
+		free_all(var, var->cor);
 		exit(5);
 	}
 	var->img.addr = mlx_get_data_addr(var->img.img,
@@ -120,10 +120,10 @@ void	first(char ***cor, t_var *var)
 	if (!var->img.addr)
 	{
 		ft_dprintf(2, "mlx address malloc failed\n");
-		free_all(var, cor);
+		free_all(var, var->cor);
 		exit(6);
 	}
-	draw(cor, var->res, &(var->img));
+	draw(var);
 	mlx_put_image_to_window(var->mlx, var->win, var->img.img, 20, 20);
 	mlx_hook(var->win, 2, 1L << 0, close_win, var);
 	mlx_hook(var->win, 17, 0, close_exit, var);
@@ -145,13 +145,15 @@ int	main(int argc, char *argv[])
 	if (!var.cor)
 		return (ft_dprintf(2, "Malloc failed\n"), 3);
 	var.res = plot(var.cor, &(var.img));
+	var.width = 1600;
+	var.height = 1024;
 	if (!var.res)
 	{
 		ft_dprintf(2, "Malloc failed\n");
 		free_cor(var.cor);
 		exit(3);
 	}
-	shift(var.res);
-	first(var.cor, &var);
+	shift(var.res, var);
+	first(&var);
 	return (0);
 }
