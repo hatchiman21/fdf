@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intiate.c                                          :+:      :+:    :+:   */
+/*   grap_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:55 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/08 00:50:09 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 02:52:55 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	***intial_malloc(int fd)
 {
-	char	***cor;
+	char	***map;
 	char	*line;
 	int		i;
 
@@ -26,18 +26,18 @@ char	***intial_malloc(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	cor = malloc((i + 1) * sizeof(char **));
-	return (cor);
+	map = malloc((i + 1) * sizeof(char **));
+	return (map);
 }
 
 char	***grap_map(char *arg, int fd)
 {
 	int		i;
-	char	***cor;
+	char	***map;
 	char	*line;
 
-	cor = intial_malloc(fd);
-	if (!cor)
+	map = intial_malloc(fd);
+	if (!map)
 		return (NULL);
 	close(fd);
 	fd = open(arg, O_RDONLY);
@@ -45,13 +45,13 @@ char	***grap_map(char *arg, int fd)
 	i = 0;
 	while (line)
 	{
-		cor[i] = ft_split(line, ' ');
-		if (!cor[i])
-			return (free_cor(cor));
+		map[i] = ft_split(line, ' ');
+		if (!map[i])
+			return (free_map(map));
 		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	cor[i] = NULL;
-	return (cor);
+	map[i] = NULL;
+	return (map);
 }

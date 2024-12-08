@@ -6,13 +6,13 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/08 00:52:59 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 03:31:30 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	highest_in_cor(char ***cor)
+int	highest_in_map(char ***map)
 {
 	int	i;
 	int	j;
@@ -20,13 +20,13 @@ int	highest_in_cor(char ***cor)
 
 	i = 0;
 	highest = 0;
-	while (cor[i])
+	while (map[i])
 	{
 		j = 0;
-		while (cor[i][j])
+		while (map[i][j])
 		{
-			if (ft_atoi(cor[i][j]) > highest)
-				highest = ft_atoi(cor[i][j]);
+			if (ft_atoi(map[i][j]) > highest)
+				highest = ft_atoi(map[i][j]);
 			j++;
 		}
 		i++;
@@ -34,18 +34,18 @@ int	highest_in_cor(char ***cor)
 	return (highest);
 }
 
-void	print_cor(char ***cor)
+void	print_map(char ***map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (cor[i])
+	while (map[i])
 	{
 		j = 0;
-		while (cor[i][j])
+		while (map[i][j])
 		{
-			ft_printf("%s ", cor[i][j]);
+			ft_printf("%s ", map[i][j]);
 			j++;
 		}
 		ft_printf("\n");
@@ -53,13 +53,31 @@ void	print_cor(char ***cor)
 	}
 }
 
-void	print_res(t_line *res)
+// void	print_res(t_line *res)
+// {
+// 	while (res)
+// 	{
+// 		ft_printf("x0: %d y0: %d z0: %d x1: %d y1: %d z1: %d\n",
+// 			res->x0, res->y0, res->z0, res->x1, res->y1, res->z1);
+// 		res = res->next;
+// 	}
+// }
+
+void print_points(t_point *point)
 {
-	while (res)
+	t_point *row_start;
+	t_point *current;
+
+	row_start = point;
+	while (row_start)
 	{
-		ft_printf("x0: %d y0: %d z0: %d x1: %d y1: %d z1: %d\n",
-			res->x0, res->y0, res->z0, res->x1, res->y1, res->z1);
-		res = res->next;
+		current = row_start;
+		while (current)
+		{
+			printf("Point: (%d, %d)\n", current->x, current->y);
+			current = current->next_x;
+		}
+		row_start = row_start->next_y;
 	}
 }
 
@@ -71,30 +89,55 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	zoom(t_line *lst, float scale)
+void	zoom(t_point *point, float scale)
 {
-	while (lst)
+	t_point	*tmp;
+	t_point	*tmp2;
+
+	tmp = point->next_y;
+	while (point)
 	{
-		lst->x0 = (int)round(scale * lst->x0);
-		lst->y0 = (int)round(scale * lst->y0);
-		lst->x1 = (int)round(scale * lst->x1);
-		lst->y1 = (int)round(scale * lst->y1);
-		lst = lst->next;
+		tmp2 = point->next_x;
+		point->x *= scale;
+		point->y *= scale;
+		if (tmp2)
+			point = tmp2;
+		else
+		{
+			point = tmp;
+			if (tmp)
+				tmp = tmp->next_y;
+		}
 	}
 }
 
-void	draw(t_var *var)
+void	draw(t_var *var, t_point *point)
 {
 	t_height	height;
+	t_point		*next_row;
+	t_point		*tmp2;
 	float		scale;
 
-	scale = get_scale(var->d2_line, var);
-	zoom(var->d2_line, scale);
-	height = min_max_height(var->d2_line);
-	while (var->d2_line)
+	scale = get_scale(point, var);
+	// print_points(var->point);
+	zoom(point, scale);
+	height = min_max_height(point);
+	next_row = point->next_y;
+	while (point)
 	{
-		drawline(var->d2_line, height, &var->img);
-		var->d2_line = var->d2_line->next;
+		tmp2 = point->next_x;
+		if (point->next_y)
+			drawline(point, point->next_y, height, &var->img);
+		if (point->next_x)
+			drawline(point, point->next_x, height, &var->img);
+		if (point->next_x)
+			point = point->next_x;
+		else
+		{
+			point = next_row;
+			if (next_row)
+				next_row = next_row->next_y;
+		}
 	}
 }
 
@@ -104,7 +147,7 @@ void	first(t_var *var)
 	if (!var->mlx)
 	{
 		ft_dprintf(2, "mlx init malloc failed\n");
-		free_all(var, var->cor);
+		free_all(var, var->map);
 		exit(4);
 	}
 	var->win = mlx_new_window(var->mlx, var->width, var->height, "window");
@@ -112,7 +155,7 @@ void	first(t_var *var)
 	if (!var->win || !var->img.img)
 	{
 		ft_dprintf(2, "mlx components malloc failed\n");
-		free_all(var, var->cor);
+		free_all(var, var->map);
 		exit(5);
 	}
 	var->img.addr = mlx_get_data_addr(var->img.img,
@@ -120,11 +163,12 @@ void	first(t_var *var)
 	if (!var->img.addr)
 	{
 		ft_dprintf(2, "mlx address malloc failed\n");
-		free_all(var, var->cor);
+		free_all(var, var->map);
 		exit(6);
 	}
-	draw(var);
-	mlx_put_image_to_window(var->mlx, var->win, var->img.img, 20, 20);
+	// print_points(var->point);
+	draw(var, var->point);
+	mlx_put_image_to_window(var->mlx, var->win, var->img.img, 0, 0);
 	mlx_hook(var->win, 2, 1L << 0, close_win, var);
 	mlx_hook(var->win, 17, 0, close_exit, var);
 	mlx_loop(var->mlx);
@@ -140,20 +184,20 @@ int	main(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_dprintf(2, "Error opening %s\n", argv[1]), 2);
-	var.cor = grap_map(argv[1], fd);
+	var.map = grap_map(argv[1], fd);
 	close(fd);
-	if (!var.cor)
+	if (!var.map)
 		return (ft_dprintf(2, "Malloc failed\n"), 3);
-	var.d2_line = gen_2d_map(var.cor, &(var.img));
+	var.point = gen_2d_map(var.map, &(var.img));
 	var.width = 1600;
 	var.height = 920;
-	if (!var.d2_line)
+	if (!var.point)
 	{
 		ft_dprintf(2, "Malloc failed\n");
-		free_cor(var.cor);
+		free_map(var.map);
 		exit(3);
 	}
-	offset_map(var.d2_line, var);
+	offset_map(var.point, &var);
 	first(&var);
 	return (0);
 }
