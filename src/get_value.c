@@ -6,18 +6,22 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/08 03:12:21 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 19:26:26 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	get_offset(t_point *lst, int *offset)
+void	get_offset(t_line *lst, int *offset)
 {
-	if (lst->x < *offset)
-		*offset = lst->x;
-	if (lst->y < *offset)
-		*offset = lst->y;
+	if (lst->x0 < *offset)
+		*offset = lst->x0;
+	if (lst->x1 < *offset)
+		*offset = lst->x1;
+	if (lst->y0 < *offset)
+		*offset = lst->y0;
+	if (lst->y1 < *offset)
+		*offset = lst->y1;
 }
 
 int	get_point(int x, int y, int z, int is_x)
@@ -32,72 +36,43 @@ int	get_point(int x, int y, int z, int is_x)
 	return (res);
 }
 
-t_point	*get_node(int x, int y, int z)
-{
-	t_point	*node;
-
-	node = malloc(sizeof(t_point));
-	if (!node)
-		return (NULL);
-	node->x = get_point(x, y, z, 1);
-	node->y = get_point(x, y, z, 0);
-	node->z = z;
-	node->next_x = NULL;
-	node->next_y = NULL;
-	return (node);
-}
-
-float	get_scale(t_point *point, t_var	*vars)
+float	get_scale(t_line *lst, t_var *var)
 {
 	float	scale;
-	t_point	*tmp;
-	t_point	*tmp2;
 
 	scale = 1;
-	tmp = point->next_y;
-	while (point)
+	while (lst)
 	{
-		tmp2 = point->next_x;
-		while (point->x * scale > vars->width)
+		while (scale && lst->x0 * scale >= var->width - 20)
 			scale -= 0.0005;
-		while (point->y * scale > vars->height)
+		while (scale && lst->x1 * scale >= var->width - 20)
 			scale -= 0.0005;
-		if (tmp2)
-			point = tmp2;
-		else
-		{
-			point = tmp;
-			if (tmp)
-				tmp = tmp->next_y;
-		}
+		while (scale && lst->y0 * scale >= var->height - 30)
+			scale -= 0.0005;
+		while (scale && lst->y1 * scale >= var->height - 30)
+			scale -= 0.0005;
+		lst = lst->next;
 	}
 	return (scale);
 }
 
-t_height	min_max_height(t_point *point)
+t_height	min_max_height(t_line *res)
 {
-	t_point		*tmp;
-	t_point		*tmp2;
 	t_height	height;
-	
-	height.max = 0;
+
 	height.min = 0;
-	tmp = point->next_y;
-	while (point)
+	height.max = 0;
+	while (res)
 	{
-		tmp2 = point->next_x;
-		if (point->z > height.max)
-			height.max = point->z;
-		else
-			height.min = point->z;
-		if (tmp2)
-			point = tmp2;
-		else
-		{
-			point = tmp;
-			if (tmp)
-				tmp = tmp->next_y;
-		}
+		if (res->z0 < height.min)
+			height.min = res->z0;
+		if (res->z1 < height.min)
+			height.min = res->z1;
+		if (res->z0 > height.max)
+			height.max = res->z0;
+		if (res->z1 > height.max)
+			height.max = res->z1;
+		res = res->next;
 	}
 	return (height);
 }

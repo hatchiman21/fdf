@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/08 03:32:43 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/09 21:34:04 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,102 +38,103 @@ int	calculate_color(int height, int min_h, int max_h)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-void	drawline_v(t_point *point1, t_point *point2, t_modifiers map_2d, t_data *img)
+void	drawline_v(t_line *res, t_height height, t_modifiers m, t_data *img)
 {
 	int	numerator;
-	int	x;
-	int	y;
 	int	z;
 	int	i;
 
-	numerator = map_2d.w / 2;
+	numerator = m.w / 2;
 	i = 0;
-	x = point1->x;
-	y = point1->y;
-	z = point1->z;
-	while (i++ <= map_2d.w)
+	z = res->z0;
+	while (i++ <= m.w)
 	{
-		if (map_2d.w)
-			z = point1->z - point1->z * (i / (float)map_2d.w)
-				+ point2->z * (i / (float)map_2d.w);
-		if (z < map_2d.height.min)
-			z = map_2d.height.min;
-		my_mlx_pixel_put(img, x, y,
-			calculate_color(z, map_2d.height.min, map_2d.height.max));
-		numerator += map_2d.h;
-		y += map_2d.dy;
-		if (numerator >= map_2d.w)
+		if (m.w)
+			z = res->z0 - res->z0 * (i / (float)m.w)
+				+ res->z1 * (i / (float)m.w);
+		if (z < height.min)
+			z = height.min;
+		put_pixel_to_image(img, res->x0, res->y0,
+			calculate_color(z, height.min, height.max));
+		numerator += m.h;
+		res->y0 += m.dy;
+		if (numerator >= m.w)
 		{
-			numerator -= map_2d.w;
-			x += map_2d.dx;
+			numerator -= m.w;
+			res->x0 += m.dx;
 		}
 	}
 }
 
-void	drawline_h(t_point *point1, t_point *point2, t_modifiers map_2d, t_data *img)
+void	drawline_h(t_line *res, t_height height, t_modifiers m, t_data *img)
 {
 	int	numerator;
-	int	x;
-	int	y;
 	int	z;
 	int	i;
 
-	numerator = map_2d.w / 2;
-	x = point1->x;
-	y = point1->y;
-	z = point1->z;
+	numerator = m.w / 2;
+	z = res->z0;
 	i = 0;
-	while (i++ <= map_2d.w)
+	while (i++ <= m.w)
 	{
-		if (map_2d.w)
-			z = point1->z - point1->z * (i / (float)map_2d.w)
-				+ point2->z * (i / (float)map_2d.w);
-		if (z < map_2d.height.min)
-			z = map_2d.height.min;
-		my_mlx_pixel_put(img, point1->x, point1->y,
-			calculate_color(z, map_2d.height.min, map_2d.height.max));
-		numerator += map_2d.h;
-		x += map_2d.dx;
-		if (numerator >= map_2d.w)
+		if (m.w)
+			z = res->z0 - res->z0 * (i / (float)m.w)
+				+ res->z1 * (i / (float)m.w);
+		if (z < height.min)
+			z = height.min;
+		put_pixel_to_image(img, res->x0, res->y0,
+			calculate_color(z, height.min, height.max));
+		numerator += m.h;
+		res->x0 += m.dx;
+		if (numerator >= m.w)
 		{
-			numerator -= map_2d.w;
-			y += map_2d.dy;
+			numerator -= m.w;
+			res->y0 += m.dy;
 		}
 	}
 }
 
-int	absolut(int num)
+void	drawline(t_line *res, t_height height, t_data *img)
 {
-	if (num < 0)
-		num *= -1;
-	return (num);
-}
+	t_modifiers	modifiers;
 
-void	drawline(t_point *point1, t_point *point2, t_height height, t_data *img)
-{
-	t_modifiers	map;
-
-	map.dx = 0;
-	map.dy = 0;
-	map.height = height;
-	if (point2->x - point1->x < 0)
-		map.dx = -1;
-	else if (point2->x - point1->x > 0)
-		map.dx = 1;
-	if (point2->y - point1->y < 0)
-		map.dy = -1;
-	else if (point2->y - point1->y > 0)
-		map.dy = 1;
-	if (absolut(point2->x - point1->x) > absolut(point2->y - point1->y))
+	modifiers.dx = 0;
+	modifiers.dy = 0;
+	if (res->x1 - res->x0 < 0)
+		modifiers.dx = -1;
+	else if (res->x1 - res->x0 > 0)
+		modifiers.dx = 1;
+	if (res->y1 - res->y0 < 0)
+		modifiers.dy = -1;
+	else if (res->y1 - res->y0 > 0)
+		modifiers.dy = 1;
+	if (fabs(res->x1 - res->x0) > fabs(res->y1 - res->y0))
 	{
-		map.w = absolut(point2->x - point1->x);
-		map.h = absolut(point2->y - point1->y);
-		drawline_h(point1, point2, map, img);
+		modifiers.w = fabs(res->x1 - res->x0);
+		modifiers.h = fabs(res->y1 - res->y0);
+		drawline_h(res, height, modifiers, img);
 	}
 	else
 	{
-		map.w = absolut(point2->y - point1->y);
-		map.h = absolut(point2->x - point1->x);
-		drawline_v(point1, point2, map, img);
+		modifiers.w = fabs(res->y1 - res->y0);
+		modifiers.h = fabs(res->x1 - res->x0);
+		drawline_v(res, height, modifiers, img);
+	}
+}
+
+void	draw(t_var *var)
+{
+	t_height	height;
+	float		scale;
+	t_line		*line;
+
+	line = var->d2_line;
+	scale = get_scale(line, var);
+	apply_zoom_to_lines(line, scale);
+	height = min_max_height(line);
+	while (line)
+	{
+		drawline(line, height, &var->img);
+		line = line->next;
 	}
 }

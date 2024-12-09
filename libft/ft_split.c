@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:20:16 by aatieh            #+#    #+#             */
-/*   Updated: 2024/11/03 20:00:10 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/08 19:08:28 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ char	**ft_split(char const *s, char c)
 	char	**res;
 	int		word_num;
 
-	word_num = count_words (s, c);
 	if (!s)
+		return (NULL);
+	word_num = count_words (s, c);
+	if (!word_num)
 		return (NULL);
 	res = (char **)malloc (sizeof (char *) * (word_num + 1));
 	if (!res)
