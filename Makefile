@@ -9,7 +9,7 @@ SRCS:= $(addprefix $(SRC_DR)/, $(SRCS))
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lX11 -lXext -lm -I.
+CFLAGS = -Wextra -Werror -Wall -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lX11 -lXext -lm -I.
 
 NAME = fdf
 
