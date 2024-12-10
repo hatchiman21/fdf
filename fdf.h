@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/09 21:39:16 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/10 19:26:29 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <string.h>
 
 # define PI 3.14159265358979323846
+# define WIDTH 1600
+# define HEIGHT 920
+# define ESC 65307
 
 typedef struct	s_data
 {
@@ -49,8 +52,6 @@ typedef struct	s_var
 	char	***cor;
 	t_line	*d2_line;
 	t_data	img;
-	int		width;
-	int		height;
 	float	x_angle;
 	float	y_angle;
 }				t_var;

@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:37:00 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/09 21:37:52 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/10 19:25:05 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	initialize_mlx(t_var *var)
 		free_all(var);
 		return (4);
 	}
-	var->win = mlx_new_window(var->mlx, var->width, var->height, "window");
-	var->img.img = mlx_new_image(var->mlx, var->width, var->height);
+	var->win = mlx_new_window(var->mlx, WIDTH, HEIGHT, "window");
+	var->img.img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	if (!var->win || !var->img.img)
 	{
 		ft_dprintf(2, "mlx components malloc failed\n");

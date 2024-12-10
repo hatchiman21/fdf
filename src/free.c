@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:31:30 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/09 20:28:41 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/10 19:26:33 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	close_exit(t_var *var)
 
 int	close_win(int keycode, t_var *var)
 {
-	if (keycode == 65307)
+	if (keycode == ESC)
 	{
 		mlx_destroy_image(var->mlx, var->img.img);
 		mlx_destroy_window(var->mlx, var->win);

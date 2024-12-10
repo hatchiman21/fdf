@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/08 19:26:26 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/10 19:25:05 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ float	get_scale(t_line *lst, t_var *var)
 	scale = 1;
 	while (lst)
 	{
-		while (scale && lst->x0 * scale >= var->width - 20)
+		while (scale && lst->x0 * scale >= WIDTH - 20)
 			scale -= 0.0005;
-		while (scale && lst->x1 * scale >= var->width - 20)
+		while (scale && lst->x1 * scale >= WIDTH - 20)
 			scale -= 0.0005;
-		while (scale && lst->y0 * scale >= var->height - 30)
+		while (scale && lst->y0 * scale >= HEIGHT - 30)
 			scale -= 0.0005;
-		while (scale && lst->y1 * scale >= var->height - 30)
+		while (scale && lst->y1 * scale >= HEIGHT - 30)
 			scale -= 0.0005;
 		lst = lst->next;
 	}
