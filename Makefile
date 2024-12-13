@@ -1,6 +1,6 @@
-LIBFT_DIR = ./libft
-MLX_DIR	= ./minilibx-linux
-SRC_DR = ./src
+LIBFT_DIR = libft
+MLX_DIR	= minilibx-linux
+SRC_DR = src
 LIBFT = $(LIBFT_DIR)/libft.a
 MINILIBX = $(MLX_DIR)
 
@@ -18,7 +18,7 @@ all: $(LIBFT) $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) fdf.h
 	$(CC) $(OBJS) -o $(NAME) $(CFLAGS)
 
 %.o: %.c

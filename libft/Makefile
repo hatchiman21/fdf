@@ -25,7 +25,7 @@ $(NAME):		$(OBJS)
 $(OBJS): %.o: %.c
 			$(CC) $(CFLAGS) -c $< -o $@
 clean:
-			@$(RM) $(OBJS) $(BONUS_OBJS)
+			@$(RM) $(OBJS)
 
 fclean:			clean
 			@$(RM) $(NAME)
