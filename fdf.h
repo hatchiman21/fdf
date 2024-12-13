@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/10 19:26:29 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/13 07:18:24 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ void		free_all(t_var *var);
 char		***grap_map(char *arg, int fd);
 void		get_offset(t_line *lst, int *offset);
 int			get_point(int x, int y, int z, int is_x);
-float		get_scale(t_line *lst, t_var *var);
+float		get_scale(t_line *lst);
 t_height	min_max_height(t_line *res);
-void		offset_map(t_line *res, t_var vars);
-t_line		*gen_2d_map(char ***cor, t_data *img);
+void		offset_map(t_line *res);
+t_line		*gen_2d_map(char ***cor);
 
 #endif

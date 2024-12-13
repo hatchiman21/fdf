@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/09 21:34:04 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/13 07:18:40 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,16 @@ void	drawline(t_line *res, t_height height, t_data *img)
 		modifiers.dy = -1;
 	else if (res->y1 - res->y0 > 0)
 		modifiers.dy = 1;
-	if (fabs(res->x1 - res->x0) > fabs(res->y1 - res->y0))
+	if (fabs((float)res->x1 - res->x0) > fabs((float)res->y1 - res->y0))
 	{
-		modifiers.w = fabs(res->x1 - res->x0);
-		modifiers.h = fabs(res->y1 - res->y0);
+		modifiers.w = fabs((float)res->x1 - res->x0);
+		modifiers.h = fabs((float)res->y1 - res->y0);
 		drawline_h(res, height, modifiers, img);
 	}
 	else
 	{
-		modifiers.w = fabs(res->y1 - res->y0);
-		modifiers.h = fabs(res->x1 - res->x0);
+		modifiers.w = fabs((float)res->y1 - res->y0);
+		modifiers.h = fabs((float)res->x1 - res->x0);
 		drawline_v(res, height, modifiers, img);
 	}
 }
@@ -129,7 +129,7 @@ void	draw(t_var *var)
 	t_line		*line;
 
 	line = var->d2_line;
-	scale = get_scale(line, var);
+	scale = get_scale(line);
 	apply_zoom_to_lines(line, scale);
 	height = min_max_height(line);
 	while (line)

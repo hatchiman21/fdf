@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/10 19:25:05 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/13 07:18:11 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_point(int x, int y, int z, int is_x)
 	return (res);
 }
 
-float	get_scale(t_line *lst, t_var *var)
+float	get_scale(t_line *lst)
 {
 	float	scale;
 

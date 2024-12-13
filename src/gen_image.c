@@ -6,13 +6,13 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/09 20:41:07 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/13 07:17:17 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	offset_map(t_line *res, t_var vars)
+void	offset_map(t_line *res)
 {
 	int		offset;
 	t_line	*tmp;
@@ -74,7 +74,7 @@ t_line	*process_line(char ***cor, int y, int x, t_line **tmp)
 	return (*tmp);
 }
 
-t_line	*gen_2d_map(char ***cor, t_data *img)
+t_line	*gen_2d_map(char ***cor)
 {
 	t_line	*res;
 	t_line	*tmp;

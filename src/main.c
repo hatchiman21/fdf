@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/10 19:25:02 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/13 07:17:44 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	initialize_variables(t_var *var, char *filename, int fd)
 	close(fd);
 	if (!var->cor)
 		return (ft_dprintf(2, "Malloc failed\n"), 3);
-	var->d2_line = gen_2d_map(var->cor, &(var->img));
+	var->d2_line = gen_2d_map(var->cor);
 	if (!var->d2_line)
 	{
 		ft_dprintf(2, "Malloc failed\n");
 		free_cor(var->cor);
 		return (3);
 	}
-	offset_map(var->d2_line, *var);
+	offset_map(var->d2_line);
 	return (0);
 }
 
