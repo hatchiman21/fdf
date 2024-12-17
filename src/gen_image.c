@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/13 07:17:17 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/17 16:16:36 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,18 @@ int	gen_2d_line(int *x, int *y, int *z, t_line **res)
 
 t_line	*process_line(char ***cor, int y, int x, t_line **tmp)
 {
-	if (cor[y + 1] && ft_isdigit(cor[y + 1][x][0])
-		&& !gen_2d_line((int []){x, x}, (int []){y, (y + 1)}
-		, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, tmp))
+	int	line_check;
+
+	line_check = 1;
+	if (cor[y + 1] && (ft_isdigit(cor[y + 1][x][0])))
+		line_check = gen_2d_line((int []){x, x}, (int []){y, (y + 1)},
+				(int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, tmp);
+	if (!line_check)
 		return (NULL);
-	if (cor[y][x + 1] && ft_isdigit(cor[y][x + 1][0])
-		&& !gen_2d_line((int []){x, (x + 1)}, (int []){y, y}
-		, (int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, tmp))
+	if (cor[y][x + 1] && (ft_isdigit(cor[y][x + 1][0])))
+		line_check = gen_2d_line((int []){x, (x + 1)}, (int []){y, y},
+				(int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, tmp);
+	if (!line_check)
 		return (NULL);
 	return (*tmp);
 }
