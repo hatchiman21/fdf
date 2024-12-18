@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:15 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/13 07:18:40 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:28:59 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,103 +38,112 @@ int	calculate_color(int height, int min_h, int max_h)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-void	drawline_v(t_line *res, t_height height, t_modifiers m, t_data *img)
+void	drawline_v(t_line *res, t_var *var, t_modifiers m)
 {
-	int	numerator;
 	int	z;
 	int	i;
+	int	x;
+	int	y;
 
-	numerator = m.w / 2;
 	i = 0;
 	z = res->z0;
+	x = (res->x0 * var->scale + var->offset_x);
+	y = (res->y0 * var->scale + var->offset_y);
 	while (i++ <= m.w)
 	{
 		if (m.w)
 			z = res->z0 - res->z0 * (i / (float)m.w)
 				+ res->z1 * (i / (float)m.w);
-		if (z < height.min)
-			z = height.min;
-		put_pixel_to_image(img, res->x0, res->y0,
-			calculate_color(z, height.min, height.max));
-		numerator += m.h;
-		res->y0 += m.dy;
-		if (numerator >= m.w)
+		put_pixel_to_image(&var->img, x, y,
+			calculate_color(z, var->height.min, var->height.max));
+		m.numerator += m.h;
+		y += m.dy;
+		if (m.numerator >= m.w)
 		{
-			numerator -= m.w;
-			res->x0 += m.dx;
+			m.numerator -= m.w;
+			x += m.dx;
 		}
 	}
 }
 
-void	drawline_h(t_line *res, t_height height, t_modifiers m, t_data *img)
+void	drawline_h(t_line *res, t_var *var, t_modifiers m)
 {
-	int	numerator;
 	int	z;
 	int	i;
+	int	x;
+	int	y;
 
-	numerator = m.w / 2;
 	z = res->z0;
 	i = 0;
+	x = (res->x0 * var->scale + var->offset_x);
+	y = (res->y0 * var->scale + var->offset_y);
 	while (i++ <= m.w)
 	{
 		if (m.w)
 			z = res->z0 - res->z0 * (i / (float)m.w)
 				+ res->z1 * (i / (float)m.w);
-		if (z < height.min)
-			z = height.min;
-		put_pixel_to_image(img, res->x0, res->y0,
-			calculate_color(z, height.min, height.max));
-		numerator += m.h;
-		res->x0 += m.dx;
-		if (numerator >= m.w)
+		put_pixel_to_image(&var->img, x, y,
+			calculate_color(z, var->height.min, var->height.max));
+		m.numerator += m.h;
+		x += m.dx;
+		if (m.numerator >= m.w)
 		{
-			numerator -= m.w;
-			res->y0 += m.dy;
+			m.numerator -= m.w;
+			y += m.dy;
 		}
 	}
 }
 
-void	drawline(t_line *res, t_height height, t_data *img)
+void	drawline(t_line *res, t_var *var, t_modifiers *modifiers)
 {
-	t_modifiers	modifiers;
-
-	modifiers.dx = 0;
-	modifiers.dy = 0;
 	if (res->x1 - res->x0 < 0)
-		modifiers.dx = -1;
+		modifiers->dx = -1;
 	else if (res->x1 - res->x0 > 0)
-		modifiers.dx = 1;
+		modifiers->dx = 1;
 	if (res->y1 - res->y0 < 0)
-		modifiers.dy = -1;
+		modifiers->dy = -1;
 	else if (res->y1 - res->y0 > 0)
-		modifiers.dy = 1;
+		modifiers->dy = 1;
 	if (fabs((float)res->x1 - res->x0) > fabs((float)res->y1 - res->y0))
 	{
-		modifiers.w = fabs((float)res->x1 - res->x0);
-		modifiers.h = fabs((float)res->y1 - res->y0);
-		drawline_h(res, height, modifiers, img);
+		modifiers->w = fabs((float)res->x1 - res->x0) * var->scale;
+		modifiers->h = fabs((float)res->y1 - res->y0) * var->scale;
+		modifiers->numerator = modifiers->w / 2;
+		drawline_h(res, var, *modifiers);
 	}
 	else
 	{
-		modifiers.w = fabs((float)res->y1 - res->y0);
-		modifiers.h = fabs((float)res->x1 - res->x0);
-		drawline_v(res, height, modifiers, img);
+		modifiers->w = fabs((float)res->y1 - res->y0) * var->scale;
+		modifiers->h = fabs((float)res->x1 - res->x0) * var->scale;
+		modifiers->numerator = modifiers->w / 2;
+		drawline_v(res, var, *modifiers);
 	}
 }
 
-void	draw(t_var *var)
+void	draw(t_line *line, t_var *var)
 {
-	t_height	height;
-	float		scale;
-	t_line		*line;
+	t_modifiers	modifiers;
+	int			x0;
+	int			y0;
+	int			x1;
+	int			y1;
 
-	line = var->d2_line;
-	scale = get_scale(line);
-	apply_zoom_to_lines(line, scale);
-	height = min_max_height(line);
+	var->height = min_max_height(line);
 	while (line)
 	{
-		drawline(line, height, &var->img);
+		modifiers.dx = 0;
+		modifiers.dy = 0;
+		x0 = line->x0 * var->scale + var->offset_x;
+		y0 = line->y0 * var->scale + var->offset_y;
+		x1 = line->x1 * var->scale + var->offset_x;
+		y1 = line->y1 * var->scale + var->offset_y;
+		if ((x0 < 0 && x1 < 0) || (x0 > WIDTH && x1 > WIDTH)
+			|| (y0 < 0 && y1 < 0) || (y0 > HEIGHT && y1 > HEIGHT))
+		{
+			line = line->next;
+			continue ;
+		}
+		drawline(line, var, &modifiers);
 		line = line->next;
 	}
 }

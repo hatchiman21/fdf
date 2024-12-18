@@ -6,22 +6,26 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/13 07:18:11 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/17 21:32:49 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	get_offset(t_line *lst, int *offset)
+void	get_bounds(t_line *lst, t_height *x, t_height *y)
 {
-	if (lst->x0 < *offset)
-		*offset = lst->x0;
-	if (lst->x1 < *offset)
-		*offset = lst->x1;
-	if (lst->y0 < *offset)
-		*offset = lst->y0;
-	if (lst->y1 < *offset)
-		*offset = lst->y1;
+	x->min = INT_MAX;
+	y->min = INT_MAX;
+	x->max = INT_MIN;
+	y->max = INT_MIN;
+	while (lst)
+	{
+		x->min = fmin(fmin(x->min, lst->x0), lst->x1);
+		x->max = fmax(fmax(x->max, lst->x0), lst->x1);
+		y->min = fmin(fmin(y->min, lst->y0), lst->y1);
+		y->max = fmax(fmax(y->max, lst->y0), lst->y1);
+		lst = lst->next;
+	}
 }
 
 int	get_point(int x, int y, int z, int is_x)
@@ -39,17 +43,21 @@ int	get_point(int x, int y, int z, int is_x)
 float	get_scale(t_line *lst)
 {
 	float	scale;
+	int		borders_x;
+	int		borders_y;
 
 	scale = 1;
+	borders_x = (WIDTH / 2) - WIDTH / 30;
+	borders_y = (HEIGHT / 2) - HEIGHT / 30;
 	while (lst)
 	{
-		while (scale && lst->x0 * scale >= WIDTH - 20)
+		while (fabs((float)lst->x0 * scale) >= borders_x)
 			scale -= 0.0005;
-		while (scale && lst->x1 * scale >= WIDTH - 20)
+		while (fabs((float)lst->x1 * scale) >= borders_x)
 			scale -= 0.0005;
-		while (scale && lst->y0 * scale >= HEIGHT - 30)
+		while (fabs((float)lst->y0 * scale) >= borders_y)
 			scale -= 0.0005;
-		while (scale && lst->y1 * scale >= HEIGHT - 30)
+		while (fabs((float)lst->y1 * scale) >= borders_y)
 			scale -= 0.0005;
 		lst = lst->next;
 	}

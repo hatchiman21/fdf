@@ -6,30 +6,28 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/17 16:16:36 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:21:25 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	offset_map(t_line *res)
+void	offset_before_scaling(t_line *res)
 {
-	int		offset;
-	t_line	*tmp;
+	t_height	x;
+	t_height	y;
+	int			offset_x;
+	int			offset_y;
 
-	offset = 0;
-	tmp = res;
-	while (tmp)
-	{
-		get_offset(tmp, &offset);
-		tmp = tmp->next;
-	}
+	get_bounds(res, &x, &y);
+	offset_x = (x.max + x.min) / 2;
+	offset_y = (y.max + y.min) / 2;
 	while (res)
 	{
-		res->x0 -= offset;
-		res->x1 -= offset;
-		res->y0 -= offset;
-		res->y1 -= offset;
+		res->x0 -= offset_x;
+		res->x1 -= offset_x;
+		res->y0 -= offset_y;
+		res->y1 -= offset_y;
 		res = res->next;
 	}
 }
@@ -39,7 +37,7 @@ int	gen_2d_line(int *x, int *y, int *z, t_line **res)
 	t_line	*node;
 	int		scale;
 
-	scale = 100;
+	scale = 200;
 	node = malloc(sizeof(t_line));
 	if (!node)
 		return (0);

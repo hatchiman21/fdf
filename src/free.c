@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:31:30 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/10 19:26:33 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:41:57 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,5 @@ int	close_exit(t_var *var)
 	free_cor(var->cor);
 	free(var->mlx);
 	exit(0);
-	return (0);
-}
-
-int	close_win(int keycode, t_var *var)
-{
-	if (keycode == ESC)
-	{
-		mlx_destroy_image(var->mlx, var->img.img);
-		mlx_destroy_window(var->mlx, var->win);
-		mlx_destroy_display(var->mlx);
-		free_lines(var->d2_line);
-		free_cor(var->cor);
-		free(var->mlx);
-		exit(0);
-	}
 	return (0);
 }

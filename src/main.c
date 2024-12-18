@@ -6,23 +6,11 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:08:05 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/17 16:12:50 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/18 05:21:47 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	apply_zoom_to_lines(t_line *lst, float scale)
-{
-	while (lst)
-	{
-		lst->x0 = (int)round(scale * lst->x0);
-		lst->y0 = (int)round(scale * lst->y0);
-		lst->x1 = (int)round(scale * lst->x1);
-		lst->y1 = (int)round(scale * lst->y1);
-		lst = lst->next;
-	}
-}
 
 int	handle_arguments(int argc, char *argv[], int *fd)
 {
@@ -50,7 +38,6 @@ int	initialize_variables(t_var *var, char *filename, int fd)
 		free_cor(var->cor);
 		return (3);
 	}
-	offset_map(var->d2_line);
 	return (0);
 }
 
