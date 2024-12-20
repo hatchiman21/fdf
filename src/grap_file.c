@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intiate.c                                          :+:      :+:    :+:   */
+/*   grap_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:55 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/08 00:50:09 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/20 14:37:40 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	***intial_malloc(int fd)
 	char	*line;
 	int		i;
 
+	if (fd == -1)
+		return (NULL);
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -30,28 +32,70 @@ char	***intial_malloc(int fd)
 	return (cor);
 }
 
-char	***grap_map(char *arg, int fd)
+void	count_cols_row(t_var *var)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (var->cor && var->cor[i])
+		i++;
+	j = 0;
+	while (var->cor && var->cor[0] && var->cor[0][j])
+		j++;
+	var->rows = i;
+	var->cols = j;
+}
+
+void	grap_3d_map(t_var *var)
 {
 	int		i;
-	char	***cor;
+	int		j;
+
+	count_cols_row(var);
+	var->grid_3d = malloc(var->rows * sizeof(int *));
+	if (!var->grid_3d)
+		return ;
+	i = 0;
+	while (i < var->rows)
+	{
+		var->grid_3d[i] = malloc(var->cols * sizeof(int));
+		if (!var->grid_3d[i])
+			return ;
+		j = 0;
+		while (j < var->cols)
+		{
+			var->grid_3d[i][j] = ft_atoi(var->cor[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	grap_file(char *arg, t_var *var)
+{
+	int		i;
+	int		fd;
 	char	*line;
 
-	cor = intial_malloc(fd);
-	if (!cor)
-		return (NULL);
+	fd = open(arg, O_RDONLY);
+	var->cor = intial_malloc(fd);
 	close(fd);
+	if (!var->cor)
+		return (-1);
 	fd = open(arg, O_RDONLY);
 	line = get_next_line(fd);
 	i = 0;
 	while (line)
 	{
-		cor[i] = ft_split(line, ' ');
-		if (!cor[i])
-			return (free_cor(cor));
+		var->cor[i] = ft_split(line, ' ');
+		if (!var->cor[i])
+			return (-1);
 		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	cor[i] = NULL;
-	return (cor);
+	var->cor[i] = NULL;
+	close(fd);
+	return (0);
 }

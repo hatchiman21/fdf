@@ -13,7 +13,7 @@ LIGHT_GREEN="\033[92m"
 LIGHT_CYAN="\033[96m"
 
 logging(){
-	local type=$1; offset_map
+	local type=$1; shift
 	printf "${LIGHT_CYAN}${BOLD}run_tests${RESET} [%b] : %b\n" "$type" "$*"
 }
 log_info(){

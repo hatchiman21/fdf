@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/18 15:43:32 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/20 15:05:23 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define DOWN 65364
 # define LEFT 65361
 # define RIGHT 65363
+# define X 120
+# define Y 121
+# define Z 122
+# define ISOMETRIC 1
+# define PARALLEL 2
 
 typedef struct s_data
 {
@@ -47,8 +52,14 @@ typedef struct s_line
 	int				y1;
 	int				z0;
 	int				z1;
-	struct s_line	*next;
 }					t_line;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	z;
+}		t_point;
 
 typedef struct s_modifiers
 {
@@ -65,33 +76,56 @@ typedef struct s_height
 	int	max;
 }		t_height;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}			t_mlx;
+
 typedef struct s_var
 {
-	void		*mlx;
-	void		*win;
-	char		***cor;
-	t_line		*d2_line;
-	t_data		img;
-	float		scale;
-	int			offset_x;
-	int			offset_y;
-	t_height	height;
-}				t_var;
+	t_mlx			*mlx_win;
+	char			***cor;
+	int				**grid_3d;
+	t_point			**grid_2d;
+	t_data			img;
+	float			scale;
+	int				offset_x;
+	int				offset_y;
+	int				rows;
+	int				cols;
+	float			x_angle;
+	float			y_angle;
+	float			z_angle;
+	float			*changing_angle;
+	int				projection;
+	int				on_display;
+	t_height		height;
+	struct s_var	*second;
+}					t_var;
 
+void		apply_rotation(t_var *var);
+void		initialize_var(t_var *var, int projection);
+void		place_image(t_var *var, t_var *tmp,
+				int start_draw, int start_rotare);
 void		put_pixel_to_image(t_data *data, int x, int y, int color);
-void		initialize_and_draw(t_var *var);
-void		draw(t_line *line, t_var *var);
+void		initialize_and_draw(t_var *var, int second);
+void		initialize_mlx(t_var *var, int second);
+void		draw(t_var *var);
+int			mouse_zoom(int button, int x, int y, t_var *var);
 int			handle_keys(int keycode, t_var *var);
-int			close_exit(t_var *var);
-t_line		*free_lines(t_line *lines);
 char		***free_cor(char ***string);
-void		free_all(t_var *var);
-char		***grap_map(char *arg, int fd);
-void		get_bounds(t_line *lst, t_height *x, t_height *y);
-int			get_point(int x, int y, int z, int is_x);
-float		get_scale(t_line *lst);
-t_height	min_max_height(t_line *res);
-void		offset_before_scaling(t_line *res);
-t_line		*gen_2d_map(char ***cor);
+int			free_all(t_var *var);
+int			grap_file(char *arg, t_var *var);
+void		grap_3d_map(t_var *var);
+t_line		calculate_line_coordinates(int i, int j, t_var *var, int vertical);
+int			get_color(int height, int min_h, int max_h);
+int			line_in_screen(t_line *line);
+t_point		**assign_2d_grid(int rows, int cols);
+void		get_bounds(t_point **map, t_height *x_h, t_height *y_h, t_var *var);
+void		get_scale(t_point **map, t_var *var);
+t_height	min_max_height(t_point **map, t_var *var);
+void		free_2d_grid(t_point **map, int rows);
+void		offset_before_scaling(t_point **map, t_var *var);
 
 #endif

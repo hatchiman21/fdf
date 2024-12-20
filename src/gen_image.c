@@ -6,100 +6,120 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:10 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/18 15:21:25 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/20 15:04:58 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	offset_before_scaling(t_line *res)
+void	offset_before_scaling(t_point **map, t_var *var)
 {
-	t_height	x;
-	t_height	y;
-	int			offset_x;
-	int			offset_y;
+	int			i;
+	int			j;
+	t_height	x_h;
+	t_height	y_h;
 
-	get_bounds(res, &x, &y);
-	offset_x = (x.max + x.min) / 2;
-	offset_y = (y.max + y.min) / 2;
-	while (res)
+	i = 0;
+	get_bounds(map, &x_h, &y_h, var);
+	while (i < var->rows)
 	{
-		res->x0 -= offset_x;
-		res->x1 -= offset_x;
-		res->y0 -= offset_y;
-		res->y1 -= offset_y;
-		res = res->next;
+		j = 0;
+		while (j < var->cols)
+		{
+			map[i][j].x -= (x_h.max + x_h.min) / 2;
+			map[i][j].y -= (y_h.max + y_h.min) / 2;
+			j++;
+		}
+		i++;
 	}
 }
 
-int	gen_2d_line(int *x, int *y, int *z, t_line **res)
+t_line	calculate_line_coordinates(int i, int j, t_var *var, int vertical)
 {
-	t_line	*node;
-	int		scale;
+	t_line	line;
 
-	scale = 200;
-	node = malloc(sizeof(t_line));
-	if (!node)
-		return (0);
-	if (*res != NULL)
+	line.x0 = var->grid_2d[i][j].x * var->scale + var->offset_x;
+	line.y0 = var->grid_2d[i][j].y * var->scale + var->offset_y;
+	line.z0 = var->grid_2d[i][j].z;
+	if (vertical)
 	{
-		while ((*res)->next)
-			*res = (*res)->next;
-		(*res)->next = node;
+		line.x1 = var->grid_2d[i][j + 1].x * var->scale + var->offset_x;
+		line.y1 = var->grid_2d[i][j + 1].y * var->scale + var->offset_y;
+		line.z1 = var->grid_2d[i][j + 1].z;
 	}
 	else
-		*res = node;
-	node->next = NULL;
-	node->x0 = get_point(x[0] * scale, y[0] * scale, z[0] * scale, 1);
-	node->y0 = get_point(x[0] * scale, y[0] * scale, z[0] * scale, 0);
-	node->x1 = get_point(x[1] * scale, y[1] * scale, z[1] * scale, 1);
-	node->y1 = get_point(x[1] * scale, y[1] * scale, z[1] * scale, 0);
-	node->z0 = z[0];
-	node->z1 = z[1];
+	{
+		line.x1 = var->grid_2d[i + 1][j].x * var->scale + var->offset_x;
+		line.y1 = var->grid_2d[i + 1][j].y * var->scale + var->offset_y;
+		line.z1 = var->grid_2d[i + 1][j].z;
+	}
+	return (line);
+}
+
+int	line_in_screen(t_line *line)
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
+
+	x0 = line->x0;
+	x1 = line->x1;
+	y0 = line->y0;
+	y1 = line->y1;
+	if ((x0 < 0 && x1 < 0) || (x0 > WIDTH && x1 > WIDTH)
+		|| (y0 < 0 && y1 < 0) || (y0 > HEIGHT && y1 > HEIGHT))
+		return (0);
 	return (1);
 }
 
-t_line	*process_line(char ***cor, int y, int x, t_line **tmp)
+t_point	**assign_2d_grid(int rows, int cols)
 {
-	int	line_check;
+	t_point	**map;
+	int		i;
 
-	line_check = 1;
-	if (cor[y + 1] && (ft_isdigit(cor[y + 1][x][0])))
-		line_check = gen_2d_line((int []){x, x}, (int []){y, (y + 1)},
-				(int []){ft_atoi(cor[y][x]), ft_atoi(cor[y + 1][x])}, tmp);
-	if (!line_check)
+	if (rows == 0 || cols == 0)
+	{
+		ft_dprintf(2, "Invalid map\n");
 		return (NULL);
-	if (cor[y][x + 1] && (ft_isdigit(cor[y][x + 1][0])))
-		line_check = gen_2d_line((int []){x, (x + 1)}, (int []){y, y},
-				(int []){ft_atoi(cor[y][x]), ft_atoi(cor[y][x + 1])}, tmp);
-	if (!line_check)
+	}
+	map = malloc(rows * sizeof(t_point *));
+	if (!map)
 		return (NULL);
-	return (*tmp);
+	i = 0;
+	while (i < rows)
+	{
+		map[i] = malloc(cols * sizeof(t_point));
+		if (!map[i])
+		{
+			free_2d_grid(map, i);
+			return (NULL);
+		}
+		i++;
+	}
+	return (map);
 }
 
-t_line	*gen_2d_map(char ***cor)
+void	initialize_and_draw(t_var *var, int second)
 {
-	t_line	*res;
-	t_line	*tmp;
-	int		y;
-	int		x;
+	int	x;
+	int	y;
 
-	y = 0;
-	tmp = NULL;
-	res = NULL;
-	while (cor[y])
+	offset_before_scaling(var->grid_2d, var);
+	get_scale(var->grid_2d, var);
+	x = var->grid_2d[0][0].x;
+	y = var->grid_2d[0][0].y;
+	apply_rotation(var);
+	var->offset_x = (x * var->scale + WIDTH / 2) - var->scale;
+	var->offset_y = (y * var->scale + HEIGHT / 2) - var->scale;
+	if (!second)
 	{
-		x = 0;
-		while (cor[y][x])
-		{
-			tmp = process_line(cor, y, x, &tmp);
-			if (!tmp)
-				return (free_lines(res));
-			if (res == NULL && tmp)
-				res = tmp;
-			x++;
-		}
-		y++;
+		draw(var);
+		mlx_hook(var->mlx_win->win, 2, 1L << 0, handle_keys, var);
+		mlx_hook(var->mlx_win->win, 17, 0, free_all, var);
+		mlx_mouse_hook(var->mlx_win->win, mouse_zoom, var);
+		mlx_put_image_to_window(var->mlx_win->mlx,
+			var->mlx_win->win, var->img.img, 0, 0);
+		mlx_loop(var->mlx_win->mlx);
 	}
-	return (res);
 }

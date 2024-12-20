@@ -6,81 +6,114 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:36:22 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/17 21:32:49 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/20 15:05:23 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	get_bounds(t_line *lst, t_height *x, t_height *y)
+int	get_color(int height, int min_h, int max_h)
 {
-	x->min = INT_MAX;
-	y->min = INT_MAX;
-	x->max = INT_MIN;
-	y->max = INT_MIN;
-	while (lst)
+	int	normalized;
+	int	red;
+	int	green;
+	int	blue;
+
+	if (max_h != min_h)
+		normalized = (height - min_h) * 255 / (max_h - min_h);
+	else
+		normalized = 255;
+	if (normalized < 128)
 	{
-		x->min = fmin(fmin(x->min, lst->x0), lst->x1);
-		x->max = fmax(fmax(x->max, lst->x0), lst->x1);
-		y->min = fmin(fmin(y->min, lst->y0), lst->y1);
-		y->max = fmax(fmax(y->max, lst->y0), lst->y1);
-		lst = lst->next;
+		red = 0;
+		green = normalized * 2;
+		blue = 255 - green;
+	}
+	else
+	{
+		red = (normalized - 128) * 2;
+		green = 255 - red;
+		blue = 0;
+	}
+	return ((red << 16) | (green << 8) | blue);
+}
+
+void	get_bounds(t_point **map, t_height *x_h, t_height *y_h, t_var *var)
+{
+	int		i;
+	int		j;
+
+	x_h->min = INT_MAX;
+	y_h->min = INT_MAX;
+	x_h->max = INT_MIN;
+	y_h->max = INT_MIN;
+	i = 0;
+	while (i < var->rows)
+	{
+		j = 0;
+		while (j < var->cols)
+		{
+			if (map[i][j].x < x_h->min)
+				x_h->min = map[i][j].x;
+			if (map[i][j].x > x_h->max)
+				x_h->max = map[i][j].x;
+			if (map[i][j].y < y_h->min)
+				y_h->min = map[i][j].y;
+			if (map[i][j].y > y_h->max)
+				y_h->max = map[i][j].y;
+			j++;
+		}
+		i++;
 	}
 }
 
-int	get_point(int x, int y, int z, int is_x)
+void	get_scale(t_point **map, t_var *var)
 {
-	int	res;
-
-	res = 0;
-	if (is_x)
-		res = x - y;
-	else
-		res = ((x + y) / 2) - z;
-	return (res);
-}
-
-float	get_scale(t_line *lst)
-{
-	float	scale;
+	int		i;
+	int		j;
 	int		borders_x;
 	int		borders_y;
 
-	scale = 1;
+	var->scale = 1;
 	borders_x = (WIDTH / 2) - WIDTH / 30;
 	borders_y = (HEIGHT / 2) - HEIGHT / 30;
-	while (lst)
+	i = 0;
+	while (i < var->rows)
 	{
-		while (fabs((float)lst->x0 * scale) >= borders_x)
-			scale -= 0.0005;
-		while (fabs((float)lst->x1 * scale) >= borders_x)
-			scale -= 0.0005;
-		while (fabs((float)lst->y0 * scale) >= borders_y)
-			scale -= 0.0005;
-		while (fabs((float)lst->y1 * scale) >= borders_y)
-			scale -= 0.0005;
-		lst = lst->next;
+		j = 0;
+		while (j < var->cols)
+		{
+			while (fabs((float)map[i][j].x * var->scale) >= borders_x)
+				var->scale -= 0.0005;
+			while (fabs((float)map[i][j].y * var->scale) >= borders_y)
+				var->scale -= 0.0005;
+			j++;
+		}
+		i++;
 	}
-	return (scale);
 }
 
-t_height	min_max_height(t_line *res)
+t_height	min_max_height(t_point **map, t_var *var)
 {
 	t_height	height;
+	int			i;
+	int			j;
 
-	height.min = 0;
-	height.max = 0;
-	while (res)
+	height.min = INT_MAX;
+	height.max = INT_MIN;
+	i = 0;
+	while (i < var->rows)
 	{
-		if (res->z0 < height.min)
-			height.min = res->z0;
-		if (res->z1 < height.min)
-			height.min = res->z1;
-		if (res->z0 > height.max)
-			height.max = res->z0;
-		if (res->z1 > height.max)
-			height.max = res->z1;
-		res = res->next;
+		j = 0;
+		while (j < var->cols)
+		{
+			if (map[i][j].z > height.max)
+				height.max = map[i][j].z;
+			if (map[i][j].z < height.min)
+				height.min = map[i][j].z;
+			j++;
+		}
+		i++;
 	}
 	return (height);
 }
