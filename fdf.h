@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:01:46 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/20 15:05:23 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/25 23:27:06 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void		place_image(t_var *var, t_var *tmp,
 				int start_draw, int start_rotare);
 void		put_pixel_to_image(t_data *data, int x, int y, int color);
 void		initialize_and_draw(t_var *var, int second);
+void		free_3d_map(int **map, int rows);
 void		initialize_mlx(t_var *var, int second);
 void		draw(t_var *var);
 int			mouse_zoom(int button, int x, int y, t_var *var);

@@ -6,7 +6,7 @@
 /*   By: aatieh <aatieh@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:55 by aatieh            #+#    #+#             */
-/*   Updated: 2024/12/20 14:37:40 by aatieh           ###   ########.fr       */
+/*   Updated: 2024/12/25 23:28:08 by aatieh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void	grap_3d_map(t_var *var)
 	{
 		var->grid_3d[i] = malloc(var->cols * sizeof(int));
 		if (!var->grid_3d[i])
+		{
+			free_3d_map(var->grid_3d, i);
+			free(var->grid_3d);
 			return ;
+		}
 		j = 0;
 		while (j < var->cols)
 		{
