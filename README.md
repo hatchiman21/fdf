@@ -49,4 +49,3 @@ FDF (Fil De Fer) is a 3D wireframe viewer project. The goal of this project is t
    - `W` / `S`: Move up/down
    - `A` / `D`: Move left/right
    - `ESC`: Exit the program
-```
